@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Usuario {
+  id           Int         @id @default(autoincrement())
+  nome         String
+  email        String      @unique
+  senha        String
+  telefone     String
+  cidade       String
+  tipo_usuario tipoUsuario
+
+  adocoes Adocao[]
+  animais Animal[]
+}
+
+model Animal {
+  id Int @id @default(autoincrement())
+  nome String
+  especie String
+  raca String
+  idade Int
+  sexo String
+  porte String
+  temperamento String?
+  foto String
+  status statusAnimal @default(DISPONIVEL)
+
+  usuarioID Int
+  usuario Usuario @relation(fields: [usuarioID], references: [id])
+
+  adocoes Adocao[]
+}
+
+model Adocao{
+  id Int @id @default(autoincrement())
+  moradia String
+  temQuintal Boolean
+  experiencia String?
+  tempoDisponivel String
+  status statusAdocao @default(PENDENTE)
+
+  animalID Int
+  adotanteID Int
+  animal Animal @relation(fields: [animalID], references: [id])
+  adotante Usuario @relation(fields: [adotanteID], references: [id])
+}
+
+enum tipoUsuario{
+  ADOTANTE
+  CLINICA
+}
+enum statusAnimal{
+  DISPONIVEL
+  EM_PROCESSO
+  ADOTADO
+}
+enum statusAdocao{
+  PENDENTE
+  APROVADA
+  RECUSADA
+}
