@@ -1,0 +1,271 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-03-18T14:41:27.077Z",
+  "__export_source": "backend-aula",
+  "resources": [
+    {
+      "_id": "wrk_backend",
+      "_type": "workspace",
+      "name": "Backend Aula"
+    },
+    {
+      "_id": "fld_BACK-END",
+      "_type": "request_group",
+      "parentId": "wrk_backend",
+      "name": "BACK-END"
+    },
+    {
+      "_id": "fld_Usuario",
+      "_type": "request_group",
+      "parentId": "fld_BACK-END",
+      "name": "Usuario"
+    },
+    {
+      "_id": "req_Usuario_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Usuario",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/usuario/listar"
+    },
+    {
+      "_id": "req_Usuario_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Usuario",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/usuario/buscar/:id"
+    },
+    {
+      "_id": "req_Usuario_POST",
+      "_type": "request",
+      "parentId": "fld_Usuario",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/usuario/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\"\n}"
+      }
+    },
+    {
+      "_id": "req_Usuario_PUT",
+      "_type": "request",
+      "parentId": "fld_Usuario",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/usuario/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\"\n}"
+      }
+    },
+    {
+      "_id": "req_Usuario_DELETE",
+      "_type": "request",
+      "parentId": "fld_Usuario",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/usuario/excluir/:id"
+    },
+    {
+      "_id": "fld_Animal",
+      "_type": "request_group",
+      "parentId": "fld_BACK-END",
+      "name": "Animal"
+    },
+    {
+      "_id": "req_Animal_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Animal",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/animal/listar"
+    },
+    {
+      "_id": "req_Animal_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Animal",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/animal/buscar/:id"
+    },
+    {
+      "_id": "req_Animal_POST",
+      "_type": "request",
+      "parentId": "fld_Animal",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/animal/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"especie\": \"string\",\n  \"raca\": \"string\",\n  \"idade\": 0,\n  \"sexo\": \"string\",\n  \"porte\": \"string\",\n  \"temperamento\": \"string\",\n  \"foto\": \"string\",\n  \"usuarioID\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Animal_PUT",
+      "_type": "request",
+      "parentId": "fld_Animal",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/animal/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"especie\": \"string\",\n  \"raca\": \"string\",\n  \"idade\": 0,\n  \"sexo\": \"string\",\n  \"porte\": \"string\",\n  \"temperamento\": \"string\",\n  \"foto\": \"string\",\n  \"usuarioID\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Animal_DELETE",
+      "_type": "request",
+      "parentId": "fld_Animal",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/animal/excluir/:id"
+    },
+    {
+      "_id": "fld_Adocao",
+      "_type": "request_group",
+      "parentId": "fld_BACK-END",
+      "name": "Adocao"
+    },
+    {
+      "_id": "req_Adocao_GET_ALL",
+      "_type": "request",
+      "parentId": "fld_Adocao",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar",
+      "method": "GET",
+      "url": "http://localhost:3000/adocao/listar"
+    },
+    {
+      "_id": "req_Adocao_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Adocao",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/adocao/buscar/:id"
+    },
+    {
+      "_id": "req_Adocao_POST",
+      "_type": "request",
+      "parentId": "fld_Adocao",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/adocao/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"moradia\": \"string\",\n  \"temQuintal\": true,\n  \"experiencia\": \"string\",\n  \"tempoDisponivel\": \"string\",\n  \"animalID\": 0,\n  \"adotanteID\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Adocao_PUT",
+      "_type": "request",
+      "parentId": "fld_Adocao",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/adocao/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"moradia\": \"string\",\n  \"temQuintal\": true,\n  \"experiencia\": \"string\",\n  \"tempoDisponivel\": \"string\",\n  \"animalID\": 0,\n  \"adotanteID\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Adocao_DELETE",
+      "_type": "request",
+      "parentId": "fld_Adocao",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/adocao/excluir/:id"
+    }
+  ]
+}

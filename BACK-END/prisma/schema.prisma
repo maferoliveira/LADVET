@@ -14,53 +14,56 @@ model Usuario {
   telefone     String
   cidade       String
   tipo_usuario tipoUsuario
+  crmv         String?
 
   adocoes Adocao[]
   animais Animal[]
 }
 
 model Animal {
-  id Int @id @default(autoincrement())
-  nome String
-  especie String
-  raca String
-  idade Int
-  sexo String
-  porte String
+  id           Int          @id @default(autoincrement())
+  nome         String
+  especie      String
+  raca         String
+  idade        Int
+  sexo         String
+  porte        String
   temperamento String?
-  foto String
-  status statusAnimal @default(DISPONIVEL)
+  foto         String
+  status       statusAnimal @default(DISPONIVEL)
 
   usuarioID Int
-  usuario Usuario @relation(fields: [usuarioID], references: [id])
+  usuario   Usuario @relation(fields: [usuarioID], references: [id])
 
   adocoes Adocao[]
 }
 
-model Adocao{
-  id Int @id @default(autoincrement())
-  moradia String
-  temQuintal Boolean
-  experiencia String?
+model Adocao {
+  id              Int          @id @default(autoincrement())
+  moradia         String
+  temQuintal      Boolean
+  experiencia     String?
   tempoDisponivel String
-  status statusAdocao @default(PENDENTE)
+  status          statusAdocao @default(PENDENTE)
 
-  animalID Int
+  animalID   Int
   adotanteID Int
-  animal Animal @relation(fields: [animalID], references: [id])
-  adotante Usuario @relation(fields: [adotanteID], references: [id])
+  animal     Animal  @relation(fields: [animalID], references: [id])
+  adotante   Usuario @relation(fields: [adotanteID], references: [id])
 }
 
-enum tipoUsuario{
+enum tipoUsuario {
   ADOTANTE
   CLINICA
 }
-enum statusAnimal{
+
+enum statusAnimal {
   DISPONIVEL
   EM_PROCESSO
   ADOTADO
 }
-enum statusAdocao{
+
+enum statusAdocao {
   PENDENTE
   APROVADA
   RECUSADA

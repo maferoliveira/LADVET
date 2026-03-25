@@ -1,7 +1,57 @@
-const prisma = require("../data/prisma")
+const prisma = require("../data/prisma");
 
-const cadastraranimal = async(req, res)=>{
-    const animal = await prisma.animal.create({
-        data: req.body;
-    }); res.status(201).json(animal)
+const cadastrar = async (req, res) => {
+    const data = req.body;
+
+    const item = await prisma.animal.create({
+        data
+    });
+
+    res.json(item).status(201).end();
+};
+
+const listar = async (req, res) => {
+    const lista = await prisma.animal.findMany();
+
+    res.json(lista).status(200).end();
+};
+
+const buscar = async (req, res) => {
+    const { id } = req.params;
+    
+    const item = await prisma.animal.findUnique({
+        where: { id : Number(id) }
+    });
+
+    res.json(item).status(200).end();
+};
+
+const atualizar = async (req, res) => {
+    const { id } = req.params;
+    const dados = req.body;
+    
+    const item = await prisma.animal.update({
+        where: { id : Number(id) },
+        data: dados
+    });
+
+    res.json(item).status(200).end();
+};
+
+const excluir = async (req, res) => {
+    const { id } = req.params;
+    
+    const item = await prisma.animal.delete({
+        where: { id : Number(id) }
+    });
+
+    res.json(item).status(200).end();
+};
+
+module.exports = {
+    cadastrar,
+    listar,
+    buscar,
+    atualizar,
+    excluir
 }

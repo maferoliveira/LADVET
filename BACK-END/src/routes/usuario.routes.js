@@ -1,14 +1,14 @@
-const express = require("express")
-const router = express.Router();
+const usuariocontroller = require("../controllers/usuario.controller");
+const express = require("express");
+const usuarioroutes = express.Router();
+const validate = require("../middlewares/auth")
+const validaveterinario = require("../middlewares/validacargo")
 
-const usuariocontrollers = require("../controllers/usuario.controller")
+usuarioroutes.post("/login", usuariocontroller.login);
+usuarioroutes.post("/cadastrar", usuariocontroller.cadastrar);
+usuarioroutes.get("/listar", validate, validaveterinario, usuariocontroller.listar);
+usuarioroutes.get("/buscar/:id", validate, validaveterinario, usuariocontroller.buscar);
+usuarioroutes.put("/atualizar/:id", validate, validaveterinario, usuariocontroller.atualizar);
+usuarioroutes.delete("/excluir/:id", validate, validaveterinario, usuariocontroller.excluir);
 
-router.post("/cadastrarusuario", usuariocontrollers.novousuario)
-router.post("/loginusuario", usuariocontrollers.loginusuario)
-router.get("/listarusuarios", usuariocontrollers.listarusuarios)
-router.get("/buscarusuario/:id", usuariocontrollers.buscarusuario)
-router.delete("/deletarusuario/:id", usuariocontrollers.deletarusuario)
-router.update("/atualizarusuario/:id", usuariocontrollers.atualizarusuario)
-
-module.exports = router;
-
+module.exports = usuarioroutes;

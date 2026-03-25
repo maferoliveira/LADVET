@@ -7,6 +7,7 @@ CREATE TABLE `Usuario` (
     `telefone` VARCHAR(191) NOT NULL,
     `cidade` VARCHAR(191) NOT NULL,
     `tipo_usuario` ENUM('ADOTANTE', 'CLINICA') NOT NULL,
+    `crmv` VARCHAR(191) NULL,
 
     UNIQUE INDEX `Usuario_email_key`(`email`),
     PRIMARY KEY (`id`)
@@ -30,19 +31,6 @@ CREATE TABLE `Animal` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Vacina` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nome` VARCHAR(191) NOT NULL,
-    `data` DATETIME(3) NOT NULL,
-    `proximaDose` DATETIME(3) NOT NULL,
-    `veterinario` VARCHAR(191) NULL,
-    `lote` VARCHAR(191) NULL,
-    `animalID` INTEGER NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `Adocao` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `moradia` VARCHAR(191) NOT NULL,
@@ -58,9 +46,6 @@ CREATE TABLE `Adocao` (
 
 -- AddForeignKey
 ALTER TABLE `Animal` ADD CONSTRAINT `Animal_usuarioID_fkey` FOREIGN KEY (`usuarioID`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `Vacina` ADD CONSTRAINT `Vacina_animalID_fkey` FOREIGN KEY (`animalID`) REFERENCES `Animal`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Adocao` ADD CONSTRAINT `Adocao_animalID_fkey` FOREIGN KEY (`animalID`) REFERENCES `Animal`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
