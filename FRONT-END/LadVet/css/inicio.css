@@ -14,7 +14,6 @@ body {
   position: relative;
 }
 
-/* bolinhas por cima (se você tiver a imagem) */
 body::after {
   content: "";
   position: absolute;
