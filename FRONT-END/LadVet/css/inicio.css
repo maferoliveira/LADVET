@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(to right, #d89a9a, #9aa3c7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* bolinhas por cima (se você tiver a imagem) */
+body::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../bolinhas.png");
+  background-size: cover;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  width: 500px;
+}
+
+.frase {
+  background: rgba(255, 180, 180, 0.7);
+  padding: 20px 40px;
+  border-radius: 40px;
+  font-size: 18px;
+  text-align: center;
+  color: #333;
+  max-width: 500px;
+}
+
+.btn-entrar {
+  margin-top: 20px;
+  padding: 15px 50px;
+  border-radius: 30px;
+  border: none;
+  background: #6f7ba3;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-entrar:hover {
+  background: #5d678f;
+}

@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #e9dddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.voltar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #c98b8b;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: white;
+  font-size: 18px;
+}
+
+.logo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 150px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  height: 100vh;           
+}
+
+.card {
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-top {
+  background: #6f7ba3;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-top h2 {
+  color: white;
+}
+
+.card-body {
+  background: #8b91b0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input {
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: #ddd;
+  font-size: 14px;
+}
+
+.btn-criar {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  background: #6f7ba3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-acessar {
+  margin-top: 20px;
+  padding: 15px 40px;
+  border-radius: 25px;
+  border: none;
+  background: #6f7ba3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
