@@ -1,6 +1,8 @@
 const { tipo_usuario } = require("@prisma/client");
 const prisma = require("../data/prisma");
 const { validaCadastroVeterinario } = require("../services/usuario.services");
+const crypto = require('crypto');
+const jsonwebtoken = require('jsonwebtoken');
 
 function validarUsuario(dados) {
     const { nome, email, senha, tipo_usuario } = dados;
@@ -23,7 +25,7 @@ const login = async (req, res) => {
         return res.status(400).json({ msg: "Todos os campos devem ser preenchidos" });
     }
     try {
-        const senhahash = crypto.createHash('md5').update(senha).digest('hex');
+        const senhaHash = crypto.createHash('md5').update(senha).digest('hex');
         console.log(email, senhaHash)
 
         const usuario = await prisma.usuario.findUnique({
@@ -51,9 +53,9 @@ const login = async (req, res) => {
 }
 
 const cadastrar = async (req, res) => {
-    const { nome, email, senha, telefone, cidade, tipo_usuario } = req.body;
+    const { nome, email, senha, telefone, cidade, tipo_usuario, crmv } = req.body;
     try {
-        const senhahash = crypto.createHash('md5').update(senha).digest('hex');
+        const senhaHash = crypto.createHash('md5').update(senha).digest('hex');
 
         if(tipo_usuario === "CLINICA") {
             validaCadastroVeterinario(req.body);
@@ -63,15 +65,18 @@ const cadastrar = async (req, res) => {
             data: {
                 nome: nome,
                 email: email,
+                senha: senhaHash,
                 telefone: telefone,
                 cidade: cidade,
-                tipo_usuario: tipo_usuario
+                tipo_usuario: tipo_usuario,
+                crmv: crmv
             }
         })
         return res.status(200).json(novousuario)
 
     } catch (error) {
-        return res.status(500).json(error)
+        console.error("Erro na tentativa de cadastro:", error)
+        res.status(500).json({ msg: "Internal server error." })
     }
 };
 

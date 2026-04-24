@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2026-03-18T14:41:27.077Z",
+  "__export_date": "2026-04-24T17:40:08.050Z",
   "__export_source": "backend-aula",
   "resources": [
     {
@@ -64,7 +64,7 @@
       "url": "http://localhost:3000/usuario/cadastrar",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\"\n}"
+        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\",\n  \"crmv\": \"string\"\n}"
       }
     },
     {
@@ -82,7 +82,7 @@
       "url": "http://localhost:3000/usuario/atualizar/:id",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\"\n}"
+        "text": "{\n  \"nome\": \"string\",\n  \"email\": \"string\",\n  \"senha\": \"string\",\n  \"telefone\": \"string\",\n  \"cidade\": \"string\",\n  \"crmv\": \"string\"\n}"
       }
     },
     {
