@@ -13,7 +13,6 @@ body {
   align-items: center;
 }
 
-/* seta */
 .voltar {
   position: fixed;
   top: 20px;
@@ -27,7 +26,6 @@ body {
   cursor: pointer;
 }
 
-/* logo */
 .logo {
   position: fixed;
   top: 20px;
@@ -35,21 +33,18 @@ body {
   width: 150px;
 }
 
-/* centralização */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* card */
 .card {
   width: 400px;
   border-radius: 10px;
   overflow: hidden;
 }
 
-/* topo */
 .card-top {
   background: #6f7ba3;
   padding: 20px;
@@ -60,7 +55,6 @@ body {
   color: white;
 }
 
-/* corpo */
 .card-body {
   background: #8b91b0;
   padding: 30px;
@@ -69,7 +63,6 @@ body {
   gap: 20px;
 }
 
-/* inputs */
 input {
   padding: 15px;
   border-radius: 12px;
@@ -77,7 +70,6 @@ input {
   background: #ddd;
 }
 
-/* botão */
 .btn-acessar {
   margin-top: 10px;
   padding: 15px;
