@@ -25,19 +25,13 @@ const login = async (req, res) => {
         return res.status(400).json({ msg: "Todos os campos devem ser preenchidos" });
     }
     try {
-        const senhaHash = crypto.createHash('md5').update(senha).digest('hex');
-        console.log(email, senhaHash)
-
         const usuario = await prisma.usuario.findUnique({
             where: { email }
         })
-        if (!usuario || usuario.senha !== senhaHash) {
-            return res.status(401).json({ erro: "Email ou senha inválidos" })
-        }
         const token = jsonwebtoken.sign(
             {
-                id: usuario.usuarioID,
-                nome: usuario.nome,
+                email: usuario.email,
+                senha: usuario.nome,
                 tipo_usuario: usuario.tipo_usuario
             },
             process.env.SECRET_JWT,
@@ -53,24 +47,10 @@ const login = async (req, res) => {
 }
 
 const cadastrar = async (req, res) => {
-    const { nome, email, senha, telefone, cidade, tipo_usuario, crmv } = req.body;
+    const dados = req.body;
     try {
-        const senhaHash = crypto.createHash('md5').update(senha).digest('hex');
-
-        if(tipo_usuario === "CLINICA") {
-            validaCadastroVeterinario(req.body);
-        }
-
         const novousuario = await prisma.usuario.create({
-            data: {
-                nome: nome,
-                email: email,
-                senha: senhaHash,
-                telefone: telefone,
-                cidade: cidade,
-                tipo_usuario: tipo_usuario,
-                crmv: crmv
-            }
+            data: dados
         })
         return res.status(200).json(novousuario)
 

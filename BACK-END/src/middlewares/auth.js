@@ -6,10 +6,10 @@ const validate = (req, res, next) => {
     if (!token) return res.status(401).send({ message: "Acesso negado. Token inválido" })
     try {
         const payload = jsonwebtoken.verify(token, process.env.SECRET_JWT)
-        req.headers['user'] = payload;
+        req.usuario = payload;
         next();
     } catch (err) {
-        res.status(500).send(err).end();
+        res.status(401).send(err).end();
     }
 }
 
