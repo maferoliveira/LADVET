@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro</title>
 
-  <link rel="stylesheet" href="../css/cadastro.css">
+  <link rel="stylesheet" href="../css/login.css">
 </head>
+
 <body>
 
-  <button class="voltar" onclick="voltarLogin()">↩</button>
+  <button class="voltar" onclick="voltarIdentificacao()">↩</button>
+
   <img src="../img/Logo.png" class="logo">
 
   <div class="container">
@@ -17,23 +19,54 @@
     <div class="card">
 
       <div class="card-top">
-        <h2>Cadastre-se</h2>
+        <h2>Criar Conta</h2>
       </div>
 
-      <div class="card-body">
-        <input type="text" placeholder="Nome completo">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Senha">
-        <input type="text" placeholder="Telefone">
-        <input type="text" placeholder="Cidade">
+      <form class="card-body" onsubmit="entrarSistema(event)">
 
-        <button class="btn-acessar">Acessar</button>
-      </div>
+        <input 
+          type="text" 
+          placeholder="Nome completo"
+          required
+        >
+
+        <input 
+          type="email" 
+          placeholder="Email"
+          required
+        >
+
+        <input 
+          type="text" 
+          placeholder="Telefone"
+          required
+        >
+
+        <input 
+          type="text" 
+          placeholder="Cidade"
+          required
+        >
+
+        <input 
+          type="password" 
+          placeholder="Crie uma senha"
+          required
+        >
+
+        <button 
+          type="submit"
+          class="btn-acessar">
+          Acessar
+        </button>
+
+      </form>
 
     </div>
 
   </div>
 
   <script src="../js/script.js"></script>
+
 </body>
 </html>

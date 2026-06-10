@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Pet</title>
+
+<link rel="stylesheet"
+href="../css/pet.css">
+
+</head>
+
+
+<body>
+
+<div class="topo">
+
+<button
+class="voltar"
+onclick="history.back()">
+↩
+</button>
+
+<img
+src="../img/Logo.png"
+class="logo">
+
+</div>
+
+<div class="container">
+
+<img
+id="fotoPet">
+
+
+<div class="conteudo">
+
+<div class="top-info">
+
+<div class="textos">
+
+<div id="nomePet"></div>
+
+<div id="idadePet"></div>
+
+<div id="especiePet"></div>
+
+</div>
+
+
+<div
+class="favorito"
+onclick="favoritarPet(this)">
+♡
+</div>
+
+</div>
+
+
+<hr>
+
+
+<p id="sexoPet"></p>
+
+<p id="vacinaPet"></p>
+
+<p id="temperamentoPet"></p>
+
+<p id="descricaoPet"></p>
+
+
+<div class="divisor"></div>
+
+<div
+class="status"
+id="statusPet">
+</div>
+
+</div>
+
+
+<button class="adotar">
+
+Solicitar adoção
+
+</button>
+
+</div>
+
+
+<script src="../js/pet.js"></script>
+
+</body>
+
+</html>

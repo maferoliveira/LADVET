@@ -32,7 +32,7 @@ body::before {
 
 .container {
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
   height: 100vh;
 
   display: flex;
@@ -77,38 +77,51 @@ h1 {
 .opcoes {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
   width: 100%;
 }
 
 .opcao {
   display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.opcao img {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background: white;
-  margin-right: -20px;
-  z-index: 2;
+  justify-content: center;
 }
 
 .opcao button {
-  width: 100%;
-  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  width: 360px;
+  height: 90px;
+
   border: none;
-  border-radius: 20px;
+  border-radius: 22px;
+
   background: #c97f7f;
   color: white;
+
+  font-size: 20px;
   font-weight: bold;
-  font-size: 16px;
+
   cursor: pointer;
   transition: 0.3s;
+
+  padding: 10px 20px;
 }
 
 .opcao button:hover {
   background: #b56d6d;
+  transform: scale(1.03);
+}
+
+.opcao img {
+  width: 130px;
+  height: 110px;
+
+  border-radius: 12px;
+  background: white;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
 }
