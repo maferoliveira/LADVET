@@ -8,9 +8,9 @@ const { login, cadastrar, listar, buscar, atualizar, excluir } = require("../con
 
 usuarioroutes.post("/login", login);
 usuarioroutes.post("/cadastrar", cadastrar);
-usuarioroutes.get("/listar", listar);
-usuarioroutes.get("/buscar/:id", buscar);
+usuarioroutes.get("/listar", validate, listar);
+usuarioroutes.get("/buscar/:id", validate, buscar);
 usuarioroutes.put("/atualizar/:id", validate, permitirTipo("CLINICA"), atualizar);
-usuarioroutes.delete("/excluir/:id", excluir);
+usuarioroutes.delete("/excluir/:id", validate, permitirTipo("CLINICA"), excluir);
 
 module.exports = usuarioroutes;

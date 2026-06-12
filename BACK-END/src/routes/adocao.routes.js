@@ -6,10 +6,10 @@ const permitirTipo = require("../middlewares/permitirTipo");
 
 const { cadastrar, listar, buscar, atualizar, excluir } = require("../controllers/adocao.controller");
 
-adocaoroutes.post("/cadastrar", cadastrar);
-adocaoroutes.get("/listar", validate, permitirTipo("CLINICA"), listar);
-adocaoroutes.get("/buscar/:id", buscar);
-adocaoroutes.put("/atualizar/:id", atualizar);
-adocaoroutes.delete("/excluir/:id", excluir);
+adocaoroutes.post("/cadastrar", validate, permitirTipo("CLINICA"), cadastrar);
+adocaoroutes.get("/listar", validate, listar);
+adocaoroutes.get("/buscar/:id", validate, buscar);
+adocaoroutes.put("/atualizar/:id", validate, permitirTipo("CLINICA"), atualizar);
+adocaoroutes.delete("/excluir/:id", validate, permitirTipo("CLINICA"), excluir);
 
 module.exports = adocaoroutes;

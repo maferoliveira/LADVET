@@ -7,4 +7,4 @@ const permitirTipo = (tipoPermitido) => {
     }
 }
 
-module.exports = permitirTipo;
+module.exports = permitirTipo;  

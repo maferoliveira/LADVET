@@ -22,29 +22,47 @@ const login = async (req, res) => {
     const { email, senha } = req.body;
 
     if (!email || !senha) {
-        return res.status(400).json({ msg: "Todos os campos devem ser preenchidos" });
+        return res.status(400).json({
+            msg: "Todos os campos devem ser preenchidos"
+        });
     }
+
     try {
-        const usuario = await prisma.usuario.findUnique({
-            where: { email }
-        })
+        const usuario = await prisma.usuario.findFirst({
+            where: {
+                email,
+                senha
+            }
+        });
+
+        if (!usuario) {
+            return res.status(404).json({
+                msg: "Usuário não encontrado."
+            });
+        }
+
         const token = jsonwebtoken.sign(
             {
+                id: usuario.id,
                 email: usuario.email,
-                senha: usuario.nome,
                 tipo_usuario: usuario.tipo_usuario
             },
             process.env.SECRET_JWT,
-            { expiresIn: '60min' }
-        )
+            { expiresIn: "60min" }
+        );
 
-        return res.status(200).json({ msg: "Login realizado com sucesso", token })
+        return res.status(200).json({
+            msg: "Login realizado com sucesso",
+            token
+        });
 
     } catch (error) {
-        console.error("Erro na tentativa de login:", error)
-        res.status(500).json({ msg: "Internal server error." })
+        console.error("Erro na tentativa de login:", error);
+        return res.status(500).json({
+            msg: "Internal server error."
+        });
     }
-}
+};
 
 const cadastrar = async (req, res) => {
     const dados = req.body;

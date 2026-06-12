@@ -6,10 +6,10 @@ const permitirTipo = require("../middlewares/permitirTipo");
 
 const { cadastrar, listar, buscar, atualizar, excluir } = require("../controllers/animal.controller");
 
-animalroutes.post("/cadastrar", cadastrar);
-animalroutes.get("/listar", validate, permitirTipo("CLINICA"), listar);
-animalroutes.get("/buscar/:id", buscar);
-animalroutes.put("/atualizar/:id", atualizar);
-animalroutes.delete("/excluir/:id", excluir);
+animalroutes.post("/cadastrar",validate, permitirTipo("CLINICA"), cadastrar);
+animalroutes.get("/listar", validate, listar);
+animalroutes.get("/buscar/:id", validate, buscar);
+animalroutes.put("/atualizar/:id", validate, permitirTipo("CLINICA"), atualizar);
+animalroutes.delete("/excluir/:id", validate, permitirTipo("CLINICA"), excluir);
 
 module.exports = animalroutes;
