@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,34 +25,18 @@
 
       <form class="card-body" onsubmit="entrarSistema(event)">
 
-        <input 
-          type="text" 
-          placeholder="Nome completo"
-          required
-        >
+        <input type="text" placeholder="Nome completo" required>
 
-        <input 
-          type="email" 
-          placeholder="Email"
-          required
-        >
+        <input type="email" placeholder="Email" required>
 
-        <input 
-          type="password" 
-          placeholder="Senha"
-          required
-        >
-        <button 
-          type="button"
-          class="btn-criar"
-          onclick="irParaCadastro()">
-          Criar conta
-        </button>
+        <input type="password" placeholder="Senha" required>
 
-        <button 
-          type="submit"
-          class="btn-acessar">
+        <button type="submit" class="btn-acessar">
           Acessar
+        </button>
+        
+        <button type="button" class="btn-criar" onclick="irParaCadastro()">
+          Criar conta
         </button>
 
       </form>
@@ -63,4 +48,5 @@
   <script src="../js/script.js"></script>
 
 </body>
+
 </html>
