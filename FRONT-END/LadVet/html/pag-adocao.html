@@ -1,22 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LADVET - login</title>
-    <link rel="stylesheet" href="pag-adocao.css">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Adoção</title>
+
+  <link rel="stylesheet"
+        href="../css/pag-adocao.css">
 </head>
 
 <body>
-    <header>
-        <div class="ft-usuario"><a href="pag-usuario.html"><img src="" alt="Sua foto aqui"></a></div>
-        <div class="logo-canto"><img src="Logo.png" alt="Logo LadVet" class="logo"></div>
-    </header>
-    <main>
-        <div class="cards">
-        </div>
-    </main>
+
+<div class="topo">
+
+  <div class="acoes-topo">
+
+    <button
+      class="voltar"
+      onclick="voltarIdentificacao()">
+      ↩
+    </button>
+
+    <div
+      class="perfil"
+      onclick="abrirPerfil()">
+
+      <img
+        src="../img/user.png"
+        alt="perfil">
+
+    </div>
+
+  </div>
+
+  <img
+    src="../img/Logo.png"
+    class="logo">
+
+</div>
+
+<div class="lista">
+
+<div
+class="pet"
+data-pet="tulipa"
+onclick="abrirPet('tulipa')">
+
+<img src="../img/tulipa.png">
+
+<div class="info">
+<h3>Nome: Tulipa</h3>
+<p>Idade: 2 anos</p>
+<p>Espécie: Felino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="thor"
+onclick="abrirPet('thor')">
+
+<img src="../img/thor.png">
+
+<div class="info">
+<h3>Nome: Thor</h3>
+<p>Idade: 3 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="pretinho"
+onclick="abrirPet('pretinho')">
+
+<img src="../img/pretinho.png">
+
+<div class="info">
+<h3>Nome: Pretinho</h3>
+<p>Idade: 4 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="nina"
+onclick="abrirPet('nina')">
+
+<img src="../img/nina.png">
+
+<div class="info">
+<h3>Nome: Nina</h3>
+<p>Idade: 2 anos</p>
+<p>Espécie: Felino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="aurora"
+onclick="abrirPet('aurora')">
+
+<img src="../img/aurora.png">
+
+<div class="info">
+<h3>Nome: Aurora</h3>
+<p>Idade: 1 ano</p>
+<p>Espécie: Felino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="aurora"
+onclick="abrirPet('aurora')">
+
+<img src="../img/romeu.png">
+
+<div class="info">
+<h3>Nome: Romeu</h3>
+<p>Idade: 1 ano</p>
+<p>Espécie: Felino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="duck"
+onclick="abrirPet('duck')">
+<img src="../img/duck.png">
+
+<div class="info">
+<h3>Nome: Duck</h3>
+<p>Idade: 10 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="fred"
+onclick="abrirPet('fred')">
+<img src="../img/fred.png">
+
+<div class="info">
+<h3>Nome: Fred</h3>
+<p>Idade: 8 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="jady"
+onclick="abrirPet('jady')">
+<img src="../img/jady.png">
+
+<div class="info">
+<h3>Nome: Jady</h3>
+<p>Idade: 5 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="theo"
+onclick="abrirPet('theo')">
+<img src="../img/theo.png">
+
+<div class="info">
+<h3>Nome: Theo</h3>
+<p>Idade: 3 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="meggie"
+onclick="abrirPet('meggie')">
+<img src="../img/meggie.png">
+
+<div class="info">
+<h3>Nome: Meggie</h3>
+<p>Idade: 8 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+
+
+<div
+class="pet"
+data-pet="salsicha"
+onclick="abrirPet('salsicha')">
+
+<img src="../img/salsicha.png">
+
+<div class="info">
+<h3>Nome: Salsicha</h3>
+<p>Idade: 3 anos</p>
+<p>Espécie: Canino</p>
+</div>
+
+<div class="card-footer"
+onclick="event.stopPropagation(); favoritar(this)">
+♡
+</div>
+
+</div>
+
+</div>
+
+
+<script src="../js/script.js"></script>
+
 </body>
 
 </html>

@@ -46,12 +46,12 @@ body::after {
 }
 
 .logo {
-  width: 500px;
+  width: 900px;
 }
 
 .frase {
   background: rgba(255, 180, 180, 0.7);
-  padding: 20px 40px;
+  padding: 40px 50px;
   border-radius: 40px;
   font-size: 18px;
   text-align: center;
@@ -61,7 +61,7 @@ body::after {
 
 .btn-entrar {
   margin-top: 20px;
-  padding: 15px 50px;
+  padding: 25px 50px;
   border-radius: 30px;
   border: none;
   background: #6f7ba3;
