@@ -1,3 +1,7 @@
+/* ===========================
+NAVEGAÇÃO
+=========================== */
+
 function irParaHome(){
 window.location.href="../html/identificacao.html";
 }
@@ -44,11 +48,15 @@ window.location.href="../html/home.html";
 }
 
 
-/* LOGIN */
+/* ===========================
+LOGIN
+=========================== */
 
 function entrarSistema(event){
 
+if(event){
 event.preventDefault();
+}
 
 window.location.href=
 "../html/pag-adocao.html";
@@ -56,7 +64,9 @@ window.location.href=
 }
 
 
-/* FAVORITOS */
+/* ===========================
+FAVORITOS
+=========================== */
 
 function favoritar(elemento,event){
 
@@ -64,17 +74,26 @@ if(event){
 event.stopPropagation();
 }
 
-const card=
+const tipo =
+localStorage.getItem(
+"tipoUsuario"
+);
+
+if(tipo==="veterinario"){
+return;
+}
+
+const card =
 elemento.closest(".pet");
 
 if(!card)return;
 
-const nome=
+const nome =
 card.dataset.pet;
 
 if(!nome)return;
 
-let favoritos=
+let favoritos =
 JSON.parse(
 localStorage.getItem(
 "favoritos"
@@ -85,7 +104,7 @@ if(
 favoritos.includes(nome)
 ){
 
-favoritos=
+favoritos =
 favoritos.filter(
 p=>p!==nome
 );
@@ -119,7 +138,9 @@ favoritos
 }
 
 
-/* PET */
+/* ===========================
+PET
+=========================== */
 
 function abrirPet(nomePet){
 
@@ -134,7 +155,9 @@ window.location.href=
 }
 
 
-/* PERFIL */
+/* ===========================
+PERFIL
+=========================== */
 
 function abrirPerfil(){
 
@@ -142,9 +165,6 @@ window.location.href=
 "../html/perfil.html";
 
 }
-
-
-/* FAVORITOS */
 
 function abrirFavoritos(){
 
@@ -154,7 +174,9 @@ window.location.href=
 }
 
 
-/* CADASTRO ANIMAL */
+/* ===========================
+CADASTRO ANIMAL
+=========================== */
 
 function abrirCadastroAnimal(){
 
@@ -164,26 +186,252 @@ window.location.href=
 }
 
 
-window.onload=function(){
+/* ===========================
+UPLOAD FOTO
+=========================== */
 
-const tipo=
-localStorage.getItem(
-"tipoUsuario"
-);
+let sexoSelecionado="";
+let fotoSelecionada="";
 
-const novo=
+function mostrarPreview(event){
+
+const arquivo =
+event.target.files[0];
+
+if(!arquivo)return;
+
+const leitor =
+new FileReader();
+
+leitor.onload =
+function(e){
+
+fotoSelecionada =
+e.target.result;
+
+const texto =
 document.getElementById(
-"novoAnimal"
+"nomeFoto"
 );
 
-if(
-novo &&
-tipo==="veterinario"
-){
+if(texto){
 
-novo.style.display=
-"flex";
+texto.innerHTML =
+arquivo.name;
 
 }
 
 };
+
+leitor.readAsDataURL(
+arquivo
+);
+
+}
+
+
+/* ===========================
+SEXO
+=========================== */
+
+function selecionarSexo(sexo){
+
+sexoSelecionado=
+sexo;
+
+const femea=
+document.getElementById(
+"btnFemea"
+);
+
+const macho=
+document.getElementById(
+"btnMacho"
+);
+
+if(femea){
+femea.style.background="#ddd";
+}
+
+if(macho){
+macho.style.background="#ddd";
+}
+
+if(
+sexo==="Fêmea"
+&&
+femea
+){
+
+femea.style.background=
+"#f6bfd8";
+
+}
+
+if(
+sexo==="Macho"
+&&
+macho
+){
+
+macho.style.background=
+"#9fc4ff";
+
+}
+
+}
+
+
+/* ===========================
+SALVAR ANIMAL
+=========================== */
+
+function cadastrarAnimal(event){
+
+event.preventDefault();
+
+const idade =
+Number(
+document.getElementById(
+"idade"
+).value
+);
+
+if(idade<0){
+
+alert(
+"Idade inválida"
+);
+
+return;
+
+}
+
+const novoPet={
+
+foto:
+fotoSelecionada
+||
+"../img/user.png",
+
+nome:
+document.getElementById(
+"nome"
+).value,
+
+idade:
+idade+
+" anos",
+
+especie:
+document.getElementById(
+"especie"
+).value,
+
+sexo:
+sexoSelecionado,
+
+vacina:
+document.getElementById(
+"vacina"
+).value,
+
+temperamento:
+document.getElementById(
+"temperamento"
+).value,
+
+descricao:
+document.getElementById(
+"descricao"
+).value,
+
+status:
+"Disponível"
+
+};
+
+let pets =
+JSON.parse(
+localStorage.getItem(
+"petsNovos"
+)
+)||[];
+
+pets.push(
+novoPet
+);
+
+localStorage.setItem(
+"petsNovos",
+JSON.stringify(
+pets
+));
+
+alert(
+"Animal cadastrado!"
+);
+
+window.location.href=
+"../html/pag-adocao.html";
+
+}
+
+
+/* ===========================
+CARREGAMENTO
+=========================== */
+
+window.addEventListener(
+"load",
+function(){
+
+const tipo =
+localStorage.getItem(
+"tipoUsuario"
+);
+
+
+/* botão novo animal */
+
+const novo =
+document.getElementById(
+"novoAnimal"
+);
+
+if(novo){
+
+novo.style.display=
+tipo==="veterinario"
+?
+"flex"
+:
+"none";
+
+}
+
+
+/* esconder favoritos veterinário */
+
+if(
+tipo==="veterinario"
+){
+
+document
+.querySelectorAll(
+".card-footer"
+)
+.forEach(
+el=>{
+
+el.style.display=
+"none";
+
+}
+
+);
+
+}
+
+}
+);

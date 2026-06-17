@@ -137,87 +137,62 @@ width:170px;
 
 /* LISTA */
 
-.lista{
-
-padding:35px;
-
-display:grid;
-
-grid-template-columns:
-repeat(
-auto-fit,
-minmax(170px,1fr)
-);
-
-gap:20px;
-
+/* LISTA */
+.lista {
+  padding: 35px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(220px, 1fr) /* 1. Aumentado de 170px para 220px para os cards ficarem mais largos */
+  );
+  gap: 25px; /* Aumentado levemente o espaço entre os cards */
 }
-
 
 /* CARD */
-
-.pet{
-
-background:#cf8f8f;
-
-border-radius:16px;
-
-overflow:hidden;
-
-cursor:pointer;
-
-max-width:180px;
-
+.pet {
+  background: #cf8f8f;
+  border-radius: 24px; /* 2. Cantos mais arredondados combinam mais com o estilo "gordinho" */
+  overflow: hidden;
+  cursor: pointer;
+  max-width: 260px; /* 3. Aumentado o limite máximo de largura do card */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* 4. Sombra suave para dar volume */
+  transition: transform 0.2s ease;
 }
 
-.pet img{
-
-width:100%;
-
-height:180px;
-
-object-fit:cover;
-
+.pet:hover {
+  transform: scale(1.02); /* Efeito opcional: aumenta levemente ao passar o mouse */
 }
 
-.info{
-
-padding:10px;
-
-color:white;
-
+.pet img {
+  width: 100%;
+  height: 220px; /* 5. Aumentado de 180px para 220px para manter a proporção com a nova largura */
+  object-fit: cover;
 }
 
-.info h3{
-
-font-size:14px;
-
+.info {
+  padding: 20px 20px 5px 20px; /* 6. Mais que dobrou o preenchimento interno nas laterais e topo */
+  color: white;
 }
 
-.info p{
-
-font-size:12px;
-
+.info h3 {
+  font-size: 16px; /* Aumentado levemente para acompanhar o tamanho do card */
+  margin-bottom: 6px; /* Espaço entre o nome e o subtítulo */
 }
 
-.card-footer{
-
-display:flex;
-
-justify-content:flex-end;
-
-padding:10px;
-
-font-size:26px;
-
-color:white;
-
-cursor:pointer;
-
+.info p {
+  font-size: 13px;
+  opacity: 0.9;
 }
 
-.card-footer.ativo{
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 20px 20px 20px; /* 7. Mais padding na parte inferior para fechar o visual gordinho */
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
 
-color:red;
-
+.card-footer.ativo {
+  color: red;
 }
