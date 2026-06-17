@@ -1,0 +1,305 @@
+/* Reset e Base da Página Desktop */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #F7D6D9; /* Tom de rosa suave de fundo para a página */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Container Centralizado Expandido para Desktop */
+.tela {
+  width: 100%;
+  max-width: 1000px; /* Largura ideal para visualização em computadores */
+  background-color: #FFF0F2; /* Fundo rosa bem claro interno */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. TOPO (Barra Superior) */
+.topo {
+  background-color: #D38E93; 
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.voltar{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#c98b8b;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.voltar:hover {
+  background-color: #c98b8b;
+}
+
+/* 2. BANNER DE CACHORROS (Ajustado para proporção Desktop) */
+.banner {
+  position: relative;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.capa {
+  width: 100%;
+  max-height: 400px; /* Limita a altura para não ocupar a tela inteira */
+  object-fit: cover; /* Corta inteligentemente sem distorcer */
+  border-radius: 16px;
+  border: 3px solid #333;
+}
+
+.logo {
+  position: absolute;
+  bottom: 45px;
+  right: 55px;
+  width: 140px; /* Logo ligeiramente maior no PC */
+}
+
+/* 3. LISTA DE CONTATOS (Organizada em colunas lado a lado) */
+#listaContatos {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Divide em até 3 colunas paralelas */
+  gap: 25px; 
+  flex-grow: 1;
+}
+
+.contato {
+  background-color: rgba(255, 255, 255, 0.5); /* Fundo sutil para destacar cada contato */
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.contato:hover {
+  transform: translateY(-2px); /* Efeito flutuante ao passar o mouse */
+}
+
+/* Fotos dos contatos 100% circulares com a borda azul */
+.contato > img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #8294C4;
+  object-fit: cover;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.dados {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dados h3 {
+  font-size: 1.05rem;
+  color: #000;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+/* Customização dos inputs para parecerem texto puro */
+.editavel {
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 4px;
+  width: 100%;
+  outline: none;
+}
+
+.editavel[id^="mail"] {
+  color: #777;
+  text-decoration: underline;
+}
+
+/* Estilo ativo de quando você habilitar a edição por JavaScript */
+.editavel:not([readonly]) {
+  background-color: #fff;
+  border: 1px solid #b7767b;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #000;
+}
+
+/* 4. BOTÕES DE AÇÕES (Centralizados no Desktop) */
+.acoes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 30px;
+}
+
+.acoes button {
+  background-color: #D38E93;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.acoes button:hover {
+  background-color: #b7767b;
+  transform: scale(1.02);
+}
+
+/* 5. REDES SOCIAIS (Alinhadas horizontalmente no rodapé) */
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 50px; /* Maior espaçamento entre as redes no computador */
+  padding: 40px 30px 50px 30px;
+}
+
+.redes img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%; /* Mantém o formato redondo perfeito */
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.redes img:hover {
+  transform: scale(1.1); /* Zoom interativo */
+}
+
+/* ==================== 6. ADICIONADO: ESTILOS DO MODAL (ABA DE ATUALIZAR) ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* Borra levemente o fundo atrás da aba flutuante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+/* Classe ativada pelo Javascript para exibir a aba */
+.modal-overlay.ativo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: #FFF0F2;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border: 2px solid #D38E93;
+}
+
+.modal-content h2 {
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #D38E93;
+  padding-bottom: 10px;
+}
+
+.form-grupo {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-grupo label {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.form-grupo input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.form-grupo input:focus {
+  border-color: #8294C4;
+}
+
+.modal-botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.modal-botoes button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.btn-cancelar {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background-color: #d5d5d5;
+}
+
+.btn-salvar {
+  background-color: #3B5998; /* Azul escuro combinando com o botão voltar */
+  color: white;
+}
+
+.btn-salvar:hover {
+  background-color: #2d4373;
+}

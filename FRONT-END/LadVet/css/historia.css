@@ -1,0 +1,160 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:sans-serif;
+}
+
+body{
+
+background:#efe5e7;
+
+min-height:100vh;
+
+}
+
+
+
+/* TOPO */
+
+.topo{
+
+height:120px;
+
+background:#c98a8a;
+
+display:flex;
+
+align-items:flex-start;
+
+padding:18px;
+
+}
+
+
+
+.voltar{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#c98b8b;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.voltar:hover{
+
+transform:scale(1.05);
+
+}
+
+
+
+/* CONTEÚDO */
+
+.conteudo{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:40px;
+
+}
+
+
+
+/* LOGO */
+
+.logo{
+
+width:300px;
+
+margin-bottom:70px;
+
+}
+
+
+
+/* TEXTO */
+
+.texto{
+
+width:95%px;
+
+max-width:1400px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:55px;
+
+}
+
+
+
+.texto p{
+
+color:#5a4ca7;
+
+font-size:20px;
+
+line-height:1.6;
+
+text-align:center;
+
+}
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:1200px){
+
+.logo{
+
+width:300px;
+
+}
+
+.texto p{
+
+font-size:24px;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.logo{
+
+width:180px;
+
+}
+
+.texto{
+
+max-width:90%;
+
+}
+
+.texto p{
+
+font-size:18px;
+
+}
+
+}

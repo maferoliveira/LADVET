@@ -10,9 +10,6 @@ body{
     min-height:100vh;
 }
 
-
-/* TOPO */
-
 .topo{
     height:85px;
     background:#d8b4b4;
@@ -24,24 +21,16 @@ body{
     padding:0 40px;
 }
 
-
-/* ESQUERDA */
-
 .lado-esquerdo{
     display:flex;
     align-items:center;
     gap:14px;
 }
 
-/* DIREITA */
-
 .lado-direito{
     display:flex;
     align-items:center;
 }
-
-
-/* VOLTAR */
 
 .voltar{
     width:42px;
@@ -60,9 +49,6 @@ body{
     justify-content:center;
     align-items:center;
 }
-
-
-/* PERFIL */
 
 .perfil{
     width:52px;
@@ -83,9 +69,6 @@ body{
     height:30px;
     object-fit:contain;
 }
-
-
-/* NOVO */
 
 .novo-animal{
     display:flex;
@@ -111,16 +94,10 @@ body{
     opacity:.9;
 }
 
-
-/* LOGO */
-
 .logo{
     width:170px;
     display:block;
 }
-
-
-/* LISTA */
 
 .lista{
     padding:35px;
@@ -136,9 +113,6 @@ body{
 
     justify-items:center;
 }
-
-
-/* CARD */
 
 .pet{
     background:#cf8f8f;

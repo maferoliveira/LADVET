@@ -17,9 +17,6 @@ body{
     padding-bottom:50px;
 }
 
-
-/* TOPO */
-
 .voltar{
     position:absolute;
 
@@ -53,9 +50,6 @@ body{
     width:180px;
     margin-top:40px;
 }
-
-
-/* CARD */
 
 .container{
     width:100%;
@@ -120,9 +114,6 @@ body{
     outline:none;
 }
 
-
-/* BOTÃO ACESSAR */
-
 .btn-acessar{
     height:52px;
 
@@ -144,9 +135,6 @@ body{
     opacity:.9;
     transform:scale(1.02);
 }
-
-
-/* BOTÃO CRIAR CONTA */
 
 .btn-criar{
     height:52px;

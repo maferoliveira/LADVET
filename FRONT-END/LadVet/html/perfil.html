@@ -15,8 +15,13 @@ content="width=device-width, initial-scale=1.0">
 rel="stylesheet"
 href="../css/perfil.css">
 
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 <script
-src="../js/script.js">
+src="../js/script.js"
+defer>
 </script>
 
 </head>
@@ -25,12 +30,16 @@ src="../js/script.js">
 
 <div class="tela">
 
+<!-- TOPO -->
+
 <div class="topo">
 
 <button
 class="voltar"
 onclick="history.back()">
-↩
+
+<i class="bi bi-arrow-left"></i>
+
 </button>
 
 <button
@@ -44,6 +53,8 @@ Voltar pro início
 </div>
 
 
+<!-- FOTO -->
+
 <div class="foto">
 
 <img
@@ -53,11 +64,17 @@ alt="Perfil">
 </div>
 
 
+<!-- DADOS -->
+
 <div class="usuario">
 
-<h1>Silmara Oliveira</h1>
+<h1 id="nomePerfil">
+Ederson Pinheiro
+</h1>
 
-<p>Adotante</p>
+<p id="tipoPerfil">
+Adotante
+</p>
 
 </div>
 
@@ -65,30 +82,59 @@ alt="Perfil">
 <div class="linha"></div>
 
 
+<!-- MENU -->
+
 <div class="menu">
 
-<div class="item">
-🐾 Cadastro de animais
-</div>
+<div
+class="item"
+id="cadastroAnimais"
+onclick="abrirCadastroAnimal()">
 
-<div class="item">
-🔒 Senha
-</div>
+<i class="bi bi-heart-pulse-fill"></i>
 
-<div class="item">
-📞 Contatos
-</div>
+<span>Cadastro de animais</span>
 
 </div>
 
 
-<div class="favoritos">
+<div
+class="item"
+onclick="abrirConfiguracoes()">
+
+<i class="bi bi-gear-fill"></i>
+
+<span>Configurações da conta</span>
+
+</div>
+
+
+<div
+class="item"
+onclick="abrirContatos()">
+
+<i class="bi bi-telephone-fill"></i>
+
+<span>Contatos</span>
+
+</div>
+
+</div>
+
+
+<!-- FAVORITOS -->
+
+<div
+class="favoritos"
+id="areaFavoritos">
 
 <div
 class="item"
 onclick="abrirFavoritos()">
 
-❤️ Seus favoritos
+<i class="bi bi-heart-fill"></i>
+
+<span>Seus favoritos</span>
 
 </div>
 
@@ -98,10 +144,14 @@ onclick="abrirFavoritos()">
 <div class="linha"></div>
 
 
-<div class="rodape">
+<!-- HISTÓRIA -->
 
 <div
-class="item historia">
+class="rodape"
+id="historia"
+onclick="abrirHistoria()">
+
+<div class="item historia">
 
 <img
 src="../img/Logo.png"
@@ -111,8 +161,95 @@ class="logo">
 
 <div class="texto">
 
-Clique aqui para saber a história do nosso aplicativo!
+Clique aqui para conhecer a história do nosso aplicativo!
 
 </div>
 
 </div>
+
+</div>
+
+
+<script>
+
+window.addEventListener(
+"load",
+function(){
+
+const tipo =
+localStorage.getItem(
+"tipoUsuario"
+);
+
+const nome =
+document.getElementById(
+"nomePerfil"
+);
+
+const cargo =
+document.getElementById(
+"tipoPerfil"
+);
+
+const cadastro =
+document.getElementById(
+"cadastroAnimais"
+);
+
+const favoritos =
+document.getElementById(
+"areaFavoritos"
+);
+
+const historia =
+document.getElementById(
+"historia"
+);
+
+if(
+tipo==="veterinario"
+){
+
+nome.innerHTML=
+"Mafer Oliveira";
+
+cargo.innerHTML=
+"Veterinária";
+
+cadastro.style.display=
+"flex";
+
+favoritos.style.display=
+"none";
+
+historia.style.display=
+"none";
+
+}else{
+
+nome.innerHTML=
+"Ederson Pinheiro";
+
+cargo.innerHTML=
+"Adotante";
+
+cadastro.style.display=
+"none";
+
+favoritos.style.display=
+"flex";
+
+historia.style.display=
+"flex";
+
+}
+
+}
+
+);
+
+</script>
+
+</body>
+
+</html>
