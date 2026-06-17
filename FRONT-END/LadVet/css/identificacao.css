@@ -8,8 +8,14 @@
 body {
   height: 100vh;
   position: relative;
-
-  background-image: url("fundo.png");
+background-image:
+    linear-gradient(
+      135deg,
+      rgba(234, 222, 222, 0.75),
+      rgba(216, 180, 180, 0.65),
+      rgba(180, 186, 217, 0.65)
+    ),
+    url("fundo.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -74,54 +80,50 @@ h1 {
   margin-bottom: 30px;
 }
 
-.opcoes {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  width: 100%;
+.opcao{
+    display:flex;
+    justify-content:center;
 }
 
-.opcao {
-  display: flex;
-  justify-content: center;
+.opcao button{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin: 5px;
+    padding:0 10px;
+    width:360px;
+    height:100px;
+    border:none;
+    border-radius:24px;
+
+    background:#cf8f8f;
+    color:white;
+
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.opcao button {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  width: 360px;
-  height: 90px;
-
-  border: none;
-  border-radius: 22px;
-
-  background: #c97f7f;
-  color: white;
-
-  font-size: 20px;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: 0.3s;
-
-  padding: 10px 20px;
+.opcao button:hover{
+    background:#c27f7f;
+    transform:translateY(-3px);
 }
 
-.opcao button:hover {
-  background: #b56d6d;
-  transform: scale(1.03);
+.opcao img{
+    width:140px;
+    height:140px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+
+    display:block;
 }
 
-.opcao img {
-  width: 130px;
-  height: 110px;
+.opcao span{
+    flex:1;
 
-  border-radius: 12px;
-  background: white;
+    text-align:center;
 
-  object-fit: cover;
-
-  flex-shrink: 0;
+    margin-right:20px;
 }

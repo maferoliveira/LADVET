@@ -1,95 +1,210 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
 }
 
-body {
-  height: 100vh;
-  background: #e9dddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body{
+    background:#eadede;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding-bottom:50px;
 }
 
-.voltar {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #c98b8b;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 14px;
-  color: white;
-  font-size: 18px;
+
+/* BOTÃO VOLTAR */
+
+.voltar{
+    position:absolute;
+
+    top:25px;
+    left:25px;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#c98b8b;
+    color:white;
+
+    font-size:18px;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:.3s;
 }
 
-.logo {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 150px;
+.voltar:hover{
+    opacity:.9;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
-  height: 100vh;           
+
+/* LOGO */
+
+.logo{
+    width:180px;
+    margin-top:40px;
 }
 
-.card {
-  width: 400px;
-  border-radius: 10px;
-  overflow: hidden;
+
+/* CONTAINER */
+
+.container{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+
+    margin-top:60px;
+    margin-bottom:40px;
 }
 
-.card-top {
-  background: #6f7ba3;
-  padding: 20px;
-  text-align: center;
+
+/* CARD */
+
+.card{
+    width:430px;
+    max-width:90%;
+
+    background:#cf8f8f;
+
+    border-radius:20px;
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
-.card-top h2 {
-  color: white;
+
+/* TOPO CARD */
+
+.card-top{
+    background:#6f7ba3;
+
+    padding:25px;
+
+    text-align:center;
+    color:white;
 }
 
-.card-body {
-  background: #8b91b0;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.card-top h2{
+    margin-bottom:6px;
+    font-size:24px;
 }
 
-input {
-  padding: 15px;
-  border-radius: 12px;
-  border: none;
-  background: #ddd;
-  font-size: 14px;
+.card-top p{
+    font-size:14px;
+    opacity:.9;
 }
 
-.btn-criar {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 20px;
-  border: none;
-  background: #6f7ba3;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+
+/* CORPO */
+
+.card-body{
+    background:#8b91b0;
+
+    padding:35px;
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
 }
 
-.btn-acessar {
-  margin-top: 20px;
-  padding: 15px 40px;
-  border-radius: 25px;
-  border: none;
-  background: #6f7ba3;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+
+/* INPUTS */
+
+.card-body input{
+    height:52px;
+
+    border:none;
+    border-radius:12px;
+
+    padding:15px;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+.card-body input:focus{
+    box-shadow:0 0 0 3px rgba(255,255,255,.25);
+}
+
+
+/* BOTÃO PRINCIPAL */
+
+.btn-acessar{
+    height:52px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#6f7ba3;
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.btn-acessar:hover{
+    opacity:.95;
+    transform:scale(1.02);
+}
+
+
+/* BOTÃO SECUNDÁRIO */
+
+.btn-criar{
+    height:52px;
+
+    border:2px solid white;
+    border-radius:12px;
+
+    background:transparent;
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.btn-criar:hover{
+    background:rgba(255,255,255,.15);
+    transform:scale(1.02);
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width:768px){
+
+    .logo{
+        width:150px;
+    }
+
+    .card{
+        max-width:92%;
+    }
+
+    .card-body{
+        padding:25px;
+    }
+
 }

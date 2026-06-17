@@ -1,198 +1,198 @@
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
 }
 
 body{
-background:#eadede;
-min-height:100vh;
+    background:#eadede;
+    min-height:100vh;
 }
 
 
 /* TOPO */
 
 .topo{
+    height:85px;
+    background:#d8b4b4;
 
-height:85px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-background:#d8b4b4;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:0 40px;
-
+    padding:0 40px;
 }
 
 
 /* ESQUERDA */
 
 .lado-esquerdo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
 
-display:flex;
+/* DIREITA */
 
-align-items:center;
-
-gap:14px;
-
+.lado-direito{
+    display:flex;
+    align-items:center;
 }
 
 
 /* VOLTAR */
 
 .voltar{
+    width:42px;
+    height:42px;
 
-width:42px;
+    border:none;
+    border-radius:12px;
 
-height:34px;
+    background:#c98b8b;
+    color:white;
 
-border:none;
+    font-size:18px;
+    cursor:pointer;
 
-border-radius:12px;
-
-background:#c98b8b;
-
-color:white;
-
-font-size:18px;
-
-cursor:pointer;
-
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 
 /* PERFIL */
 
 .perfil{
+    width:52px;
+    height:52px;
 
-width:52px;
+    background:white;
+    border-radius:50%;
 
-height:52px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-background:white;
-
-border-radius:50%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 .perfil img{
-
-width:30px;
-
+    width:30px;
+    height:30px;
+    object-fit:contain;
 }
 
 
 /* NOVO */
 
 .novo-animal{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-display:none;
+    height:48px;
+    padding:0 18px;
 
-height:48px;
+    border:none;
+    border-radius:12px;
 
-padding:0 18px;
+    background:#c98b8b;
+    color:white;
 
-border:none;
+    font-size:14px;
+    font-weight:600;
 
-border-radius:12px;
-
-background:#c98b8b;
-
-color:white;
-
-font-size:14px;
-
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 .novo-animal:hover{
-
-opacity:.9;
-
+    opacity:.9;
 }
 
 
 /* LOGO */
 
 .logo{
-
-width:170px;
-
+    width:170px;
+    display:block;
 }
 
 
 /* LISTA */
 
-/* LISTA */
-.lista {
-  padding: 35px;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(220px, 1fr) /* 1. Aumentado de 170px para 220px para os cards ficarem mais largos */
-  );
-  gap: 25px; /* Aumentado levemente o espaço entre os cards */
+.lista{
+    padding:35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
+    gap:25px;
+
+    justify-items:center;
 }
+
 
 /* CARD */
-.pet {
-  background: #cf8f8f;
-  border-radius: 24px; /* 2. Cantos mais arredondados combinam mais com o estilo "gordinho" */
-  overflow: hidden;
-  cursor: pointer;
-  max-width: 260px; /* 3. Aumentado o limite máximo de largura do card */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* 4. Sombra suave para dar volume */
-  transition: transform 0.2s ease;
+
+.pet{
+    background:#cf8f8f;
+
+    border-radius:24px;
+    overflow:hidden;
+
+    cursor:pointer;
+
+    width:100%;
+    max-width:260px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.05);
+
+    transition:transform .2s ease;
 }
 
-.pet:hover {
-  transform: scale(1.02); /* Efeito opcional: aumenta levemente ao passar o mouse */
+.pet:hover{
+    transform:scale(1.02);
 }
 
-.pet img {
-  width: 100%;
-  height: 220px; /* 5. Aumentado de 180px para 220px para manter a proporção com a nova largura */
-  object-fit: cover;
+.pet img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
 }
 
-.info {
-  padding: 20px 20px 5px 20px; /* 6. Mais que dobrou o preenchimento interno nas laterais e topo */
-  color: white;
+.info{
+    padding:20px 20px 5px 20px;
+    color:white;
 }
 
-.info h3 {
-  font-size: 16px; /* Aumentado levemente para acompanhar o tamanho do card */
-  margin-bottom: 6px; /* Espaço entre o nome e o subtítulo */
+.info h3{
+    font-size:16px;
+    margin-bottom:6px;
 }
 
-.info p {
-  font-size: 13px;
-  opacity: 0.9;
+.info p{
+    font-size:13px;
+    opacity:.9;
 }
 
-.card-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 5px 20px 20px 20px; /* 7. Mais padding na parte inferior para fechar o visual gordinho */
-  font-size: 26px;
-  color: white;
-  cursor: pointer;
+.card-footer{
+    display:flex;
+    justify-content:flex-end;
+
+    padding:5px 20px 20px 20px;
+
+    font-size:26px;
+    color:white;
+
+    cursor:pointer;
 }
 
-.card-footer.ativo {
-  color: red;
+.card-footer.ativo{
+    color:red;
 }

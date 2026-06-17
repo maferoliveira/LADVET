@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,62 +9,43 @@
 
   <link rel="stylesheet" href="../css/identificacao.css">
 </head>
+
 <body>
 
   <div class="container">
 
     <div class="topo">
 
-<button
-class="voltar"
-onclick="irParaInicio()">
+      <button class="voltar" onclick="irParaInicio()">
 
-↩
+        ↩
 
-</button>
+      </button>
 
-<img
-src="../img/Logo.png"
-class="logo">
+      <img src="../img/Logo.png" class="logo">
 
-</div>
+    </div>
 
 
-<h1>
-Seja bem-vindo!
-</h1>
+    <h1>
+      Seja bem-vindo(a)!
+    </h1>
 
+    <div class="opcao">
+      <button onclick="selecionar('adotante')">
+        <img src="../img/adotante.png" alt="">
+        <span>Sou adotante</span>
+      </button>
+    </div>
 
-<div class="opcao">
+    <div class="opcao">
+      <button onclick="selecionar('veterinario')">
+        <img src="../img/veterinario.png" alt="">
+        <span>Sou Veterinário</span>
+      </button>
+    </div>
 
-<img
-src="../img/adotante.png">
-
-<button
-onclick="selecionar('adotante')">
-
-Sou adotante
-
-</button>
-
-</div>
-
-
-<div class="opcao">
-
-<img
-src="../img/veterinario.png">
-
-<button
-onclick="selecionar('veterinario')">
-
-Sou Veterinário
-
-</button>
-
-</div>
-
-<script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
 

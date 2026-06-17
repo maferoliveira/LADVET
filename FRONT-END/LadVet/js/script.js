@@ -2,49 +2,49 @@
 NAVEGAÇÃO
 =========================== */
 
-function irParaHome(){
-window.location.href="../html/identificacao.html";
+function irParaHome() {
+    window.location.href = "../html/identificacao.html";
 }
 
-function selecionar(tipo){
+function selecionar(tipo) {
 
-localStorage.setItem(
-"tipoUsuario",
-tipo
-);
+    localStorage.setItem(
+        "tipoUsuario",
+        tipo
+    );
 
-if(tipo==="veterinario"){
+    if (tipo === "veterinario") {
 
-window.location.href=
-"../html/login-veterinario.html";
+        window.location.href =
+            "../html/login-veterinario.html";
 
-}else{
+    } else {
 
-window.location.href=
-"../html/login.html";
+        window.location.href =
+            "../html/login.html";
+
+    }
 
 }
 
+function voltarIdentificacao() {
+    window.location.href = "../html/inicio.html";
 }
 
-function voltarIdentificacao(){
-window.location.href="../html/inicio.html";
+function irParaInicio() {
+    window.location.href = "../html/inicio.html";
 }
 
-function irParaInicio(){
-window.location.href="../html/inicio.html";
+function irParaCadastro() {
+    window.location.href = "../html/cadastro.html";
 }
 
-function irParaCadastro(){
-window.location.href="../html/cadastro.html";
+function voltarLogin() {
+    window.location.href = "../html/login.html";
 }
 
-function voltarLogin(){
-window.location.href="../html/login.html";
-}
-
-function irParaHomeSistema(){
-window.location.href="../html/home.html";
+function irParaHomeSistema() {
+    window.location.href = "../html/home.html";
 }
 
 
@@ -52,14 +52,14 @@ window.location.href="../html/home.html";
 LOGIN
 =========================== */
 
-function entrarSistema(event){
+function entrarSistema(event) {
 
-if(event){
-event.preventDefault();
-}
+    if (event) {
+        event.preventDefault();
+    }
 
-window.location.href=
-"../html/pag-adocao.html";
+    window.location.href =
+        "../html/pag-adocao.html";
 
 }
 
@@ -68,72 +68,72 @@ window.location.href=
 FAVORITOS
 =========================== */
 
-function favoritar(elemento,event){
+function favoritar(elemento, event) {
 
-if(event){
-event.stopPropagation();
-}
+    if (event) {
+        event.stopPropagation();
+    }
 
-const tipo =
-localStorage.getItem(
-"tipoUsuario"
-);
+    const tipo =
+        localStorage.getItem(
+            "tipoUsuario"
+        );
 
-if(tipo==="veterinario"){
-return;
-}
+    if (tipo === "veterinario") {
+        return;
+    }
 
-const card =
-elemento.closest(".pet");
+    const card =
+        elemento.closest(".pet");
 
-if(!card)return;
+    if (!card) return;
 
-const nome =
-card.dataset.pet;
+    const nome =
+        card.dataset.pet;
 
-if(!nome)return;
+    if (!nome) return;
 
-let favoritos =
-JSON.parse(
-localStorage.getItem(
-"favoritos"
-)
-)||[];
+    let favoritos =
+        JSON.parse(
+            localStorage.getItem(
+                "favoritos"
+            )
+        ) || [];
 
-if(
-favoritos.includes(nome)
-){
+    if (
+        favoritos.includes(nome)
+    ) {
 
-favoritos =
-favoritos.filter(
-p=>p!==nome
-);
+        favoritos =
+            favoritos.filter(
+                p => p !== nome
+            );
 
-elemento.classList.remove(
-"ativo"
-);
+        elemento.classList.remove(
+            "ativo"
+        );
 
-elemento.innerHTML=
-"♡";
+        elemento.innerHTML =
+            "♡";
 
-}else{
+    } else {
 
-favoritos.push(nome);
+        favoritos.push(nome);
 
-elemento.classList.add(
-"ativo"
-);
+        elemento.classList.add(
+            "ativo"
+        );
 
-elemento.innerHTML=
-"♥";
+        elemento.innerHTML =
+            "♥";
 
-}
+    }
 
-localStorage.setItem(
-"favoritos",
-JSON.stringify(
-favoritos
-));
+    localStorage.setItem(
+        "favoritos",
+        JSON.stringify(
+            favoritos
+        ));
 
 }
 
@@ -142,15 +142,15 @@ favoritos
 PET
 =========================== */
 
-function abrirPet(nomePet){
+function abrirPet(nomePet) {
 
-localStorage.setItem(
-"petSelecionado",
-nomePet
-);
+    localStorage.setItem(
+        "petSelecionado",
+        nomePet
+    );
 
-window.location.href=
-"../html/pet.html";
+    window.location.href =
+        "../html/pet.html";
 
 }
 
@@ -159,17 +159,17 @@ window.location.href=
 PERFIL
 =========================== */
 
-function abrirPerfil(){
+function abrirPerfil() {
 
-window.location.href=
-"../html/perfil.html";
+    window.location.href =
+        "../html/perfil.html";
 
 }
 
-function abrirFavoritos(){
+function abrirFavoritos() {
 
-window.location.href=
-"../html/favoritos.html";
+    window.location.href =
+        "../html/favoritos.html";
 
 }
 
@@ -178,10 +178,10 @@ window.location.href=
 CADASTRO ANIMAL
 =========================== */
 
-function abrirCadastroAnimal(){
+function abrirCadastroAnimal() {
 
-window.location.href=
-"../html/cadastro-animal.html";
+    window.location.href =
+        "../html/cadastro-animal.html";
 
 }
 
@@ -190,42 +190,42 @@ window.location.href=
 UPLOAD FOTO
 =========================== */
 
-let sexoSelecionado="";
-let fotoSelecionada="";
+let sexoSelecionado = "";
+let fotoSelecionada = "";
 
-function mostrarPreview(event){
+function mostrarPreview(event) {
 
-const arquivo =
-event.target.files[0];
+    const arquivo =
+        event.target.files[0];
 
-if(!arquivo)return;
+    if (!arquivo) return;
 
-const leitor =
-new FileReader();
+    const leitor =
+        new FileReader();
 
-leitor.onload =
-function(e){
+    leitor.onload =
+        function (e) {
 
-fotoSelecionada =
-e.target.result;
+            fotoSelecionada =
+                e.target.result;
 
-const texto =
-document.getElementById(
-"nomeFoto"
-);
+            const texto =
+                document.getElementById(
+                    "nomeFoto"
+                );
 
-if(texto){
+            if (texto) {
 
-texto.innerHTML =
-arquivo.name;
+                texto.innerHTML =
+                    arquivo.name;
 
-}
+            }
 
-};
+        };
 
-leitor.readAsDataURL(
-arquivo
-);
+    leitor.readAsDataURL(
+        arquivo
+    );
 
 }
 
@@ -234,50 +234,50 @@ arquivo
 SEXO
 =========================== */
 
-function selecionarSexo(sexo){
+function selecionarSexo(sexo) {
 
-sexoSelecionado=
-sexo;
+    sexoSelecionado =
+        sexo;
 
-const femea=
-document.getElementById(
-"btnFemea"
-);
+    const femea =
+        document.getElementById(
+            "btnFemea"
+        );
 
-const macho=
-document.getElementById(
-"btnMacho"
-);
+    const macho =
+        document.getElementById(
+            "btnMacho"
+        );
 
-if(femea){
-femea.style.background="#ddd";
-}
+    if (femea) {
+        femea.style.background = "#ddd";
+    }
 
-if(macho){
-macho.style.background="#ddd";
-}
+    if (macho) {
+        macho.style.background = "#ddd";
+    }
 
-if(
-sexo==="Fêmea"
-&&
-femea
-){
+    if (
+        sexo === "Fêmea"
+        &&
+        femea
+    ) {
 
-femea.style.background=
-"#f6bfd8";
+        femea.style.background =
+            "#f6bfd8";
 
-}
+    }
 
-if(
-sexo==="Macho"
-&&
-macho
-){
+    if (
+        sexo === "Macho"
+        &&
+        macho
+    ) {
 
-macho.style.background=
-"#9fc4ff";
+        macho.style.background =
+            "#9fc4ff";
 
-}
+    }
 
 }
 
@@ -286,94 +286,94 @@ macho.style.background=
 SALVAR ANIMAL
 =========================== */
 
-function cadastrarAnimal(event){
+function cadastrarAnimal(event) {
 
-event.preventDefault();
+    event.preventDefault();
 
-const idade =
-Number(
-document.getElementById(
-"idade"
-).value
-);
+    const idade =
+        Number(
+            document.getElementById(
+                "idade"
+            ).value
+        );
 
-if(idade<0){
+    if (idade < 0) {
 
-alert(
-"Idade inválida"
-);
+        alert(
+            "Idade inválida"
+        );
 
-return;
+        return;
 
-}
+    }
 
-const novoPet={
+    const novoPet = {
 
-foto:
-fotoSelecionada
-||
-"../img/user.png",
+        foto:
+            fotoSelecionada
+            ||
+            "../img/user.png",
 
-nome:
-document.getElementById(
-"nome"
-).value,
+        nome:
+            document.getElementById(
+                "nome"
+            ).value,
 
-idade:
-idade+
-" anos",
+        idade:
+            idade +
+            " anos",
 
-especie:
-document.getElementById(
-"especie"
-).value,
+        especie:
+            document.getElementById(
+                "especie"
+            ).value,
 
-sexo:
-sexoSelecionado,
+        sexo:
+            sexoSelecionado,
 
-vacina:
-document.getElementById(
-"vacina"
-).value,
+        vacina:
+            document.getElementById(
+                "vacina"
+            ).value,
 
-temperamento:
-document.getElementById(
-"temperamento"
-).value,
+        temperamento:
+            document.getElementById(
+                "temperamento"
+            ).value,
 
-descricao:
-document.getElementById(
-"descricao"
-).value,
+        descricao:
+            document.getElementById(
+                "descricao"
+            ).value,
 
-status:
-"Disponível"
+        status:
+            "Disponível"
 
-};
+    };
 
-let pets =
-JSON.parse(
-localStorage.getItem(
-"petsNovos"
-)
-)||[];
+    let pets =
+        JSON.parse(
+            localStorage.getItem(
+                "petsNovos"
+            )
+        ) || [];
 
-pets.push(
-novoPet
-);
+    pets.push(
+        novoPet
+    );
 
-localStorage.setItem(
-"petsNovos",
-JSON.stringify(
-pets
-));
+    localStorage.setItem(
+        "petsNovos",
+        JSON.stringify(
+            pets
+        ));
 
-alert(
-"Animal cadastrado!"
-);
+    alert(
+        "Animal cadastrado!"
+    );
 
-window.location.href=
-"../html/pag-adocao.html";
+    window.location.href =
+        "../html/pag-adocao.html";
 
 }
 
@@ -383,55 +383,70 @@ CARREGAMENTO
 =========================== */
 
 window.addEventListener(
-"load",
-function(){
+    "load",
+    function () {
 
-const tipo =
-localStorage.getItem(
-"tipoUsuario"
+        const tipo =
+            localStorage.getItem(
+                "tipoUsuario"
+            );
+
+
+        /* botão novo animal */
+
+        const novo =
+            document.getElementById(
+                "novoAnimal"
+            );
+
+        if (novo) {
+
+            novo.style.display =
+                tipo === "veterinario"
+                    ?
+                    "flex"
+                    :
+                    "none";
+
+        }
+
+
+        /* esconder favoritos veterinário */
+
+        if (
+            tipo === "veterinario"
+        ) {
+
+            document
+                .querySelectorAll(
+                    ".card-footer"
+                )
+                .forEach(
+                    el => {
+
+                        el.style.display =
+                            "none";
+
+                    }
+
+                );
+
+        }
+
+    }
 );
 
+function toggleSenha() {
 
-/* botão novo animal */
+    const senha = document.getElementById("senha");
+    const icone = document.getElementById("iconeSenha");
 
-const novo =
-document.getElementById(
-"novoAnimal"
-);
-
-if(novo){
-
-novo.style.display=
-tipo==="veterinario"
-?
-"flex"
-:
-"none";
+    if (senha.type === "password") {
+        senha.type = "text";
+        icone.className = "bi bi-eye-slash";
+    } else {
+        senha.type = "password";
+        icone.className = "bi bi-eye";
+    }
 
 }
-
-
-/* esconder favoritos veterinário */
-
-if(
-tipo==="veterinario"
-){
-
-document
-.querySelectorAll(
-".card-footer"
-)
-.forEach(
-el=>{
-
-el.style.display=
-"none";
-
-}
-
-);
-
-}
-
-}
-);

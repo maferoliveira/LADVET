@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro</title>
 
-  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/cadastro.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
 
-  <button class="voltar" onclick="voltarIdentificacao()">↩</button>
+  <button class="voltar" onclick="voltarIdentificacao()">
+    ↩
+  </button>
 
-  <img src="../img/Logo.png" class="logo">
+  <img src="../img/Logo.png" class="logo" alt="LadVet">
 
   <div class="container">
 
@@ -20,44 +23,57 @@
 
       <div class="card-top">
         <h2>Criar Conta</h2>
+        <p>Preencha os dados para continuar</p>
       </div>
 
       <form class="card-body" onsubmit="entrarSistema(event)">
 
-        <input 
-          type="text" 
+        <input
+          type="text"
           placeholder="Nome completo"
           required
         >
 
-        <input 
-          type="email" 
+        <input
+          type="email"
           placeholder="Email"
           required
         >
 
-        <input 
-          type="text" 
+        <input
+          type="tel"
           placeholder="Telefone"
           required
         >
 
-        <input 
-          type="text" 
+        <input
+          type="text"
           placeholder="Cidade"
           required
         >
 
-        <input 
-          type="password" 
-          placeholder="Crie uma senha"
-          required
-        >
+        <div class="campo-senha">
+          <input
+            type="password"
+            id="senha"
+            placeholder="Crie uma senha"
+            required
+          >
 
-        <button 
+          <button
+            type="button"
+            class="olho"
+            onclick="toggleSenha()"
+          >
+            <i id="iconeSenha" class="bi bi-eye"></i>
+          </button>
+        </div>
+
+        <button
           type="submit"
-          class="btn-acessar">
-          Acessar
+          class="btn-acessar"
+        >
+          Criar Conta
         </button>
 
       </form>
