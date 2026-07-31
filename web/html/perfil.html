@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfil</title>
+
+    <link rel="stylesheet" href="../css/perfil.css">
+
+    <script src="../js/script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="tela">
+
+        <div class="topo">
+
+            <button class="voltar" onclick="history.back()">
+                ↩
+            </button>
+
+            <button class="sair" onclick="irParaInicio()">
+                Voltar para o início
+            </button>
+
+        </div>
+
+        <div class="foto">
+            <img src="../img/userrosa.png" alt="Perfil">
+        </div>
+
+        <div class="usuario">
+            <h1>Silmara Oliveira</h1>
+            <p>Adotante</p>
+        </div>
+
+        <div class="linha"></div>
+
+        <div class="menu">
+
+            <div class="item">
+                🐾 Cadastro de animais
+            </div>
+
+            <div class="item">
+                🔒 Senha
+            </div>
+
+            <div class="item">
+                📞 Contatos
+            </div>
+
+            <div class="item" onclick="abrirFavoritos()">
+                ❤️ Seus favoritos
+            </div>
+
+        </div>
+
+        <div class="linha"></div>
+
+        <div class="rodape">
+
+            <div class="item historia">
+                <img
+                    src="../img/Logo.png"
+                    class="logo"
+                    alt="Logo">
+            </div>
+
+            <div class="texto">
+                Clique aqui para saber a história do nosso aplicativo!
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
