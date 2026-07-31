@@ -17,6 +17,9 @@ app.use('/animal', animalroutes);
 const adocaoroutes = require('./src/routes/adocao.routes');
 app.use('/adocao', adocaoroutes);
 
+const vacinaroutes = require('./src/routes/vacina.routes');
+app.use('/vacina', vacinaroutes);
+
 
 app.listen(process.env.PORT_APP, ()=>{
     console.log("Online na porta "+ process.env.PORT_APP)
