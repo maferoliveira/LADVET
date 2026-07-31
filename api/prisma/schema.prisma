@@ -36,6 +36,19 @@ model Animal {
   usuario   Usuario @relation(fields: [usuarioID], references: [id])
 
   adocoes Adocao[]
+  vacinas Vacina[]
+}
+
+model Vacina {
+  id           Int      @id @default(autoincrement())
+  nome         String
+  dataAplicacao DateTime
+  proximaDose  DateTime?
+  veterinario  String
+  lote         String
+
+  animalID Int
+  animal   Animal @relation(fields: [animalID], references: [id])
 }
 
 model Adocao {

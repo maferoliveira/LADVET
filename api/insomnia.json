@@ -100,6 +100,24 @@
       "url": "http://localhost:3000/usuario/excluir/:id"
     },
     {
+      "_id": "req_Usuario_LOGIN",
+      "_type": "request",
+      "parentId": "fld_Usuario",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Login",
+      "method": "POST",
+      "url": "http://localhost:3000/usuario/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"string\",\n  \"senha\": \"string\"\n}"
+      }
+    },
+    {
       "_id": "fld_Animal",
       "_type": "request_group",
       "parentId": "fld_BACK-END",
@@ -266,6 +284,90 @@
       "name": "Excluir",
       "method": "DELETE",
       "url": "http://localhost:3000/adocao/excluir/:id"
+    },
+    {
+      "_id": "fld_Vacina",
+      "_type": "request_group",
+      "parentId": "fld_BACK-END",
+      "name": "Vacina"
+    },
+    {
+      "_id": "req_Vacina_GET_POR_ANIMAL",
+      "_type": "request",
+      "parentId": "fld_Vacina",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Listar por animal",
+      "method": "GET",
+      "url": "http://localhost:3000/vacina/animal/:animalID"
+    },
+    {
+      "_id": "req_Vacina_GET_ID",
+      "_type": "request",
+      "parentId": "fld_Vacina",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Buscar",
+      "method": "GET",
+      "url": "http://localhost:3000/vacina/buscar/:id"
+    },
+    {
+      "_id": "req_Vacina_POST",
+      "_type": "request",
+      "parentId": "fld_Vacina",
+      "name": "Cadastrar",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "POST",
+      "url": "http://localhost:3000/vacina/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"dataAplicacao\": \"2026-07-31\",\n  \"proximaDose\": \"2027-07-31\",\n  \"veterinario\": \"string\",\n  \"lote\": \"string\",\n  \"animalID\": 0\n}"
+      }
+    },
+    {
+      "_id": "req_Vacina_PUT",
+      "_type": "request",
+      "parentId": "fld_Vacina",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Atualizar",
+      "method": "PUT",
+      "url": "http://localhost:3000/vacina/atualizar/:id",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"string\",\n  \"dataAplicacao\": \"2026-07-31\",\n  \"proximaDose\": \"2027-07-31\",\n  \"veterinario\": \"string\",\n  \"lote\": \"string\"\n}"
+      }
+    },
+    {
+      "_id": "req_Vacina_DELETE",
+      "_type": "request",
+      "parentId": "fld_Vacina",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "name": "Excluir",
+      "method": "DELETE",
+      "url": "http://localhost:3000/vacina/excluir/:id"
     }
   ]
 }

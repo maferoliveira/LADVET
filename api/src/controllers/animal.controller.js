@@ -11,7 +11,16 @@ const cadastrar = async (req, res) => {
 };
 
 const listar = async (req, res) => {
-    const lista = await prisma.animal.findMany();
+    const { especie, porte, idade } = req.query;
+
+    const filtros = {};
+    if (especie) filtros.especie = especie;
+    if (porte) filtros.porte = porte;
+    if (idade) filtros.idade = Number(idade);
+
+    const lista = await prisma.animal.findMany({
+        where: filtros
+    });
 
     res.json(lista).status(200).end();
 };
