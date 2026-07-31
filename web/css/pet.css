@@ -1,272 +1,273 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:sans-serif;
-}
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:sans-serif;
+    }
 
-body{
-    background:#eee3e3;
-    min-height:100vh;
-    padding-bottom:50px;
-}
+    body{
+        background:#eee3e3;
+        min-height:100vh;
+        padding-bottom:50px;
+    }
 
 
-/* TOPO */
+    /* TOPO */
 
-.voltar{
-    position:fixed;
+    .voltar{
+        position:fixed;
 
-    top:25px;
-    left:25px;
+        top:25px;
+        left:25px;
 
-    width:45px;
-    height:45px;
+        width:45px;
+        height:45px;
 
-    border:none;
-    border-radius:12px;
+        border:none;
+        border-radius:12px;
 
-    background:#c98b8b;
-    color:white;
+        background:#c98b8b;
+        color:white;
 
-    font-size:18px;
-    cursor:pointer;
+        font-size:18px;
+        cursor:pointer;
 
-    z-index:100;
+        z-index:100;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+        display:flex;
+        justify-content:center;
+        align-items:center;
 
-    transition:.3s;
-}
+        transition:.3s;
+    }
 
-.voltar:hover{
-    opacity:.9;
-}
-
-.logo{
-    position:fixed;
-
-    top:20px;
-    right:30px;
-
-    width:170px;
-
-    z-index:100;
-
-    filter:drop-shadow(0 6px 15px rgba(0,0,0,.08));
-}
-
-
-/* CONTAINER */
-
-.container{
-    width:780px;
-    max-width:90%;
-
-    margin:90px auto 40px;
-
-    background:#cf8f8f;
-
-    border-radius:20px;
-
-    padding:35px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-}
-
-
-/* FOTO */
-
-#fotoPet{
-    display:block;
-
-    margin:0 auto 25px;
-
-    width:300px;
-    height:350px;
-
-    object-fit:cover;
-
-    border-radius:16px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
-
-
-/* CONTEÚDO */
-
-.conteudo{
-    background:#c88787;
-
-    color:white;
-
-    border-radius:16px;
-
-    padding:30px;
-}
-
-
-/* INFORMAÇÕES SUPERIORES */
-
-.top-info{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.favorito{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    width:50px;
-    height:50px;
-
-    font-size:38px;
-    line-height:1;
-
-    cursor:pointer;
-
-    color:white;
-
-    flex-shrink:0;
-}
-
-.textos{
-    font-weight:700;
-    line-height:1.8;
-}
-
-#nomePet,
-#idadePet,
-#especiePet{
-    font-size:20px;
-}
-
-
-/* FAVORITO */
-
-.favorito{
-    font-size:42px;
-
-    cursor:pointer;
-
-    color:white;
-
-    transition:.3s;
-}
-
-.favorito.ativo{
-    color:red;
-}
-
-
-/* DIVISORES */
-
-.divisor,
-hr{
-    width:100%;
-
-    height:1px;
-
-    border:none;
-
-    background:#e7bdbd;
-
-    margin:20px 0;
-}
-
-
-/* DETALHES */
-
-#sexoPet,
-#vacinaPet,
-#temperamentoPet,
-#descricaoPet{
-    font-size:15px;
-
-    font-weight:700;
-
-    margin-bottom:14px;
-
-    line-height:1.6;
-}
-
-
-/* STATUS */
-
-.status{
-    text-align:center;
-
-    color:#71567c;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    margin-top:10px;
-}
-
-
-/* BOTÃO */
-
-.adotar{
-    display:block;
-
-    margin:30px auto 0;
-
-    width:300px;
-    height:60px;
-
-    border:none;
-    border-radius:16px;
-
-    background:#7f87c9;
-
-    color:white;
-
-    font-size:20px;
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.adotar:hover{
-    transform:translateY(-2px);
-    background:#7079be;
-}
-
-
-/* RESPONSIVO */
-
-@media (max-width:768px){
+    .voltar:hover{
+        opacity:.9;
+    }
 
     .logo{
-        width:130px;
-        right:20px;
+        position:fixed;
+
+        top:20px;
+        right:30px;
+
+        width:170px;
+
+        z-index:100;
+
+        filter:drop-shadow(0 6px 15px rgba(0,0,0,.08));
     }
+
+
+    /* CONTAINER */
+
+    .container{
+        width:780px;
+        max-width:90%;
+
+        margin:90px auto 40px;
+
+        background:#cf8f8f;
+
+        border-radius:20px;
+
+        padding:35px;
+
+        box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+
+
+    /* FOTO */
 
     #fotoPet{
-        width:100%;
-        max-width:300px;
-        height:auto;
+        display:block;
+
+        margin:0 auto 25px;
+
+        width:300px;
+        height:350px;
+
+        object-fit:cover;
+
+        border-radius:16px;
+
+        box-shadow:0 5px 15px rgba(0,0,0,.15);
     }
 
+
+    /* CONTEÚDO */
+
+    .conteudo{
+        background:#c88787;
+
+        color:white;
+
+        border-radius:16px;
+
+        padding:30px;
+    }
+
+
+    /* INFORMAÇÕES SUPERIORES */
+
     .top-info{
-        flex-direction:column;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
     }
 
     .favorito{
-        align-self:flex-end;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        width:50px;
+        height:50px;
+
+        font-size:38px;
+        line-height:1;
+
+        cursor:pointer;
+
+        color:white;
+
+        flex-shrink:0;
     }
 
-    .adotar{
-        width:100%;
-        max-width:300px;
+    .textos{
+        font-weight:700;
+        line-height:1.8;
     }
+
+    #nomePet,
+    #idadePet,
+    #especiePet{
+        font-size:20px;
+    }
+
+
+    /* FAVORITO */
+
+    .favorito{
+        font-size:42px;
+
+        cursor:pointer;
+
+        color:white;
+
+        transition:.3s;
+    }
+
+    .favorito.ativo{
+        color:red;
+    }
+
+
+    /* DIVISORES */
+
+    .divisor,
+    hr{
+        width:100%;
+
+        height:1px;
+
+        border:none;
+
+        background:#e7bdbd;
+
+        margin:20px 0;
+    }
+
+
+    /* DETALHES */
+
+    #sexoPet,
+    #vacinaPet,
+    #temperamentoPet,
+    #descricaoPet{
+        font-size:15px;
+
+        font-weight:700;
+
+        margin-bottom:14px;
+
+        line-height:1.6;
+    }
+
+
+    /* STATUS */
+
+    .status{
+
+    text-align:center;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin:20px 0 0;
+
+    color:#6f7ba3;
 
 }
+
+    /* BOTÃO */
+
+    .adotar{
+        display:block;
+
+        margin:30px auto 0;
+
+        width:300px;
+        height:60px;
+
+        border:none;
+        border-radius:16px;
+
+        background:#7f87c9;
+
+        color:white;
+
+        font-size:20px;
+        font-weight:bold;
+
+        cursor:pointer;
+
+        transition:.3s;
+    }
+
+    .adotar:hover{
+        transform:translateY(-2px);
+        background:#7079be;
+    }
+
+
+    /* RESPONSIVO */
+
+    @media (max-width:768px){
+
+        .logo{
+            width:130px;
+            right:20px;
+        }
+
+        #fotoPet{
+            width:100%;
+            max-width:300px;
+            height:auto;
+        }
+
+        .top-info{
+            flex-direction:column;
+        }
+
+        .favorito{
+            align-self:flex-end;
+        }
+
+        .adotar{
+            width:100%;
+            max-width:300px;
+        }
+
+    }

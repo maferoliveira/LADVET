@@ -3,332 +3,413 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Adoção</title>
+<title>Adoção</title>
 
-    <link rel="stylesheet" href="../css/pag-adocao.css">
+<link rel="stylesheet" href="../css/pag-adocao.css">
 
 </head>
 
+
 <body>
 
-    <!-- TOPO -->
 
-    <div class="topo">
+<!-- TOPO -->
 
-        <div class="lado-esquerdo">
+<div class="topo">
 
-            <button class="voltar" onclick="voltarIdentificacao()">
-                ↩
-            </button>
 
-            <div class="perfil" onclick="abrirPerfil()">
+<div class="lado-esquerdo">
 
-                <img src="../img/user.png" alt="perfil">
 
-            </div>
+<button class="voltar" onclick="voltarIdentificacao()">
 
-            <button id="novoAnimal" class="novo-animal" onclick="abrirCadastroAnimal()">
+↩
 
-                ＋ Novo animal
+</button>
 
-            </button>
 
-        </div>
 
-        <img src="../img/Logo.png" class="logo">
+<div class="perfil" onclick="abrirPerfil()">
 
-    </div>
 
+<img src="../img/user.png" alt="perfil">
 
-    <!-- LISTA -->
 
-    <div class="lista" id="listaPets">
+</div>
 
-        <!-- FIXOS -->
 
-        <div class="pet" data-pet="tulipa" onclick="abrirPet('tulipa')">
 
-            <img src="../img/tulipa.png">
 
-            <div class="info">
-                <h3>Nome: Tulipa</h3>
-                <p>Idade: 2 anos</p>
-                <p>Espécie: Felino</p>
-            </div>
+<button 
+id="novoAnimal"
+class="novo-animal"
+onclick="abrirCadastroAnimal()">
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+＋ Novo animal
 
-        </div>
+</button>
 
 
-        <div class="pet" data-pet="thor" onclick="abrirPet('thor')">
 
-            <img src="../img/thor.png">
+</div>
 
-            <div class="info">
-                <h3>Nome: Thor</h3>
-                <p>Idade: 3 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
 
-        </div>
 
+<img src="../img/Logo.png" class="logo">
 
-        <div class="pet" data-pet="pretinho" onclick="abrirPet('pretinho')">
 
-            <img src="../img/pretinho.png">
+</div>
 
-            <div class="info">
-                <h3>Nome: Pretinho</h3>
-                <p>Idade: 4 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
 
-        </div>
 
 
-        <div class="pet" data-pet="nina" onclick="abrirPet('nina')">
+<!-- LISTA DOS PETS -->
 
-            <img src="../img/nina.png">
+<div class="lista" id="listaPets">
 
-            <div class="info">
-                <h3>Nome: Nina</h3>
-                <p>Idade: 2 anos</p>
-                <p>Espécie: Felino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+</div>
 
-        </div>
 
 
-        <div class="pet" data-pet="aurora" onclick="abrirPet('aurora')">
 
-            <img src="../img/aurora.png">
 
-            <div class="info">
-                <h3>Nome: Aurora</h3>
-                <p>Idade: 1 ano</p>
-                <p>Espécie: Felino</p>
-            </div>
+<script src="../js/script.js"></script>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
 
-        </div>
 
+<script>
 
-        <div class="pet" data-pet="romeu" onclick="abrirPet('romeu')">
 
-            <img src="../img/romeu.png">
+const petsFixos = [
 
-            <div class="info">
-                <h3>Nome: Romeu</h3>
-                <p>Idade: 1 ano</p>
-                <p>Espécie: Felino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+{
+nome:"tulipa",
+imagem:"tulipa.png",
+idade:"2 anos",
+especie:"Felino"
+},
 
-        </div>
 
+{
+nome:"thor",
+imagem:"thor.png",
+idade:"3 anos",
+especie:"Canino"
+},
 
-        <div class="pet" data-pet="duck" onclick="abrirPet('duck')">
 
-            <img src="../img/duck.png">
+{
+nome:"pretinho",
+imagem:"pretinho.png",
+idade:"4 anos",
+especie:"Canino"
+},
 
-            <div class="info">
-                <h3>Nome: Duck</h3>
-                <p>Idade: 10 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+{
+nome:"nina",
+imagem:"nina.png",
+idade:"2 anos",
+especie:"Felino"
+},
 
-        </div>
 
+{
+nome:"aurora",
+imagem:"aurora.png",
+idade:"1 ano",
+especie:"Felino"
+},
 
-        <div class="pet" data-pet="fred" onclick="abrirPet('fred')">
 
-            <img src="../img/fred.png">
+{
+nome:"romeu",
+imagem:"romeu.png",
+idade:"1 ano",
+especie:"Felino"
+},
 
-            <div class="info">
-                <h3>Nome: Fred</h3>
-                <p>Idade: 8 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+{
+nome:"duck",
+imagem:"duck.png",
+idade:"10 anos",
+especie:"Canino"
+},
 
-        </div>
 
+{
+nome:"fred",
+imagem:"fred.png",
+idade:"8 anos",
+especie:"Canino"
+},
 
-        <div class="pet" data-pet="jady" onclick="abrirPet('jady')">
 
-            <img src="../img/jady.png">
+{
+nome:"jady",
+imagem:"jady.png",
+idade:"5 anos",
+especie:"Canino"
+},
 
-            <div class="info">
-                <h3>Nome: Jady</h3>
-                <p>Idade: 5 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+{
+nome:"theo",
+imagem:"theo.png",
+idade:"3 anos",
+especie:"Canino"
+},
 
-        </div>
 
+{
+nome:"meggie",
+imagem:"meggie.png",
+idade:"8 anos",
+especie:"Canino"
+},
 
-        <div class="pet" data-pet="theo" onclick="abrirPet('theo')">
 
-            <img src="../img/theo.png">
+{
+nome:"salsicha",
+imagem:"salsicha.png",
+idade:"3 anos",
+especie:"Canino"
+}
 
-            <div class="info">
-                <h3>Nome: Theo</h3>
-                <p>Idade: 3 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+];
 
-        </div>
 
 
-        <div class="pet" data-pet="meggie" onclick="abrirPet('meggie')">
+const lista =
+document.getElementById("listaPets");
 
-            <img src="../img/meggie.png">
 
-            <div class="info">
-                <h3>Nome: Meggie</h3>
-                <p>Idade: 8 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
+const petsAdotados =
+JSON.parse(
+localStorage.getItem("petsAdotados")
+) || [];
 
-        </div>
 
 
-        <div class="pet" data-pet="salsicha" onclick="abrirPet('salsicha')">
 
-            <img src="../img/salsicha.png">
 
-            <div class="info">
-                <h3>Nome: Salsicha</h3>
-                <p>Idade: 3 anos</p>
-                <p>Espécie: Canino</p>
-            </div>
+petsFixos.forEach(pet=>{
 
-            <div class="card-footer" onclick="favoritar(this,event)">
-                ♡
-            </div>
 
-        </div>
+let adotado =
+petsAdotados.includes(pet.nome);
 
-    </div>
 
 
+lista.innerHTML += `
 
-    <script>
 
-        document.addEventListener("DOMContentLoaded", () => {
-
-            const tipo =
-                localStorage.getItem(
-                    "tipoUsuario"
-                );
-
-            const novo =
-                document.getElementById(
-                    "novoAnimal"
-                );
-
-            if (tipo === "veterinario") {
-                novo.style.display = "flex";
-            } else {
-                novo.style.display = "none";
-            }
-
-
-            const lista =
-                document.getElementById(
-                    "listaPets"
-                );
-
-            const petsNovos =
-                JSON.parse(
-                    localStorage.getItem(
-                        "petsNovos"
-                    )
-                ) || [];
-
-
-            petsNovos.forEach((pet, index) => {
-
-                lista.innerHTML += `
-
-<div
+<div 
 class="pet"
-data-pet="novo${index}"
-onclick="abrirPet('novo${index}')">
+data-pet="${pet.nome}"
+onclick="abrirPet('${pet.nome}')">
 
-<img src="${pet.foto}">
+
+<img src="../img/${pet.imagem}">
+
+
 
 <div class="info">
 
-<h3>Nome: ${pet.nome}</h3>
 
-<p>Idade: ${pet.idade}</p>
+<h3>
+Nome: ${pet.nome}
+</h3>
 
-<p>Espécie: ${pet.especie}</p>
+
+
+<p>
+Idade: ${pet.idade}
+</p>
+
+
+
+<p>
+Espécie: ${pet.especie}
+</p>
+
+
+
+<p class="status-pet">
+
+${adotado ? "❤️ Adotado" : "🐾 Disponível"}
+
+</p>
+
+
 
 </div>
+
+
+
+
+<div 
+class="card-footer"
+onclick="favoritar(this,event)">
+
+♡
+
+</div>
+
+
+
+</div>
+
+
+
+`;
+
+
+
+});
+
+
+
+</script>
+// ==============================
+// PETS CADASTRADOS PELO VETERINÁRIO
+// ==============================
+
+
+const petsNovos = JSON.parse(
+    localStorage.getItem("petsNovos")
+) || [];
+
+
+
+petsNovos.forEach((pet,index)=>{
+
+
+    const nomePet = "novo" + index;
+
+
+    const adotado =
+    petsAdotados.includes(nomePet);
+
+
+
+    lista.innerHTML += `
+
+
+<div
+class="pet"
+data-pet="${nomePet}"
+onclick="abrirPet('${nomePet}')">
+
+
+<img src="${pet.foto}">
+
+
+
+<div class="info">
+
+
+<h3>
+Nome: ${pet.nome}
+</h3>
+
+
+
+<p>
+Idade: ${pet.idade}
+</p>
+
+
+
+<p>
+Espécie: ${pet.especie}
+</p>
+
+
+
+
+<p class="status-pet">
+
+${adotado ? "❤️ Adotado" : "🐾 Disponível"}
+
+</p>
+
+
+
+</div>
+
+
+
 
 <div
 class="card-footer"
 onclick="favoritar(this,event)">
+
 ♡
-</div>
 
 </div>
+
+
+
+</div>
+
 
 `;
 
-            });
 
-        });
 
-    </script>
+});
 
-    <script src="../js/script.js"></script>
+
+
+
+
+
+// ==============================
+// BOTÃO NOVO ANIMAL
+// ==============================
+
+
+const tipoUsuario =
+localStorage.getItem("tipoUsuario");
+
+
+
+const novoAnimal =
+document.getElementById("novoAnimal");
+
+
+
+if(tipoUsuario === "veterinario"){
+
+
+    novoAnimal.style.display = "flex";
+
+
+}else{
+
+
+    novoAnimal.style.display = "none";
+
+
+}
+
+
+
+</script>
+
+
 
 </body>
 

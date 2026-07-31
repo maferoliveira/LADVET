@@ -140,10 +140,14 @@ body{
 
     justify-content:center;
 
+    align-items:stretch;
+
     gap:25px;
 }
 
+
 .item{
+    width:320px;
     height:75px;
 
     background:#6f7ba3;
@@ -174,7 +178,10 @@ body{
 /* FAVORITOS */
 
 .favoritos{
+    width:100%;
+
     display:flex;
+
     justify-content:center;
 
     margin-top:25px;
@@ -183,7 +190,6 @@ body{
 .favoritos .item{
     width:320px;
 }
-
 
 /* RODAPÉ */
 

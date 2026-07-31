@@ -161,79 +161,127 @@ status:"Disponível"
 };
 
 
-const petSelecionado =
-localStorage.getItem("petSelecionado");
+// Pegando o pet selecionado pelo card
 
-const pet =
-pets[petSelecionado];
+const petSelecionado = localStorage.getItem("petSelecionado");
+
+const pet = pets[petSelecionado];
+
+
 
 if(!pet){
 
-alert("Pet não encontrado");
+    alert("Pet não encontrado");
 
-window.location.href =
-"pag-adocao.html";
+    window.location.href = "pag-adocao.html";
 
-return;
+    return;
 
 }
 
 
-document.getElementById("fotoPet").src =
-pet.foto;
+
+// Preenche as informações do pet
+
+document.getElementById("fotoPet").src = pet.foto;
+
 
 document.getElementById("nomePet").innerHTML =
 "Nome: " + pet.nome;
 
+
 document.getElementById("idadePet").innerHTML =
 "Idade: " + pet.idade;
+
 
 document.getElementById("especiePet").innerHTML =
 "Espécie: " + pet.especie;
 
+
 document.getElementById("sexoPet").innerHTML =
 "Sexo: " + pet.sexo;
+
 
 document.getElementById("vacinaPet").innerHTML =
 "Vacinas: " + pet.vacina;
 
+
 document.getElementById("temperamentoPet").innerHTML =
 "Temperamento: " + pet.temperamento;
+
 
 document.getElementById("descricaoPet").innerHTML =
 pet.descricao;
 
-const status =
-document.getElementById(
-"statusPet"
-);
 
-status.innerHTML =
-pet.status;
 
-if(
-pet.status ===
-"Adotado"
-){
+// Status do pet
 
-status.style.color =
-"red";
+const status = document.getElementById("statusPet");
+
+
+status.innerHTML = pet.status;
+
+
+
+if(pet.status === "Adotado"){
+
+    status.style.color = "red";
 
 }
+
+
+
+// Botão solicitar adoção
+
+const botaoAdotar = document.querySelector(".adotar");
+
+
+if(botaoAdotar){
+
+
+    botaoAdotar.addEventListener("click", function(){
+
+
+        window.location.href =
+        `solicitacao.html?pet=${petSelecionado}`;
+
+
+    });
+
+
 }
+
+
+
+};
+
+
+
+
+
+// Favoritar pet
 
 function favoritarPet(el){
 
-if(el.innerHTML==="♡"){
 
-el.innerHTML="♥";
-el.style.color="red";
+    if(el.innerHTML === "♡"){
 
-}else{
 
-el.innerHTML="♡";
-el.style.color="white";
+        el.innerHTML = "♥";
 
-}
+        el.style.color = "red";
+
+
+    }else{
+
+
+        el.innerHTML = "♡";
+
+        el.style.color = "white";
+
+
+    }
+
 
 }

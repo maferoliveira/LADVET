@@ -1,0 +1,250 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
+}
+
+
+body{
+
+    background:#eadede;
+
+    min-height:100vh;
+
+}
+
+
+
+.tela{
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding-bottom:40px;
+
+}
+
+
+
+
+/* TOPO */
+
+.topo{
+
+    width:100%;
+
+    height:90px;
+
+    background:#6f7ba3;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+}
+
+
+
+.topo h1{
+
+    color:white;
+
+    font-size:24px;
+
+}
+
+
+
+.topo button{
+
+    position:absolute;
+
+    left:20px;
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+/* LISTA */
+
+#listaStatus{
+
+    width:90%;
+
+    max-width:600px;
+
+    margin:35px auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
+
+
+/* CARD */
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+
+.card h2{
+
+    color:#6f7ba3;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.card p{
+
+    color:#555;
+
+    margin:8px 0;
+
+}
+
+
+
+
+
+/* STATUS */
+
+.status{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+
+
+
+
+/* PENDENTE */
+
+.Pendente{
+
+    background:#fff2b8;
+
+    color:#9b7a00;
+
+}
+
+
+
+
+
+/* ACEITO */
+
+.Aceito{
+
+    background:#b8e6b8;
+
+    color:#287228;
+
+}
+
+
+
+
+
+/* RECUSADO */
+
+.Recusado{
+
+    background:#f3b5b5;
+
+    color:#a12d2d;
+
+}
+
+
+
+
+
+/* SEM SOLICITAÇÃO */
+
+.vazio{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    color:#777;
+
+}
+
+
+
+
+
+
+@media(max-width:600px){
+
+
+.topo h1{
+
+    font-size:20px;
+
+}
+
+
+#listaStatus{
+
+    width:95%;
+
+}
+
+
+}
