@@ -1,503 +1,396 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Perfil</title>
 
-
 <link rel="stylesheet" href="../css/perfil.css">
 
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
 
 
 <script src="../js/script.js" defer></script>
 
-
 </head>
-
-
 
 <body>
 
-
-<div class="tela">
-
-
-
-<!-- TOPO -->
-
 <div class="topo">
 
-
 <button class="voltar" onclick="history.back()">
-
-<i class="bi bi-arrow-left"></i>
-
+    ↩
 </button>
-
-
-
-<button class="sair" onclick="irParaInicio()">
-
-Voltar pro início
-
-</button>
-
 
 </div>
-
-
-
-
 
 <!-- FOTO -->
 
 <div class="foto">
 
-
 <img src="../img/userrosa.png" alt="Perfil">
-
 
 </div>
 
-
-
-
-
-
-<!-- DADOS -->
+<!-- USUARIO -->
 
 <div class="usuario">
 
-
 <h1 id="nomePerfil">
-
-Ederson Pinheiro
-
+    Nome do usuário
 </h1>
 
-
-
 <p id="tipoPerfil">
-
-Adotante
-
+    Adotante
 </p>
 
+</div>
 
+<div class="linha"></div>
+
+<!-- INFORMAÇÕES -->
+
+<div class="informacoes">
+
+<h2>
+    <i class="bi bi-person-fill"></i>
+    Dados pessoais
+</h2>
+
+
+<div class="campo">
+
+    <strong>Email:</strong>
+
+    <span id="emailPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Telefone:</strong>
+
+    <span id="telefonePerfil"></span>
 
 </div>
 
 
 
+<h2>
+    <i class="bi bi-house-fill"></i>
+    Endereço
+</h2>
 
+
+<div class="campo">
+
+    <strong>CEP:</strong>
+
+    <span id="cepPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Endereço:</strong>
+
+    <span id="enderecoPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Bairro:</strong>
+
+    <span id="bairroPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Cidade:</strong>
+
+    <span id="cidadePerfil"></span>
+
+</div>
+
+
+
+<h2>
+    <i class="bi bi-heart-fill"></i>
+    Informações para adoção
+</h2>
+
+
+<div class="campo">
+
+    <strong>Tipo de residência:</strong>
+
+    <span id="residenciaPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Espaço disponível:</strong>
+
+    <span id="espacoPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Experiência com animais:</strong>
+
+    <span id="experienciaPerfil"></span>
+
+</div>
+
+
+<div class="campo">
+
+    <strong>Rotina:</strong>
+
+    <span id="rotinaPerfil"></span>
+
+</div>
+```
+
+</div>
 
 <div class="linha"></div>
-
-
-
-
-
 
 <!-- MENU -->
 
 <div class="menu">
 
-
-
-
-
-<!-- SOMENTE ADOTANTE -->
-
-<div 
-class="item"
-id="minhasSolicitacoes"
-onclick="abrirMinhasSolicitacoes()">
-
-
-<i class="bi bi-bell-fill"></i>
-
-
-<span>
-
-Minhas solicitações
-
-</span>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- SOMENTE VETERINÁRIO -->
+```
+<!-- ADOTANTE -->
 
 <div
-class="item"
-id="cadastroAnimais"
-onclick="abrirCadastroAnimal()">
+    class="item"
+    id="minhasSolicitacoes"
+    onclick="abrirMinhasSolicitacoes()"
+>
 
+    <i class="bi bi-bell-fill"></i>
 
-
-<i class="bi bi-heart-pulse-fill"></i>
-
-
-
-<span>
-
-Cadastro de animais
-
-</span>
-
-
+    <span>
+        Minhas solicitações
+    </span>
 
 </div>
 
 
 
+<!-- VETERINÁRIO -->
+
+<div
+    class="item"
+    id="cadastroAnimais"
+    onclick="abrirCadastroAnimal()"
+>
+
+    <i class="bi bi-heart-pulse-fill"></i>
+
+    <span>
+        Cadastro de animais
+    </span>
+
+</div>
 
 
 <div
-class="item"
-id="solicitacoes"
-onclick="abrirSolicitacoes()">
+    class="item"
+    id="solicitacoes"
+    onclick="abrirSolicitacoes()"
+>
 
+    <i class="bi bi-clipboard-heart-fill"></i>
 
-
-<i class="bi bi-clipboard-heart-fill"></i>
-
-
-
-<span>
-
-Solicitações de adoção
-
-</span>
-
-
+    <span>
+        Solicitações de adoção
+    </span>
 
 </div>
 
 
 
-
-
-
-
-
-
-<!-- TODOS -->
+<!-- COMUM -->
 
 <div
-class="item"
-onclick="abrirConfiguracoes()">
+    class="item"
+    onclick="abrirConfiguracoes()"
+>
 
+    <i class="bi bi-gear-fill"></i>
 
-
-<i class="bi bi-gear-fill"></i>
-
-
-
-<span>
-
-Configurações da conta
-
-</span>
-
-
+    <span>
+        Configurações
+    </span>
 
 </div>
-
-
-
-
 
 
 <div
-class="item"
-onclick="abrirContatos()">
+    class="item"
+    onclick="abrirContatos()"
+>
 
+    <i class="bi bi-telephone-fill"></i>
 
-
-<i class="bi bi-telephone-fill"></i>
-
-
-
-<span>
-
-Contatos
-
-</span>
-
-
+    <span>
+        Contatos
+    </span>
 
 </div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- FAVORITOS -->
-
-<div
-class="favoritos"
-id="areaFavoritos">
-
 
 
 <div
-class="item"
-onclick="abrirFavoritos()">
+    class="item"
+    onclick="abrirHistoria()"
+>
 
+    <i class="bi bi-book-fill"></i>
 
-
-<i class="bi bi-heart-fill"></i>
-
-
-
-<span>
-
-Seus favoritos
-
-</span>
-
-
+    <span>
+        História do LADVET
+    </span>
 
 </div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="linha"></div>
-
-
-
-
-
-
-
-
-
-<!-- HISTÓRIA -->
-
-<div
-class="rodape"
-id="historia"
-onclick="abrirHistoria()">
-
-
-
-<div class="item historia">
-
-
-<img
-src="../img/Logo.png"
-class="logo">
-
+```
 
 </div>
-
-
-
-
-
-<div class="texto">
-
-
-Clique aqui para conhecer a história do nosso aplicativo!
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
 
 <script>
 
+window.onload = function() {
 
-window.addEventListener("load", function(){
 
+    /* =========================
+       CARREGAR USUÁRIO
+    ========================= */
 
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioLogado")
+    );
 
-const tipo =
-localStorage.getItem("tipoUsuario");
 
+    if (usuario) {
 
+        document.getElementById("nomePerfil").innerHTML =
+            usuario.nome || "";
 
-const nome =
-document.getElementById("nomePerfil");
+        document.getElementById("emailPerfil").innerHTML =
+            usuario.email || "";
 
+        document.getElementById("telefonePerfil").innerHTML =
+            usuario.telefone || "";
 
+        document.getElementById("cepPerfil").innerHTML =
+            usuario.cep || "";
 
-const cargo =
-document.getElementById("tipoPerfil");
+        document.getElementById("enderecoPerfil").innerHTML =
+            usuario.endereco || "";
 
+        document.getElementById("bairroPerfil").innerHTML =
+            usuario.bairro || "";
 
+        document.getElementById("cidadePerfil").innerHTML =
+            usuario.cidade || "";
 
-const cadastro =
-document.getElementById("cadastroAnimais");
+        document.getElementById("residenciaPerfil").innerHTML =
+            usuario.residencia || "";
 
+        document.getElementById("espacoPerfil").innerHTML =
+            usuario.espaco || "";
 
+        document.getElementById("experienciaPerfil").innerHTML =
+            usuario.experiencia || "";
 
-const solicitacoes =
-document.getElementById("solicitacoes");
+        document.getElementById("rotinaPerfil").innerHTML =
+            usuario.rotina || "";
 
+    }
 
 
-const minhasSolicitacoes =
-document.getElementById("minhasSolicitacoes");
 
+    /* =========================
+       TIPO DE USUÁRIO
+    ========================= */
 
+    const tipo =
+        localStorage.getItem("tipoUsuario");
 
-const favoritos =
-document.getElementById("areaFavoritos");
 
+    const minhasSolicitacoes =
+        document.getElementById("minhasSolicitacoes");
 
+    const cadastroAnimais =
+        document.getElementById("cadastroAnimais");
 
-const historia =
-document.getElementById("historia");
+    const solicitacoes =
+        document.getElementById("solicitacoes");
 
 
 
+    /* =========================
+       VETERINÁRIO
+    ========================= */
 
+    if (tipo === "veterinario") {
 
+        document.getElementById("tipoPerfil").innerHTML =
+            "Veterinário";
 
-if(tipo === "veterinario"){
 
+        minhasSolicitacoes.style.display =
+            "none";
 
+        cadastroAnimais.style.display =
+            "flex";
 
-nome.innerHTML =
-"Mafer Oliveira";
+        solicitacoes.style.display =
+            "flex";
 
+    }
 
 
-cargo.innerHTML =
-"Veterinária";
+    /* =========================
+       ADOTANTE
+    ========================= */
 
+    else {
 
+        document.getElementById("tipoPerfil").innerHTML =
+            "Adotante";
 
-cadastro.style.display =
-"flex";
 
+        minhasSolicitacoes.style.display =
+            "flex";
 
+        cadastroAnimais.style.display =
+            "none";
 
-solicitacoes.style.display =
-"flex";
+        solicitacoes.style.display =
+            "none";
 
+    }
 
-
-minhasSolicitacoes.style.display =
-"none";
-
-
-
-favoritos.style.display =
-"none";
-
-
-
-historia.style.display =
-"none";
-
-
-
-}
-
-else{
-
-
-
-nome.innerHTML =
-"Ederson Pinheiro";
-
-
-
-cargo.innerHTML =
-"Adotante";
-
-
-
-cadastro.style.display =
-"none";
-
-
-
-solicitacoes.style.display =
-"none";
-
-
-
-minhasSolicitacoes.style.display =
-"flex";
-
-
-
-favoritos.style.display =
-"flex";
-
-
-
-historia.style.display =
-"flex";
-
-
-
-}
-
-
-
-});
-
-
+};
 
 </script>
-
-
-
 
 </body>
 

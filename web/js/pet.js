@@ -165,7 +165,12 @@ status:"Disponível"
 
 const petSelecionado = localStorage.getItem("petSelecionado");
 
-const pet = pets[petSelecionado];
+const chavePet = petSelecionado
+    ? petSelecionado.toLowerCase()
+    : null;
+
+
+const pet = pets[chavePet];
 
 
 
@@ -185,30 +190,23 @@ if(!pet){
 
 document.getElementById("fotoPet").src = pet.foto;
 
-
 document.getElementById("nomePet").innerHTML =
 "Nome: " + pet.nome;
-
 
 document.getElementById("idadePet").innerHTML =
 "Idade: " + pet.idade;
 
-
 document.getElementById("especiePet").innerHTML =
 "Espécie: " + pet.especie;
-
 
 document.getElementById("sexoPet").innerHTML =
 "Sexo: " + pet.sexo;
 
-
 document.getElementById("vacinaPet").innerHTML =
 "Vacinas: " + pet.vacina;
 
-
 document.getElementById("temperamentoPet").innerHTML =
 "Temperamento: " + pet.temperamento;
-
 
 document.getElementById("descricaoPet").innerHTML =
 pet.descricao;
@@ -220,13 +218,17 @@ pet.descricao;
 const status = document.getElementById("statusPet");
 
 
-status.innerHTML = pet.status;
+if(status){
+
+    status.innerHTML = 
+    "Status: " + pet.status;
 
 
+    if(pet.status === "Adotado"){
 
-if(pet.status === "Adotado"){
+        status.style.color = "red";
 
-    status.style.color = "red";
+    }
 
 }
 
@@ -239,24 +241,17 @@ const botaoAdotar = document.querySelector(".adotar");
 
 if(botaoAdotar){
 
-
     botaoAdotar.addEventListener("click", function(){
 
-
         window.location.href =
-        `solicitacao.html?pet=${petSelecionado}`;
-
+        "solicitacao.html?pet=" + pet.nome;
 
     });
-
 
 }
 
 
-
 };
-
-
 
 
 
@@ -282,6 +277,5 @@ function favoritarPet(el){
 
 
     }
-
 
 }
