@@ -84,8 +84,178 @@ onclick="abrirCadastroAnimal()">
 
 
 
+<<<<<<< HEAD
 <script src="../js/pag-adocao.js"></script>
 
 </body>
 
 </html>
+=======
+<script>
+
+
+const petsFixos = [
+
+{
+nome:"Tulipa",
+imagem:"tulipa.png",
+idade:"2 anos",
+especie:"Felino"
+},
+
+{
+nome:"Thor",
+imagem:"thor.png",
+idade:"3 anos",
+especie:"Canino"
+},
+
+{
+nome:"Pretinho",
+imagem:"pretinho.png",
+idade:"4 anos",
+especie:"Canino"
+},
+
+{
+nome:"Nina",
+imagem:"nina.png",
+idade:"2 anos",
+especie:"Felino"
+},
+
+{
+nome:"Aurora",
+imagem:"aurora.png",
+idade:"1 ano",
+especie:"Felino"
+},
+
+{
+nome:"Romeu",
+imagem:"romeu.png",
+idade:"1 ano",
+especie:"Felino"
+},
+
+{
+nome:"Duck",
+imagem:"duck.png",
+idade:"10 anos",
+especie:"Canino"
+},
+
+{
+nome:"Fred",
+imagem:"fred.png",
+idade:"8 anos",
+especie:"Canino"
+},
+
+{
+nome:"Jady",
+imagem:"jady.png",
+idade:"5 anos",
+especie:"Canino"
+},
+
+{
+nome:"Theo",
+imagem:"theo.png",
+idade:"3 anos",
+especie:"Canino"
+},
+
+{
+nome:"Meggie",
+imagem:"meggie.png",
+idade:"8 anos",
+especie:"Canino"
+},
+
+{
+nome:"Salsicha",
+imagem:"salsicha.png",
+idade:"3 anos",
+especie:"Canino"
+}
+
+];
+
+
+const lista = document.getElementById("listaPets");
+
+
+const petsAdotados =
+JSON.parse(localStorage.getItem("petsAdotados")) || [];
+
+
+const petsNovos =
+JSON.parse(localStorage.getItem("petsNovos")) || [];
+
+
+const todosPets = [
+    ...petsFixos,
+    ...petsNovos
+];
+
+
+todosPets.forEach(pet => {
+
+    const adotado = petsAdotados.includes(pet.nome);
+
+
+    lista.innerHTML += `
+
+    <div 
+    class="pet"
+    data-pet="${pet.nome}"
+    onclick="abrirPet('${pet.nome}')">
+
+
+        <img src="../img/${pet.imagem}">
+
+
+        <div class="info">
+
+
+            <h3>
+            Nome: ${pet.nome}
+            </h3>
+
+
+            <p>
+            Idade: ${pet.idade}
+            </p>
+
+
+            <p>
+            Espécie: ${pet.especie}
+            </p>
+
+
+            <p class="status-pet">
+            ${adotado ? "❤️ Adotado" : "🐾 Disponível"}
+            </p>
+
+
+        </div>
+
+
+        <div 
+        class="card-footer"
+        onclick="favoritar(this,event)">
+
+        ♡
+
+        </div>
+
+
+    </div>
+
+    `;
+
+});
+
+</script>
+>>>>>>> 8e80fe7c1749cba0b14c97802465c69631d0a2cc
