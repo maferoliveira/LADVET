@@ -1,86 +1,38 @@
-const lista = document.getElementById(
-"listaStatus"
-);
+const lista = document.getElementById("listaStatus");
 
-
-
-let solicitacoes = JSON.parse(
-localStorage.getItem("solicitacoes")
-) || [];
-
-
-
-function carregar(){
-
-
-lista.innerHTML="";
-
-
-
-solicitacoes.forEach(pedido=>{
-
-
-lista.innerHTML += `
-
-
-<div class="card">
-
-
-<h2>
-🐾 ${pedido.pet}
-</h2>
-
-
-<p>
-Solicitação para: ${pedido.pet}
-</p>
-
-
-
-<div class="status ${pedido.status}">
-
-${mostrarMensagem(pedido.status)}
-
-</div>
-
-
-
-</div>
-
-
-`;
-
-
-});
-
-
+function mensagem(status) {
+    if (status === "APROVADA") return "🎉 Parabéns! Sua adoção foi aprovada!";
+    if (status === "RECUSADA") return "😿 Sua solicitação não foi aprovada.";
+    return "⏳ Sua solicitação está sendo analisada.";
 }
 
+async function carregar() {
+    if (!getToken()) {
+        lista.innerHTML = "<p>Faça login para visualizar suas solicitações.</p>";
+        return;
+    }
 
+    try {
+        const solicitacoes = await apiFetch("/adocao/minhas");
+        lista.innerHTML = "";
 
-function mostrarMensagem(status){
+        if (!solicitacoes.length) {
+            lista.innerHTML = "<p>Você ainda não enviou nenhuma solicitação.</p>";
+            return;
+        }
 
-
-if(status === "Aceito"){
-
-return "🎉 Parabéns! Sua adoção foi aprovada!";
-
+        solicitacoes.forEach(pedido => {
+            lista.innerHTML += `
+                <div class="card">
+                    <h2>🐾 ${pedido.animal?.nome || "Animal"}</h2>
+                    <p>Solicitação para: ${pedido.animal?.nome || "-"}</p>
+                    <div class="status ${pedido.status}">${mensagem(pedido.status)}</div>
+                </div>
+            `;
+        });
+    } catch (erro) {
+        lista.innerHTML = `<p>${erro.message}</p>`;
+    }
 }
-
-
-
-if(status === "Recusado"){
-
-return "😿 Sua solicitação não foi aprovada.";
-
-}
-
-
-
-return "⏳ Sua solicitação está sendo analisada.";
-
-}
-
-
 
 carregar();

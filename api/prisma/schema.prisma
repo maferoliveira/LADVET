@@ -13,6 +13,13 @@ model Usuario {
   senha        String
   telefone     String
   cidade       String
+  cep          String?
+  endereco     String?
+  bairro       String?
+  numero       String?
+  residencia   String?
+  espaco       String?
+  rotina       String?
   tipo_usuario tipoUsuario
   crmv         String?
 
@@ -24,10 +31,10 @@ model Animal {
   id           Int          @id @default(autoincrement())
   nome         String
   especie      String
-  raca         String
+  raca         String @default("Não informado")
   idade        Int
   sexo         String
-  porte        String
+  porte        String @default("Não informado")
   temperamento String?
   foto         String
   status       statusAnimal @default(DISPONIVEL)

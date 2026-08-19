@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+body{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background: linear-gradient(
+    135deg,
+    #f1e3e3 0%,
+    #d8b4b4 40%,
+    #b4bad9 75%,
+    #6f7ba3 100%
+);
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:url("../bolinhas.png");
+    background-size:cover;
+    background-position:center;
+
+    opacity:.12;
+    pointer-events:none;
+}
+
+.container{
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    z-index:1;
+}
+
+.content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+}
+
+.logo{
+    width:650px;
+    max-width:95vw;
+
+    filter:
+        drop-shadow(0 8px 18px rgba(111,123,163,.18))
+        drop-shadow(0 12px 24px rgba(201,139,139,.18));
+}
+
+.frase{
+    background:rgba(240, 206, 206, 0.85);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    padding:18px 35px;
+
+    border:1px solid rgba(207,143,143,.3);
+    border-radius:18px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    white-space:nowrap;
+    width:max-content;
+    max-width:90vw;
+
+    text-align:center;
+
+    color:#2c3040;
+
+    font-size:0.95rem;
+    font-weight:500;
+
+    letter-spacing:.3px;
+    line-height:1.2;
+}
+
+.btn-entrar{
+    margin-top:10px;
+
+    padding:18px 55px;
+
+    border:none;
+    border-radius:50px;
+
+    background:#4e5980;
+    color:white;
+
+    font-size:.95rem;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(78,89,128,.25);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+}
+
+.btn-entrar:hover{
+    background:#3d4666;
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(78,89,128,.4);
+}
+
+.btn-entrar:active{
+    transform:translateY(-1px);
+}
+
+@media (max-width:768px){
+
+    .logo{
+        width:300px;
+    }
+
+    .frase{
+        white-space:normal;
+        width:90%;
+        padding:18px 25px;
+        font-size:.9rem;
+    }
+
+    .btn-entrar{
+        width:220px;
+        padding:16px;
+    }
+}

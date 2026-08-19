@@ -1,88 +1,429 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
+<html lang="pt-BR">
 
-  <link rel="stylesheet" href="../css/cadastro.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Criar Conta</title>
+
+
+<link rel="stylesheet" href="../css/cadastro.css">
+
+
+<link 
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" 
+rel="stylesheet">
+
+
 </head>
+
 
 <body>
 
-  <button class="voltar" onclick="voltarIdentificacao()">
-    ↩
-  </button>
 
-  <img src="../img/Logo.png" class="logo" alt="LadVet">
 
-  <div class="container">
+<!-- BOTÃO VOLTAR -->
 
-    <div class="card">
+<button 
+class="voltar"
+onclick="history.back()">
 
-      <div class="card-top">
-        <h2>Criar Conta</h2>
-        <p>Preencha os dados para continuar</p>
-      </div>
+↩
 
-      <form class="card-body" onsubmit="entrarSistema(event)">
+</button>
 
-        <input
-          type="text"
-          placeholder="Nome completo"
-          required
-        >
 
-        <input
-          type="email"
-          placeholder="Email"
-          required
-        >
 
-        <input
-          type="tel"
-          placeholder="Telefone"
-          required
-        >
+<!-- LOGO -->
 
-        <input
-          type="text"
-          placeholder="Cidade"
-          required
-        >
+<img 
+src="../img/Logo.png"
+class="logo">
 
-        <div class="campo-senha">
-          <input
-            type="password"
-            id="senha"
-            placeholder="Crie uma senha"
-            required
-          >
 
-          <button
-            type="button"
-            class="olho"
-            onclick="toggleSenha()"
-          >
-            <i id="iconeSenha" class="bi bi-eye"></i>
-          </button>
-        </div>
 
-        <button
-          type="submit"
-          class="btn-acessar"
-        >
-          Criar Conta
-        </button>
 
-      </form>
 
-    </div>
+<div class="container">
 
-  </div>
 
-  <script src="../js/script.js"></script>
+<div class="card">
+
+
+
+<!-- CABEÇALHO -->
+
+<div class="card-top">
+
+
+<h2>
+Criar Conta
+</h2>
+
+
+<p>
+Preencha seus dados para iniciar o processo de adoção
+</p>
+
+
+</div>
+
+
+
+
+
+<!-- FORMULÁRIO -->
+
+<form 
+class="card-body"
+onsubmit="criarConta(event)">
+
+
+
+
+
+<!-- DADOS PESSOAIS -->
+
+<div class="secao">
+
+
+<h3>
+Dados pessoais
+</h3>
+
+
+<input
+type="text"
+id="nome"
+placeholder="Nome completo"
+required
+>
+
+
+
+<input
+type="email"
+id="email"
+placeholder="Email"
+required
+>
+
+
+
+<input
+type="tel"
+id="telefone"
+placeholder="Telefone / WhatsApp"
+required
+>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ENDEREÇO -->
+
+
+<div class="secao">
+
+
+<h3>
+Endereço
+</h3>
+
+
+
+<input
+type="text"
+id="cep"
+placeholder="CEP"
+onblur="buscarCEP()"
+required
+>
+
+
+
+<input
+type="text"
+id="endereco"
+placeholder="Endereço"
+required
+>
+
+
+
+<input
+type="text"
+id="cidade"
+placeholder="Cidade"
+required
+>
+
+
+
+<input
+type="text"
+id="bairro"
+placeholder="Bairro"
+required
+>
+
+<input
+type="text"
+id="número"
+placeholder="Número"
+required
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- INFORMAÇÕES DE ADOÇÃO -->
+
+
+<div class="secao">
+
+
+<h3>
+Informações para adoção
+</h3>
+
+
+
+<label>
+Tipo de residência
+</label>
+
+
+
+<select 
+id="residencia"
+required>
+
+
+<option value="">
+Selecione
+</option>
+
+
+<option>
+Casa
+</option>
+
+
+<option>
+Apartamento
+</option>
+
+
+<option>
+Chácara
+</option>
+
+
+<option>
+Outro
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+Espaço disponível para o animal
+</label>
+
+
+
+<textarea
+id="espaco"
+placeholder="Descreva o espaço que o animal terá disponível"
+required
+></textarea>
+
+
+
+
+
+<label>
+Experiência anterior com animais
+</label>
+
+
+
+<select 
+id="experiencia"
+required>
+
+
+<option value="">
+Selecione
+</option>
+
+
+<option>
+Sim, já tive animais
+</option>
+
+
+<option>
+Sim, tenho animais atualmente
+</option>
+
+
+<option>
+Não tenho experiência
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- SEGURANÇA -->
+
+
+<div class="secao">
+
+
+<h3>
+Segurança
+</h3>
+
+
+
+<label>
+Rotina e disponibilidade para cuidados
+</label>
+
+
+
+<textarea
+id="rotina"
+placeholder="Conte sobre sua rotina e tempo disponível para cuidar do animal"
+required
+></textarea>
+
+
+
+
+
+
+<label>
+Senha
+</label>
+
+
+
+<div class="campo-senha">
+
+
+<input
+type="password"
+id="senha"
+placeholder="Crie uma senha"
+required
+>
+
+
+
+<button
+type="button"
+class="olho"
+onclick="toggleSenha()"
+>
+
+
+<i 
+id="iconeSenha"
+class="bi bi-eye">
+</i>
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- BOTÃO -->
+
+
+<button
+type="submit"
+class="btn-acessar"
+>
+
+
+Criar Conta
+
+
+</button>
+
+
+
+
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<script src="../js/script.js"></script>
+
 
 </body>
+
+
 </html>
