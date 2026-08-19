@@ -30,7 +30,7 @@ const login = async (req, res) => {
         });
 
         if (!usuario) {
-            return res.status(404).json({ msg: "Usuário não encontrado." });
+            return res.status(401).json({ msg: "Email ou senha incorretos." });
         }
 
         const token = jsonwebtoken.sign(
@@ -58,7 +58,27 @@ const cadastrar = async (req, res) => {
     const dados = { ...req.body };
 
     const erro = validarUsuario(dados);
-    if (erro) return res.status(400).json({ msg: erro });
+    if (erro) {
+        return res.status(400).json({ msg: erro });
+    }
+
+    // Validação específica para ADOTANTE
+    if (dados.tipo_usuario === "ADOTANTE") {
+        if (!dados.residencia || !dados.espaco || !dados.rotina) {
+            return res.status(400).json({
+                msg: "Preencha todos os dados necessários do adotante."
+            });
+        }
+    }
+
+    // Validação específica para CLÍNICA
+    if (dados.tipo_usuario === "CLINICA") {
+        if (!dados.crmv) {
+            return res.status(400).json({
+                msg: "Informe o CRMV."
+            });
+        }
+    }
 
     try {
         const novoUsuario = await prisma.usuario.create({
@@ -68,24 +88,53 @@ const cadastrar = async (req, res) => {
                 senha: dados.senha,
                 telefone: dados.telefone,
                 cidade: dados.cidade,
+
                 cep: dados.cep || null,
                 endereco: dados.endereco || null,
                 bairro: dados.bairro || null,
                 numero: dados.numero || null,
-                residencia: dados.residencia || null,
-                espaco: dados.espaco || null,
-                rotina: dados.rotina || null,
+
+                // Apenas adotante
+                residencia: dados.tipo_usuario === "ADOTANTE"
+                    ? dados.residencia
+                    : null,
+
+                espaco: dados.tipo_usuario === "ADOTANTE"
+                    ? dados.espaco
+                    : null,
+
+                rotina: dados.tipo_usuario === "ADOTANTE"
+                    ? dados.rotina
+                    : null,
+
+                // Apenas clínica
+                crmv: dados.tipo_usuario === "CLINICA"
+                    ? dados.crmv
+                    : null,
+
+                // Para testes
+                validado: dados.tipo_usuario === "CLINICA"
+                    ? true
+                    : false,
+
                 tipo_usuario: dados.tipo_usuario
             }
         });
 
         return res.status(201).json(novoUsuario);
+
     } catch (error) {
         console.error(error);
+
         if (error.code === "P2002") {
-            return res.status(409).json({ msg: "Este email já está cadastrado." });
+            return res.status(409).json({
+                msg: "Este email já está cadastrado."
+            });
         }
-        return res.status(500).json({ msg: "Internal server error." });
+
+        return res.status(500).json({
+            msg: "Internal server error."
+        });
     }
 };
 
@@ -99,14 +148,28 @@ const listar = async (req, res) => {
 
 const buscar = async (req, res) => {
     try {
+        const id = Number(req.params.id);
+
         const item = await prisma.usuario.findUnique({
-            where: { id: Number(req.params.id) }
+            where: {
+                id: id
+            }
         });
 
-        if (!item) return res.status(404).json({ msg: "Usuário não encontrado." });
+        if (!item) {
+            return res.status(404).json({
+                msg: "Usuário não encontrado."
+            });
+        }
+
         return res.status(200).json(item);
+
     } catch (error) {
-        return res.status(500).json({ msg: "Erro ao buscar usuário." });
+        console.error(error);
+
+        return res.status(500).json({
+            msg: "Erro ao buscar usuário."
+        });
     }
 };
 

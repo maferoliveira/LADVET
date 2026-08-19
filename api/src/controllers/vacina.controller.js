@@ -1,130 +1,285 @@
 const prisma = require("../data/prisma");
 
-// Função auxiliar para validar datas
 const eDataValida = (dataString) => {
     const data = new Date(dataString);
     return !isNaN(data.getTime());
 };
 
-const cadastrar = async (req, res) => {
-    const { nome, dataAplicacao, proximaDose, veterinario, lote, animalID } = req.body;
 
-    if (!nome || !dataAplicacao || !veterinario || !lote || !animalID) {
-        return res.status(400).json({ msg: "Campos obrigatórios faltando" });
+const cadastrar = async (req, res) => {
+    const {
+        nome,
+        dataAplicacao,
+        proximaDose,
+        veterinario,
+        lote,
+        animalID
+    } = req.body;
+
+    // Apenas a clínica pode cadastrar
+    if (req.usuario.tipo_usuario !== "CLINICA") {
+        return res.status(403).json({
+            msg: "Apenas a clínica pode cadastrar vacinas."
+        });
     }
 
-    if (!eDataValida(dataAplicacao) || (proximaDose && !eDataValida(proximaDose))) {
-        return res.status(400).json({ msg: "Formato de data inválido." });
+    const idAnimal = Number(animalID);
+
+    if (!nome || !dataAplicacao || !veterinario || !lote || !animalID) {
+        return res.status(400).json({
+            msg: "Nome, data de aplicação, veterinário, lote e animal são obrigatórios."
+        });
+    }
+
+    if (!Number.isInteger(idAnimal) || idAnimal <= 0) {
+        return res.status(400).json({
+            msg: "Animal inválido."
+        });
+    }
+
+    if (
+        !eDataValida(dataAplicacao) ||
+        (proximaDose && !eDataValida(proximaDose))
+    ) {
+        return res.status(400).json({
+            msg: "Formato de data inválido."
+        });
     }
 
     try {
+        const animal = await prisma.animal.findUnique({
+            where: {
+                id: idAnimal
+            }
+        });
+
+        if (!animal) {
+            return res.status(404).json({
+                msg: "Animal informado não existe."
+            });
+        }
+
         const item = await prisma.vacina.create({
             data: {
                 nome,
                 dataAplicacao: new Date(dataAplicacao),
-                proximaDose: proximaDose ? new Date(proximaDose) : null,
+                proximaDose: proximaDose
+                    ? new Date(proximaDose)
+                    : null,
                 veterinario,
                 lote,
-                animalID: Number(animalID)
+                animalID: idAnimal
             }
         });
 
         return res.status(201).json(item);
-    } catch (error) {
-        console.error("Erro na tentativa de cadastro de vacina:", error);
-        
-        if (error.code === 'P2003') {
-            return res.status(404).json({ msg: "Animal informado não existe." });
-        }
 
-        return res.status(500).json({ msg: "Internal server error." });
+    } catch (error) {
+        console.error("Erro ao cadastrar vacina:", error);
+
+        return res.status(500).json({
+            msg: "Erro ao cadastrar vacina."
+        });
     }
 };
+
 
 const listarPorAnimal = async (req, res) => {
-    const { animalID } = req.params;
+    const animalID = Number(req.params.animalID);
 
-    try {
-        const lista = await prisma.vacina.findMany({
-            where: { animalID: Number(animalID) },
-            orderBy: { dataAplicacao: "desc" }
+    if (!Number.isInteger(animalID) || animalID <= 0) {
+        return res.status(400).json({
+            msg: "ID do animal inválido."
         });
-
-        return res.status(200).json(lista);
-    } catch (error) {
-        console.error("Erro ao listar vacinas por animal:", error);
-        return res.status(500).json({ msg: "Internal server error." });
-    }
-};
-
-const buscar = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const item = await prisma.vacina.findUnique({
-            where: { id: Number(id) }
-        });
-
-        if (!item) return res.status(404).json({ msg: "Vacina não encontrada." });
-
-        return res.status(200).json(item);
-    } catch (error) {
-        console.error("Erro ao buscar vacina:", error);
-        return res.status(500).json({ msg: "Internal server error." });
-    }
-};
-
-const atualizar = async (req, res) => {
-    const { id } = req.params;
-    const { nome, dataAplicacao, proximaDose, veterinario, lote } = req.body;
-
-    if ((dataAplicacao && !eDataValida(dataAplicacao)) || (proximaDose && !eDataValida(proximaDose))) {
-        return res.status(400).json({ msg: "Formato de data inválido." });
     }
 
     try {
-        const item = await prisma.vacina.update({
-            where: { id: Number(id) },
-            data: {
-                ...(nome && { nome }),
-                ...(dataAplicacao && { dataAplicacao: new Date(dataAplicacao) }),
-                ...(proximaDose && { proximaDose: new Date(proximaDose) }),
-                ...(veterinario && { veterinario }),
-                ...(lote && { lote })
+        const animal = await prisma.animal.findUnique({
+            where: {
+                id: animalID
             }
         });
 
-        return res.status(200).json(item);
-    } catch (error) {
-        console.error("Erro na tentativa de atualizar vacina:", error);
-
-        if (error.code === 'P2025') {
-            return res.status(404).json({ msg: "Vacina não encontrada para atualização." });
+        if (!animal) {
+            return res.status(404).json({
+                msg: "Animal não encontrado."
+            });
         }
 
-        return res.status(500).json({ msg: "Internal server error." });
-    }
-};
-
-const excluir = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const item = await prisma.vacina.delete({
-            where: { id: Number(id) }
+        const lista = await prisma.vacina.findMany({
+            where: {
+                animalID
+            },
+            orderBy: {
+                dataAplicacao: "desc"
+            }
         });
 
-        return res.status(200).json({ msg: "Vacina excluída com sucesso." });
+        return res.status(200).json(lista);
+
     } catch (error) {
-        console.error("Erro na tentativa de excluir vacina:", error);
+        console.error("Erro ao listar vacinas:", error);
 
-        if (error.code === 'P2025') {
-            return res.status(404).json({ msg: "Vacina não encontrada para exclusão." });
-        }
-
-        return res.status(500).json({ msg: "Internal server error." });
+        return res.status(500).json({
+            msg: "Erro ao listar vacinas."
+        });
     }
 };
+
+
+const buscar = async (req, res) => {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({
+            msg: "ID inválido."
+        });
+    }
+
+    try {
+        const item = await prisma.vacina.findUnique({
+            where: {
+                id
+            }
+        });
+
+        if (!item) {
+            return res.status(404).json({
+                msg: "Vacina não encontrada."
+            });
+        }
+
+        return res.status(200).json(item);
+
+    } catch (error) {
+        console.error("Erro ao buscar vacina:", error);
+
+        return res.status(500).json({
+            msg: "Erro ao buscar vacina."
+        });
+    }
+};
+
+
+const atualizar = async (req, res) => {
+    const id = Number(req.params.id);
+
+    // Apenas a clínica pode atualizar
+    if (req.usuario.tipo_usuario !== "CLINICA") {
+        return res.status(403).json({
+            msg: "Apenas a clínica pode atualizar vacinas."
+        });
+    }
+
+    const {
+        nome,
+        dataAplicacao,
+        proximaDose,
+        veterinario,
+        lote
+    } = req.body;
+
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({
+            msg: "ID inválido."
+        });
+    }
+
+    if (
+        (dataAplicacao && !eDataValida(dataAplicacao)) ||
+        (proximaDose && !eDataValida(proximaDose))
+    ) {
+        return res.status(400).json({
+            msg: "Formato de data inválido."
+        });
+    }
+
+    try {
+        const vacina = await prisma.vacina.findUnique({
+            where: { id }
+        });
+
+        if (!vacina) {
+            return res.status(404).json({
+                msg: "Vacina não encontrada."
+            });
+        }
+
+        const dados = {};
+
+        if (nome !== undefined) dados.nome = nome;
+        if (dataAplicacao !== undefined) {
+            dados.dataAplicacao = new Date(dataAplicacao);
+        }
+        if (proximaDose !== undefined) {
+            dados.proximaDose = proximaDose
+                ? new Date(proximaDose)
+                : null;
+        }
+        if (veterinario !== undefined) dados.veterinario = veterinario;
+        if (lote !== undefined) dados.lote = lote;
+
+        const item = await prisma.vacina.update({
+            where: { id },
+            data: dados
+        });
+
+        return res.status(200).json(item);
+
+    } catch (error) {
+        console.error("Erro ao atualizar vacina:", error);
+
+        return res.status(500).json({
+            msg: "Erro ao atualizar vacina."
+        });
+    }
+};
+
+
+const excluir = async (req, res) => {
+    const id = Number(req.params.id);
+
+    // Apenas a clínica pode excluir
+    if (req.usuario.tipo_usuario !== "CLINICA") {
+        return res.status(403).json({
+            msg: "Apenas a clínica pode excluir vacinas."
+        });
+    }
+
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({
+            msg: "ID inválido."
+        });
+    }
+
+    try {
+        const vacina = await prisma.vacina.findUnique({
+            where: { id }
+        });
+
+        if (!vacina) {
+            return res.status(404).json({
+                msg: "Vacina não encontrada."
+            });
+        }
+
+        await prisma.vacina.delete({
+            where: { id }
+        });
+
+        return res.status(200).json({
+            msg: "Vacina excluída com sucesso."
+        });
+
+    } catch (error) {
+        console.error("Erro ao excluir vacina:", error);
+
+        return res.status(500).json({
+            msg: "Erro ao excluir vacina."
+        });
+    }
+};
+
 
 module.exports = {
     cadastrar,

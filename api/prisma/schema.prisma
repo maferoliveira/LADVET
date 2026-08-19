@@ -17,11 +17,16 @@ model Usuario {
   endereco     String?
   bairro       String?
   numero       String?
+  tipo_usuario tipoUsuario
+
+  //apenas adotante
   residencia   String?
   espaco       String?
   rotina       String?
-  tipo_usuario tipoUsuario
+
+  //apenas clinica
   crmv         String?
+  validado     Boolean @default(true)
 
   adocoes Adocao[]
   animais Animal[]

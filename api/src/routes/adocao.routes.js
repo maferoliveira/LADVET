@@ -1,13 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const controller = require("../controllers/adocao.controller");
-const auth = require("../middlewares/auth");
+const express = require("express"); const router = express.Router(); 
+const controller = require("../controllers/adocao.controller"); 
+const { validate, permitirTipo } = require("../middlewares/auth"); 
 
-router.get("/listar", auth, controller.listar);
-router.get("/minhas", auth, controller.listarMinhas);
-router.get("/buscar/:id", auth, controller.buscar);
-router.post("/cadastrar", auth, controller.cadastrar);
-router.put("/atualizar/:id", auth, controller.atualizar);
-router.delete("/excluir/:id", auth, controller.excluir);
+router.get("/listar", validate, permitirTipo("CLINICA"), controller.listar);
+router.get("/minhas", validate, permitirTipo("ADOTANTE"), controller.listarMinhas); 
+router.post("/cadastrar", validate, permitirTipo("ADOTANTE"), controller.cadastrar); 
+router.put("/atualizar/:id", validate, permitirTipo("CLINICA"), controller.atualizar); 
+router.delete("/excluir/:id", validate, permitirTipo("CLINICA"), controller.excluir); 
 
 module.exports = router;
