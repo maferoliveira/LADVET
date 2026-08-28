@@ -26,10 +26,6 @@ body{
 
 }
 
-
-
-/* BOTÃO VOLTAR */
-
 .voltar{
 
     position:absolute;
@@ -54,10 +50,6 @@ body{
 
 }
 
-
-
-/* LOGO */
-
 .logo{
 
     width:150px;
@@ -65,10 +57,6 @@ body{
     margin-bottom:20px;
 
 }
-
-
-
-/* CONTAINER */
 
 .container{
 
@@ -79,10 +67,6 @@ body{
     justify-content:center;
 
 }
-
-
-
-/* CARD PRINCIPAL */
 
 .card{
 
@@ -100,10 +84,6 @@ body{
     0 10px 30px rgba(0,0,0,.15);
 
 }
-
-
-
-/* CABEÇALHO */
 
 .card-top{
 
@@ -133,10 +113,6 @@ body{
 
 }
 
-
-
-/* FORMULÁRIO */
-
 .card-body{
 
     padding:35px;
@@ -150,10 +126,6 @@ body{
     gap:25px;
 
 }
-
-
-
-/* SEÇÕES */
 
 .secao{
 
@@ -183,10 +155,6 @@ body{
 
 }
 
-
-
-/* LABEL */
-
 .secao label{
 
     color:white;
@@ -196,11 +164,6 @@ body{
     font-weight:600;
 
 }
-
-
-
-/* INPUTS */
-
 .secao input,
 .secao select,
 .secao textarea{
@@ -246,10 +209,6 @@ body{
 
 }
 
-
-
-/* FOCO */
-
 .secao input:focus,
 .secao select:focus,
 .secao textarea:focus{
@@ -258,21 +217,11 @@ body{
     0 0 0 3px rgba(255,255,255,.3);
 
 }
-
-
-
-/* SELECT */
-
 .secao select{
 
     cursor:pointer;
 
 }
-
-
-
-/* CAMPO SENHA */
-
 .campo-senha{
 
     position:relative;
@@ -310,10 +259,6 @@ body{
     font-size:18px;
 
 }
-
-
-
-/* BOTÃO */
 
 .btn-acessar{
 
@@ -358,11 +303,6 @@ body{
     opacity:.9;
 
 }
-
-
-
-/* CELULAR */
-
 @media(max-width:800px){
 
 

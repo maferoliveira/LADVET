@@ -1,129 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Solicitação de Adoção</title>
-
-<link rel="stylesheet" href="../css/solicitacao.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação de Adoção</title>
+    <link rel="stylesheet" href="../css/solicitacao.css">
+</head>
+<body>
 
 <div class="topo">
-
-    <button class="voltar" onclick="irParaInicio()">
-        ↩
-    </button>
-
-    <img src="../img/Logo.png" class="logo">
-
+    <button class="voltar" onclick="irParaInicio()">↩</button>
+    <img src="../img/Logo.png" class="logo" alt="LADVET">
 </div>
 
-
 <header>
-
     <h1>Solicitação de Adoção 🐾</h1>
-
     <p>Preencha os dados para demonstrar interesse em adotar</p>
-
 </header>
 
-
-
 <main>
-
 <form id="formAdocao">
 
+    <h2>Dados pessoais</h2>
 
-<h2>Dados pessoais</h2>
+    <input type="text" id="nome" placeholder="Nome completo" required>
+    <input type="number" id="idade" placeholder="Idade" required>
+    <input type="text" id="cidade" placeholder="Cidade e bairro" required>
+    <input type="tel" id="telefone" placeholder="Telefone/WhatsApp" required>
 
+    <h2>Sobre sua residência</h2>
 
-<input type="text" id="nome" placeholder="Nome completo" required>
+    <select id="moradia" required>
+        <option value="">Tipo de moradia</option>
+        <option>Casa própria</option>
+        <option>Casa alugada</option>
+        <option>Apartamento</option>
+    </select>
 
+    <textarea id="espaco" placeholder="O local possui espaço seguro para o animal?"></textarea>
 
-<input type="number" id="idade" placeholder="Idade" required>
+    <h2>Experiência com animais</h2>
 
+    <textarea id="experiencia" placeholder="Já teve animais antes? Possui outros pets?"></textarea>
 
-<input type="text" id="cidade" placeholder="Cidade e bairro" required>
+    <h2>Motivo da adoção</h2>
 
+    <textarea id="motivo" placeholder="Por que deseja adotar este animal?" required></textarea>
 
-<input type="tel" id="telefone" placeholder="Telefone/WhatsApp" required>
+    <h2>Responsabilidade</h2>
 
+    <textarea id="cuidados" placeholder="Como pretende cuidar dele?" required></textarea>
 
+    <label>
+        <input type="checkbox" required>
+        Aceito o termo de responsabilidade pela adoção.
+    </label>
 
-<h2>Sobre sua residência</h2>
-
-
-<select id="moradia" required>
-
-<option value="">Tipo de moradia</option>
-
-<option>Casa própria</option>
-
-<option>Casa alugada</option>
-
-<option>Apartamento</option>
-
-</select>
-
-
-
-<textarea id="espaco" placeholder="O local possui espaço seguro para o animal?"></textarea>
-
-
-
-
-<h2>Experiência com animais</h2>
-
-
-<textarea id="experiencia" placeholder="Já teve animais antes? Possui outros pets?"></textarea>
-
-
-
-
-<h2>Motivo da adoção</h2>
-
-
-<textarea id="motivo" placeholder="Por que deseja adotar este animal?" required></textarea>
-
-
-
-
-<h2>Responsabilidade</h2>
-
-
-<textarea id="cuidados" placeholder="Como pretende cuidar dele?" required></textarea>
-
-
-
-<label>
-
-<input type="checkbox" required>
-
-Aceito o termo de responsabilidade pela adoção.
-
-</label>
-
-
-
-<button type="submit">
-
-Enviar solicitação
-
-</button>
-
-
-
+    <button type="submit">Enviar solicitação</button>
 </form>
-
 </main>
 
-
-
 <script src="../js/solicitacao.js"></script>
-
-
 </body>
-
 </html>

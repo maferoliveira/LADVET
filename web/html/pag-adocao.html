@@ -1,253 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Adoção</title>
-
-<link rel="stylesheet" href="../css/pag-adocao.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoção</title>
+    <link rel="stylesheet" href="../css/pag-adocao.css">
 </head>
-
-
 <body>
 
-
-<!-- TOPO -->
-
 <div class="topo">
-
-
-<div class="lado-esquerdo">
-
-
-<button class="voltar" onclick="voltarIdentificacao()">
-
-↩
-
-</button>
-
-
-
-<div class="perfil" onclick="abrirPerfil()">
-
-
-<img src="../img/user.png" alt="perfil">
-
-
-</div>
-
-
-
-
-<button 
-id="novoAnimal"
-class="novo-animal"
-onclick="abrirCadastroAnimal()">
-
-＋ Novo animal
-
-</button>
-
-
-
-</div>
-
-
-
-
-<img src="../img/Logo.png" class="logo">
-
-
-</div>
-
-
-
-
-
-<!-- LISTA DOS PETS -->
-
-<div class="lista" id="listaPets">
-
-
-</div>
-
-
-
-
-
-<script src="../js/script.js"></script>
-
-
-
-<script>
-
-
-const petsFixos = [
-
-{
-nome:"Tulipa",
-imagem:"tulipa.png",
-idade:"2 anos",
-especie:"Felino"
-},
-
-{
-nome:"Thor",
-imagem:"thor.png",
-idade:"3 anos",
-especie:"Canino"
-},
-
-{
-nome:"Pretinho",
-imagem:"pretinho.png",
-idade:"4 anos",
-especie:"Canino"
-},
-
-{
-nome:"Nina",
-imagem:"nina.png",
-idade:"2 anos",
-especie:"Felino"
-},
-
-{
-nome:"Aurora",
-imagem:"aurora.png",
-idade:"1 ano",
-especie:"Felino"
-},
-
-{
-nome:"Romeu",
-imagem:"romeu.png",
-idade:"1 ano",
-especie:"Felino"
-},
-
-{
-nome:"Duck",
-imagem:"duck.png",
-idade:"10 anos",
-especie:"Canino"
-},
-
-{
-nome:"Fred",
-imagem:"fred.png",
-idade:"8 anos",
-especie:"Canino"
-},
-
-{
-nome:"Jady",
-imagem:"jady.png",
-idade:"5 anos",
-especie:"Canino"
-},
-
-{
-nome:"Theo",
-imagem:"theo.png",
-idade:"3 anos",
-especie:"Canino"
-},
-
-{
-nome:"Meggie",
-imagem:"meggie.png",
-idade:"8 anos",
-especie:"Canino"
-},
-
-{
-nome:"Salsicha",
-imagem:"salsicha.png",
-idade:"3 anos",
-especie:"Canino"
-}
-
-];
-
-
-const lista = document.getElementById("listaPets");
-
-
-const petsAdotados =
-JSON.parse(localStorage.getItem("petsAdotados")) || [];
-
-
-const petsNovos =
-JSON.parse(localStorage.getItem("petsNovos")) || [];
-
-
-const todosPets = [
-    ...petsFixos,
-    ...petsNovos
-];
-
-
-todosPets.forEach(pet => {
-
-    const adotado = petsAdotados.includes(pet.nome);
-
-
-    lista.innerHTML += `
-
-    <div 
-    class="pet"
-    data-pet="${pet.nome}"
-    onclick="abrirPet('${pet.nome}')">
-
-
-        <img src="../img/${pet.imagem}">
-
-
-        <div class="info">
-
-
-            <h3>
-            Nome: ${pet.nome}
-            </h3>
-
-
-            <p>
-            Idade: ${pet.idade}
-            </p>
-
-
-            <p>
-            Espécie: ${pet.especie}
-            </p>
-
-
-            <p class="status-pet">
-            ${adotado ? "❤️ Adotado" : "🐾 Disponível"}
-            </p>
-
-
+    <div class="lado-esquerdo">
+        <button class="voltar" onclick="sair()">↩</button>
+
+        <div class="perfil" onclick="abrirPerfil()">
+            <img src="../img/user.png" alt="Perfil">
         </div>
 
-
-        <div 
-        class="card-footer"
-        onclick="favoritar(this,event)">
-
-        ♡
-
-        </div>
-
-
+        <button id="novoAnimal" class="novo-animal" onclick="abrirCadastroAnimal()">
+            ＋ Novo animal
+        </button>
     </div>
 
-    `;
+    <img src="../img/Logo.png" class="logo" alt="LADVET">
+</div>
 
+<div class="lista" id="listaPets"></div>
+
+<script src="../js/script.js"></script>
+<script>
+window.addEventListener("load", function () {
+
+    if (!protegerPagina()) return;
+
+    const petsFixos = [
+        {nome:"Tulipa", imagem:"tulipa.png", idade:"2 anos", especie:"Felino"},
+        {nome:"Thor", imagem:"thor.png", idade:"3 anos", especie:"Canino"},
+        {nome:"Pretinho", imagem:"pretinho.png", idade:"4 anos", especie:"Canino"},
+        {nome:"Nina", imagem:"nina.png", idade:"2 anos", especie:"Felino"},
+        {nome:"Aurora", imagem:"aurora.png", idade:"1 ano", especie:"Felino"},
+        {nome:"Romeu", imagem:"romeu.png", idade:"1 ano", especie:"Felino"},
+        {nome:"Duck", imagem:"duck.png", idade:"10 anos", especie:"Canino"},
+        {nome:"Fred", imagem:"fred.png", idade:"8 anos", especie:"Canino"},
+        {nome:"Jady", imagem:"jady.png", idade:"5 anos", especie:"Canino"},
+        {nome:"Theo", imagem:"theo.png", idade:"3 anos", especie:"Canino"},
+        {nome:"Meggie", imagem:"meggie.png", idade:"8 anos", especie:"Canino"},
+        {nome:"Salsicha", imagem:"salsicha.png", idade:"3 anos", especie:"Canino"}
+    ];
+
+    const lista = document.getElementById("listaPets");
+
+    const petsAdotados =
+        JSON.parse(localStorage.getItem("petsAdotados")) || [];
+
+    const petsNovos =
+        JSON.parse(localStorage.getItem("petsNovos")) || [];
+
+    const todosPets = [...petsFixos, ...petsNovos];
+
+    lista.innerHTML = "";
+
+    todosPets.forEach(pet => {
+
+        const adotado = petsAdotados.includes(pet.nome);
+
+        const imagem = pet.imagem
+            ? "../img/" + pet.imagem
+            : (pet.foto || "../img/user.png");
+
+        const favorito = (JSON.parse(
+            localStorage.getItem("favoritos")
+        ) || []).includes(pet.nome);
+
+        const div = document.createElement("div");
+        div.className = "pet";
+        div.dataset.pet = pet.nome;
+
+        div.innerHTML = `
+            <img src="${imagem}" alt="${pet.nome}">
+
+            <div class="info">
+                <h3>Nome: ${pet.nome}</h3>
+                <p>Idade: ${pet.idade}</p>
+                <p>Espécie: ${pet.especie}</p>
+
+                <p class="status-pet ${adotado ? "adotado" : "disponivel"}">
+                    ${adotado ? "❤️ Adotado" : "🐾 Disponível"}
+                </p>
+            </div>
+
+            <div class="card-footer ${favorito ? "ativo" : ""}">
+                ${favorito ? "♥" : "♡"}
+            </div>
+        `;
+
+        div.addEventListener("click", function () {
+            abrirPet(pet.nome);
+        });
+
+        const favoritoBtn = div.querySelector(".card-footer");
+
+        favoritoBtn.addEventListener("click", function (event) {
+            event.stopPropagation();
+            favoritar(this, event);
+        });
+
+        lista.appendChild(div);
+    });
+
+    const novoAnimal = document.getElementById("novoAnimal");
+
+    if (novoAnimal) {
+        novoAnimal.style.display =
+            localStorage.getItem("tipoUsuario") === "veterinario"
+                ? "flex"
+                : "none";
+    }
 });
-
 </script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-/* Reset e Base da Página Desktop */
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +6,7 @@
 }
 
 body {
-  background-color: #F7D6D9; /* Tom de rosa suave de fundo para a página */
+  background-color: #F7D6D9; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,11 +14,10 @@ body {
   padding: 40px 20px;
 }
 
-/* Container Centralizado Expandido para Desktop */
 .tela {
   width: 100%;
-  max-width: 1000px; /* Largura ideal para visualização em computadores */
-  background-color: #FFF0F2; /* Fundo rosa bem claro interno */
+  max-width: 1000px;
+  background-color: #FFF0F2; 
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -27,7 +25,6 @@ body {
   flex-direction: column;
 }
 
-/* 1. TOPO (Barra Superior) */
 .topo {
   background-color: #D38E93; 
   height: 70px;
@@ -58,7 +55,6 @@ body {
   background-color: #c98b8b;
 }
 
-/* 2. BANNER DE CACHORROS (Ajustado para proporção Desktop) */
 .banner {
   position: relative;
   padding: 30px;
@@ -68,8 +64,8 @@ body {
 
 .capa {
   width: 100%;
-  max-height: 400px; /* Limita a altura para não ocupar a tela inteira */
-  object-fit: cover; /* Corta inteligentemente sem distorcer */
+  max-height: 400px; 
+  object-fit: cover; 
   border-radius: 16px;
   border: 3px solid #333;
 }
@@ -78,20 +74,19 @@ body {
   position: absolute;
   bottom: 45px;
   right: 55px;
-  width: 140px; /* Logo ligeiramente maior no PC */
+  width: 140px; 
 }
 
-/* 3. LISTA DE CONTATOS (Organizada em colunas lado a lado) */
 #listaContatos {
   padding: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Divide em até 3 colunas paralelas */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px; 
   flex-grow: 1;
 }
 
 .contato {
-  background-color: rgba(255, 255, 255, 0.5); /* Fundo sutil para destacar cada contato */
+  background-color: rgba(255, 255, 255, 0.5); 
   padding: 20px;
   border-radius: 12px;
   display: flex;
@@ -100,10 +95,9 @@ body {
 }
 
 .contato:hover {
-  transform: translateY(-2px); /* Efeito flutuante ao passar o mouse */
+  transform: translateY(-2px); 
 }
 
-/* Fotos dos contatos 100% circulares com a borda azul */
 .contato > img {
   width: 90px;
   height: 90px;
@@ -127,7 +121,6 @@ body {
   font-weight: bold;
 }
 
-/* Customização dos inputs para parecerem texto puro */
 .editavel {
   border: none;
   background: transparent;
@@ -143,7 +136,6 @@ body {
   text-decoration: underline;
 }
 
-/* Estilo ativo de quando você habilitar a edição por JavaScript */
 .editavel:not([readonly]) {
   background-color: #fff;
   border: 1px solid #b7767b;
@@ -152,7 +144,6 @@ body {
   color: #000;
 }
 
-/* 4. BOTÕES DE AÇÕES (Centralizados no Desktop) */
 .acoes {
   display: flex;
   justify-content: center;
@@ -177,11 +168,10 @@ body {
   transform: scale(1.02);
 }
 
-/* 5. REDES SOCIAIS (Alinhadas horizontalmente no rodapé) */
 .redes {
   display: flex;
   justify-content: center;
-  gap: 50px; /* Maior espaçamento entre as redes no computador */
+  gap: 50px; 
   padding: 40px 30px 50px 30px;
 }
 
@@ -189,7 +179,7 @@ body {
   width: 90px;
   height: 90px;
   object-fit: cover;
-  border-radius: 50%; /* Mantém o formato redondo perfeito */
+  border-radius: 50%; 
   background-color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   cursor: pointer;
@@ -197,10 +187,9 @@ body {
 }
 
 .redes img:hover {
-  transform: scale(1.1); /* Zoom interativo */
+  transform: scale(1.1); 
 }
 
-/* ==================== 6. ADICIONADO: ESTILOS DO MODAL (ABA DE ATUALIZAR) ==================== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -208,7 +197,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px); /* Borra levemente o fundo atrás da aba flutuante */
+  backdrop-filter: blur(4px); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -218,7 +207,6 @@ body {
   z-index: 999;
 }
 
-/* Classe ativada pelo Javascript para exibir a aba */
 .modal-overlay.ativo {
   opacity: 1;
   pointer-events: auto;
@@ -296,7 +284,7 @@ body {
 }
 
 .btn-salvar {
-  background-color: #3B5998; /* Azul escuro combinando com o botão voltar */
+  background-color: #3B5998; 
   color: white;
 }
 

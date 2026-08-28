@@ -1,107 +1,250 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Contatos</title>
+
     <link rel="stylesheet" href="../css/contatos.css">
-    <script src="../js/script.js" defer></script>
+
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
 
     <div class="tela">
 
-        <!-- TOPO -->
         <div class="topo">
-            <button class="voltar" onclick="history.back()">
+
+            <button
+                class="voltar"
+                onclick="history.back()">
                 ↩
             </button>
+
         </div>
 
         <div class="banner">
-            <img src="../img/cachorros-contatos.png" class="capa">
-            <img src="../img/Logo.png" class="logo">
+
+            <img
+                src="../img/cachorros-contatos.png"
+                class="capa">
+
+            <img
+                src="../img/Logo.png"
+                class="logo">
+
         </div>
 
         <div id="listaContatos">
 
             <div class="contato">
+
                 <img src="../img/leticia.png">
+
                 <div class="dados">
-                    <h3>Letícia Corrêa da Silva</h3>
-                    <input class="editavel" id="tel1" value="(19) 97158-3462" readonly>
-                    <input class="editavel" id="mail1" value="leticia.correa@hotmail.com" readonly>
+
+                    <h3>
+                        Letícia Corrêa da Silva
+                    </h3>
+
+                    <input
+                        class="editavel"
+                        id="tel1"
+                        value="(19) 97158-3462"
+                        readonly>
+
+                    <input
+                        class="editavel"
+                        id="mail1"
+                        value="leticia.correa@hotmail.com"
+                        readonly>
+
                 </div>
+
             </div>
 
             <div class="contato">
+
                 <img src="../img/mafer.png">
+
                 <div class="dados">
-                    <h3>Maria Fernanda Moraes de Oliveira</h3>
-                    <input class="editavel" id="tel2" value="(19) 97169-3072" readonly>
-                    <input class="editavel" id="mail2" value="maria.fernanda@hotmail.com" readonly>
+
+                    <h3>
+                        Maria Fernanda Moraes de Oliveira
+                    </h3>
+
+                    <input
+                        class="editavel"
+                        id="tel2"
+                        value="(19) 97169-3072"
+                        readonly>
+
+                    <input
+                        class="editavel"
+                        id="mail2"
+                        value="maria.fernanda@hotmail.com"
+                        readonly>
+
                 </div>
+
             </div>
 
             <div class="contato">
+
                 <img src="../img/marina.png">
+
                 <div class="dados">
-                    <h3>Marina Defendi</h3>
-                    <input class="editavel" id="tel3" value="(19) 99696-0747" readonly>
-                    <input class="editavel" id="mail3" value="defendi.marina@hotmail.com" readonly>
+
+                    <h3>
+                        Marina Defendi
+                    </h3>
+
+                    <input
+                        class="editavel"
+                        id="tel3"
+                        value="(19) 99696-0747"
+                        readonly>
+
+                    <input
+                        class="editavel"
+                        id="mail3"
+                        value="defendi.marina@hotmail.com"
+                        readonly>
+
                 </div>
+
             </div>
 
         </div>
 
-        <div class="acoes" id="editarArea">
-            <button onclick="abrirModal()">Editar contatos</button>
+        <div
+            class="acoes"
+            id="editarArea">
+
+            <button onclick="abrirModal()">
+                Editar contatos
+            </button>
+
         </div>
 
-        <!-- REDES -->
         <div class="redes">
-            <img src="../img/whats.png" alt="WhatsApp">
-            <img src="../img/face.png" alt="Facebook">
-            <img src="../img/insta.png" alt="Instagram">
+
+            <img
+                src="../img/whats.png"
+                alt="WhatsApp">
+
+            <img
+                src="../img/face.png"
+                alt="Facebook">
+
+            <img
+                src="../img/insta.png"
+                alt="Instagram">
+
         </div>
 
     </div>
 
-    <div id="modalEditar" class="modal-overlay">
+
+    <div
+        id="modalEditar"
+        class="modal-overlay">
+
         <div class="modal-content">
-            <h2>Atualizar Contatos</h2>
-            
-            <form id="formEditar" onsubmit="salvarDadosModal(event)">
-                
+
+            <h2>
+                Atualizar Contatos
+            </h2>
+
+            <form
+                id="formEditar"
+                onsubmit="salvarDadosModal(event)">
+
                 <div class="form-grupo">
-                    <label>Letícia Corrêa</label>
-                    <input type="text" id="modalTel1" required>
-                    <input type="email" id="modalMail1" required>
+
+                    <label>
+                        Letícia Corrêa
+                    </label>
+
+                    <input
+                        type="text"
+                        id="modalTel1"
+                        required>
+
+                    <input
+                        type="email"
+                        id="modalMail1"
+                        required>
+
                 </div>
 
-           
+
                 <div class="form-grupo">
-                    <label>Maria Fernanda</label>
-                    <input type="text" id="modalTel2" required>
-                    <input type="email" id="modalMail2" required>
+
+                    <label>
+                        Maria Fernanda
+                    </label>
+
+                    <input
+                        type="text"
+                        id="modalTel2"
+                        required>
+
+                    <input
+                        type="email"
+                        id="modalMail2"
+                        required>
+
                 </div>
 
-              
+
                 <div class="form-grupo">
-                    <label>Marina Defendi</label>
-                    <input type="text" id="modalTel3" required>
-                    <input type="email" id="modalMail3" required>
+
+                    <label>
+                        Marina Defendi
+                    </label>
+
+                    <input
+                        type="text"
+                        id="modalTel3"
+                        required>
+
+                    <input
+                        type="email"
+                        id="modalMail3"
+                        required>
+
                 </div>
+
 
                 <div class="modal-botoes">
-                    <button type="button" class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
-                    <button type="submit" class="btn-salvar">Salvar Alterações</button>
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="fecharModal()">
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-salvar">
+                        Salvar Alterações
+                    </button>
+
                 </div>
+
             </form>
+
         </div>
+
     </div>
 
+<script>window.addEventListener("load", function () { protegerPagina(); });</script>
 </body>
+
 </html>

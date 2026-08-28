@@ -30,10 +30,6 @@ padding-bottom:40px;
 }
 
 
-
-
-/* TOPO */
-
 .topo{
 
 width:100%;
@@ -88,12 +84,6 @@ cursor:pointer;
 
 }
 
-
-
-
-
-/* TITULO */
-
 .titulo{
 
 text-align:center;
@@ -122,12 +112,6 @@ color:#666;
 
 }
 
-
-
-
-
-/* LISTA */
-
 .lista{
 
 width:90%;
@@ -143,12 +127,6 @@ flex-direction:column;
 gap:20px;
 
 }
-
-
-
-
-
-/* CARD */
 
 .solicitacao{
 
@@ -194,11 +172,6 @@ margin-top:15px;
 
 }
 
-
-
-
-
-/* BOTÕES */
 
 .botoes{
 
@@ -247,11 +220,6 @@ background:#e89b9b;
 color:white;
 
 }
-
-
-
-
-/* RESPONSIVO */
 
 @media(max-width:600px){
 

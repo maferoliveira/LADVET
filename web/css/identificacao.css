@@ -8,14 +8,16 @@
 body {
   height: 100vh;
   position: relative;
-background-image:
+
+  background-image:
     linear-gradient(
       135deg,
-      rgba(234, 222, 222, 0.75),
-      rgba(216, 180, 180, 0.65),
-      rgba(180, 186, 217, 0.65)
+      rgba(234, 222, 222, 0.82),
+      rgba(216, 180, 180, 0.72),
+      rgba(180, 186, 217, 0.72)
     ),
-    url("fundo.png");
+    url("../img/fundo.png");
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,14 +27,19 @@ background-image:
   align-items: center;
 }
 
+/* Camada que diminui a exposição da foto */
 body::before {
   content: "";
   position: absolute;
+
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.25);
+
+  background: rgba(0, 0, 0, 0.12);
+
   top: 0;
   left: 0;
+
   z-index: 0;
 }
 
@@ -52,14 +59,18 @@ body::before {
 
 .voltar {
   position: fixed;
+
   top: 20px;
   left: 20px;
 
   background: #c98b8b;
   border: none;
   border-radius: 12px;
+
   padding: 10px 14px;
+
   cursor: pointer;
+
   color: white;
   font-size: 18px;
 
@@ -68,10 +79,12 @@ body::before {
 
 .logo {
   position: fixed;
+
   top: 20px;
   right: 20px;
 
   width: 180px;
+
   z-index: 10;
 }
 
@@ -80,50 +93,56 @@ h1 {
   margin-bottom: 30px;
 }
 
-.opcao{
-    display:flex;
-    justify-content:center;
+.opcao {
+  display: flex;
+  justify-content: center;
 }
 
-.opcao button{
-    display:flex;
-    align-items:center;
-    gap:5px;
-    margin: 5px;
-    padding:0 10px;
-    width:360px;
-    height:100px;
-    border:none;
-    border-radius:24px;
+.opcao button {
+  display: flex;
+  align-items: center;
 
-    background:#cf8f8f;
-    color:white;
+  gap: 5px;
+  margin: 5px;
+  padding: 0 10px;
 
-    font-size:20px;
-    font-weight:bold;
-    cursor:pointer;
+  width: 360px;
+  height: 100px;
+
+  border: none;
+  border-radius: 24px;
+
+  background: #cf8f8f;
+  color: white;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
 }
 
-.opcao button:hover{
-    background:#c27f7f;
-    transform:translateY(-3px);
+.opcao button:hover {
+  background: #c27f7f;
+  transform: translateY(-3px);
 }
 
-.opcao img{
-    width:140px;
-    height:140px;
+.opcao img {
+  width: 140px;
+  height: 140px;
 
-    object-fit:contain;
+  object-fit: contain;
 
-    flex-shrink:0;
+  flex-shrink: 0;
 
-    display:block;
+  display: block;
 }
 
-.opcao span{
-    flex:1;
+.opcao span {
+  flex: 1;
 
-    text-align:center;
+  text-align: center;
 
-    margin-right:20px;
+  margin-right: 20px;
 }

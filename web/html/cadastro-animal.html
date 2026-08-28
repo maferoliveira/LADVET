@@ -117,10 +117,34 @@ Macho
 </div>
 
 
-<input
-type="text"
-id="vacina"
-placeholder="Vacina">
+<div class="campo">
+
+    <label for="vacinasTomadas">
+        Vacinas já tomadas
+    </label>
+
+    <input
+        type="text"
+        id="vacinasTomadas"
+        placeholder="Ex: V10, Antirrábica"
+    >
+
+</div>
+
+
+<div class="campo">
+
+    <label for="vacinasNecessarias">
+        Vacinas que necessita tomar
+    </label>
+
+    <input
+        type="text"
+        id="vacinasNecessarias"
+        placeholder="Ex: Polivalente, Giárdia"
+    >
+
+</div>
 
 
 <input
@@ -152,6 +176,7 @@ Cadastrar
 
 <script src="../js/script.js"></script>
 
+<script>window.addEventListener("load", function () { protegerPagina("veterinario"); });</script>
 </body>
 
 </html>

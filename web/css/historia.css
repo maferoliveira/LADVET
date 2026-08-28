@@ -14,9 +14,6 @@ min-height:100vh;
 }
 
 
-
-/* TOPO */
-
 .topo{
 
 height:120px;
@@ -59,8 +56,6 @@ transform:scale(1.05);
 
 
 
-/* CONTEÚDO */
-
 .conteudo{
 
 display:flex;
@@ -73,10 +68,6 @@ padding-top:40px;
 
 }
 
-
-
-/* LOGO */
-
 .logo{
 
 width:300px;
@@ -84,10 +75,6 @@ width:300px;
 margin-bottom:70px;
 
 }
-
-
-
-/* TEXTO */
 
 .texto{
 
@@ -116,10 +103,6 @@ line-height:1.6;
 text-align:center;
 
 }
-
-
-
-/* RESPONSIVO */
 
 @media(max-width:1200px){
 

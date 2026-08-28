@@ -24,9 +24,6 @@ body{
     padding:40px 20px;
 }
 
-
-/* VOLTAR */
-
 .voltar{
     position:fixed;
 
@@ -59,9 +56,6 @@ body{
     background:#bc7f7f;
 }
 
-
-/* CONTAINER */
-
 .container{
     width:100%;
 
@@ -69,9 +63,6 @@ body{
     justify-content:center;
     align-items:center;
 }
-
-
-/* CARD */
 
 .card{
     width:460px;
@@ -89,8 +80,6 @@ body{
 }
 
 
-/* TOPO */
-
 .card-top{
     background:#6f7ba3;
 
@@ -104,9 +93,6 @@ body{
     font-weight:600;
 }
 
-
-/* FORM */
-
 .formulario{
     padding:30px;
 
@@ -116,9 +102,6 @@ body{
 
     background:#cf8f8f;
 }
-
-
-/* FOTO */
 
 .upload{
     position:relative;
@@ -156,9 +139,6 @@ body{
     font-size:18px;
 }
 
-
-/* INPUTS */
-
 input,
 textarea{
     width:100%;
@@ -183,8 +163,6 @@ textarea::placeholder{
 }
 
 
-/* IDADE */
-
 input[type=number]{
     appearance:textfield;
 }
@@ -192,9 +170,6 @@ input[type=number]{
 input[type=number]::-webkit-inner-spin-button{
     opacity:.5;
 }
-
-
-/* SEXO */
 
 .sexo-box{
     display:flex;
@@ -239,16 +214,10 @@ input[type=number]::-webkit-inner-spin-button{
     color:white;
 }
 
-
-/* DESCRIÇÃO */
-
 textarea{
     height:120px;
     resize:none;
 }
-
-
-/* BOTÃO */
 
 .cadastrar{
     margin-top:10px;
@@ -276,9 +245,6 @@ textarea{
     background:#5e6a93;
     transform:translateY(-2px);
 }
-
-
-/* RESPONSIVO */
 
 @media(max-width:600px){
 

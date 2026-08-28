@@ -17,9 +17,6 @@ body{
     padding-bottom:50px;
 }
 
-
-/* BOTÃO VOLTAR */
-
 .voltar{
     position:absolute;
 
@@ -49,16 +46,10 @@ body{
     opacity:.9;
 }
 
-
-/* LOGO */
-
 .logo{
     width:180px;
     margin-top:40px;
 }
-
-
-/* CONTAINER */
 
 .container{
     width:100%;
@@ -69,9 +60,6 @@ body{
     margin-top:60px;
     margin-bottom:40px;
 }
-
-
-/* CARD */
 
 .card{
     width:430px;
@@ -84,9 +72,6 @@ body{
 
     box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
-
-
-/* TOPO CARD */
 
 .card-top{
     background:#6f7ba3;
@@ -107,9 +92,6 @@ body{
     opacity:.9;
 }
 
-
-/* CORPO */
-
 .card-body{
     background:#8b91b0;
 
@@ -119,9 +101,6 @@ body{
     flex-direction:column;
     gap:18px;
 }
-
-
-/* INPUTS */
 
 .card-body input{
     height:52px;
@@ -139,10 +118,6 @@ body{
 .card-body input:focus{
     box-shadow:0 0 0 3px rgba(255,255,255,.25);
 }
-
-
-/* BOTÃO PRINCIPAL */
-
 .btn-acessar{
     height:52px;
 
@@ -165,9 +140,6 @@ body{
     transform:scale(1.02);
 }
 
-
-/* BOTÃO SECUNDÁRIO */
-
 .btn-criar{
     height:52px;
 
@@ -189,9 +161,6 @@ body{
     background:rgba(255,255,255,.15);
     transform:scale(1.02);
 }
-
-
-/* RESPONSIVO */
 
 @media (max-width:768px){
 

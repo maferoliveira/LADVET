@@ -20,10 +20,6 @@ body{
 
 }
 
-
-
-/* CABEÇALHO */
-
 header{
 
     width:100%;
@@ -56,10 +52,6 @@ header p{
 
 }
 
-
-
-/* ÁREA DO FORMULÁRIO */
-
 main{
 
     width:100%;
@@ -71,10 +63,6 @@ main{
     margin-top:50px;
 
 }
-
-
-
-/* CARD */
 
 form{
 
@@ -92,10 +80,6 @@ form{
 
 }
 
-
-
-/* TÍTULOS */
-
 h2{
 
     color:white;
@@ -112,10 +96,6 @@ h2:first-child{
     margin-top:0;
 
 }
-
-
-
-/* CAMPOS */
 
 input,
 select,
@@ -158,10 +138,6 @@ textarea{
     resize:none;
 
 }
-
-
-
-/* CHECKBOX */
 
 label{
 
@@ -222,7 +198,6 @@ button:hover{
     transform:scale(1.02);
 
 }
-/* TOPO */
 
 .topo{
 
@@ -291,10 +266,6 @@ button:hover{
     width:150px;
 
 }
-
-
-
-/* RESPONSIVO */
 
 @media(max-width:768px){
 

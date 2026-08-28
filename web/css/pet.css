@@ -11,9 +11,6 @@
         padding-bottom:50px;
     }
 
-
-    /* TOPO */
-
     .voltar{
         position:fixed;
 
@@ -58,9 +55,6 @@
         filter:drop-shadow(0 6px 15px rgba(0,0,0,.08));
     }
 
-
-    /* CONTAINER */
-
     .container{
         width:780px;
         max-width:90%;
@@ -75,9 +69,6 @@
 
         box-shadow:0 8px 20px rgba(0,0,0,.12);
     }
-
-
-    /* FOTO */
 
     #fotoPet{
         display:block;
@@ -94,9 +85,6 @@
         box-shadow:0 5px 15px rgba(0,0,0,.15);
     }
 
-
-    /* CONTEÚDO */
-
     .conteudo{
         background:#c88787;
 
@@ -106,9 +94,6 @@
 
         padding:30px;
     }
-
-
-    /* INFORMAÇÕES SUPERIORES */
 
     .top-info{
         display:flex;
@@ -145,9 +130,6 @@
         font-size:20px;
     }
 
-
-    /* FAVORITO */
-
     .favorito{
         font-size:42px;
 
@@ -161,9 +143,6 @@
     .favorito.ativo{
         color:red;
     }
-
-
-    /* DIVISORES */
 
     .divisor,
     hr{
@@ -179,8 +158,6 @@
     }
 
 
-    /* DETALHES */
-
     #sexoPet,
     #vacinaPet,
     #temperamentoPet,
@@ -193,9 +170,6 @@
 
         line-height:1.6;
     }
-
-
-    /* STATUS */
 
     .status{
 
@@ -210,8 +184,6 @@
     color:#6f7ba3;
 
 }
-
-    /* BOTÃO */
 
     .adotar{
         display:block;
@@ -242,8 +214,6 @@
     }
 
 
-    /* RESPONSIVO */
-
     @media (max-width:768px){
 
         .logo{
@@ -271,3 +241,97 @@
         }
 
     }
+
+.carteira {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.carteira h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.tabela-vacinas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    background: #7079be;
+}
+
+.tabela-vacinas th,
+.tabela-vacinas td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.tabela-vacinas th {
+    font-weight: bold;
+}
+
+.vacina-tomada {
+    font-weight: bold;
+}
+
+.vacina-pendente {
+    font-weight: bold;
+}
+
+.btn-editar-vacinas,
+.btn-salvar-vacinas {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.select-vacina {
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.carteira {
+    margin-top: 28px;
+}
+
+.tabela-vacinas {
+    background: rgba(255,255,255,.12);
+}
+
+.tabela-vacinas th,
+.tabela-vacinas td {
+    color: white;
+}
+
+.tabela-vacinas select {
+    width: 100%;
+    min-width: 150px;
+    background: white;
+    color: #555;
+}
+
+.btn-editar-vacinas,
+.btn-salvar-vacinas {
+    background: #6f7ba3;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-salvar-vacinas {
+    background: #5f9b76;
+}
+
+@media (max-width: 600px) {
+    .tabela-vacinas {
+        font-size: 13px;
+    }
+
+    .tabela-vacinas th,
+    .tabela-vacinas td {
+        padding: 8px;
+    }
+}

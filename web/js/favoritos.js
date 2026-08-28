@@ -1,45 +1,50 @@
-const favoritos =
+window.addEventListener("load", function () {
+    if (!protegerPagina("adotante")) return;
 
-JSON.parse(
-localStorage.getItem(
-"favoritos"
-)
+    const favoritos =
+        JSON.parse(localStorage.getItem("favoritos")) || [];
 
-)||[];
+    const petsNovos =
+        JSON.parse(localStorage.getItem("petsNovos")) || [];
 
-const lista =
+    const lista =
+        document.getElementById("listaFavoritos");
 
-document.getElementById(
-"listaFavoritos"
-);
+    if (!lista) return;
 
-lista.innerHTML="";
+    lista.innerHTML = "";
 
-favoritos.forEach(nome=>{
+    if (favoritos.length === 0) {
+        lista.innerHTML = `
+            <p style="grid-column:1/-1;text-align:center;">
+                Você ainda não possui favoritos.
+            </p>
+        `;
+        return;
+    }
 
-lista.innerHTML+=`
+    favoritos.forEach(nome => {
+        const petNovo = petsNovos.find(
+            pet => pet.nome === nome
+        );
 
-<div
-class="pet"
-onclick="abrirPet('${nome}')">
+        const imagem = petNovo?.foto || "../img/" + nome.toLowerCase() + ".png";
 
-<img
-src="../img/${nome}.png">
-
-</div>
-
-`;
-
+        lista.innerHTML += `
+            <div
+                class="pet"
+                onclick="abrirPetFavorito('${nome.replace(/'/g, "\\'")}')"
+            >
+                <img src="${imagem}" alt="${nome}">
+                <div class="info">
+                    <h3>Nome: ${nome}</h3>
+                </div>
+            </div>
+        `;
+    });
 });
 
-function abrirPet(nome){
-
-localStorage.setItem(
-"petSelecionado",
-nome
-);
-
-window.location.href=
-"pet.html";
-
+function abrirPetFavorito(nome) {
+    localStorage.setItem("petSelecionado", nome);
+    window.location.href = "pet.html";
 }

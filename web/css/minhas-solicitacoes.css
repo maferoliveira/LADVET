@@ -25,12 +25,6 @@ body{
     padding-bottom:40px;
 
 }
-
-
-
-
-/* TOPO */
-
 .topo{
 
     width:100%;
@@ -83,12 +77,6 @@ body{
 
 }
 
-
-
-
-
-/* LISTA */
-
 #listaStatus{
 
     width:90%;
@@ -104,12 +92,6 @@ body{
     gap:20px;
 
 }
-
-
-
-
-
-/* CARD */
 
 .card{
 
@@ -143,12 +125,6 @@ body{
 
 }
 
-
-
-
-
-/* STATUS */
-
 .status{
 
     margin-top:20px;
@@ -163,12 +139,6 @@ body{
 
 }
 
-
-
-
-
-/* PENDENTE */
-
 .Pendente{
 
     background:#fff2b8;
@@ -177,12 +147,6 @@ body{
 
 }
 
-
-
-
-
-/* ACEITO */
-
 .Aceito{
 
     background:#b8e6b8;
@@ -190,13 +154,6 @@ body{
     color:#287228;
 
 }
-
-
-
-
-
-/* RECUSADO */
-
 .Recusado{
 
     background:#f3b5b5;
@@ -204,13 +161,6 @@ body{
     color:#a12d2d;
 
 }
-
-
-
-
-
-/* SEM SOLICITAÇÃO */
-
 .vazio{
 
     background:white;
@@ -225,21 +175,12 @@ body{
 
 }
 
-
-
-
-
-
 @media(max-width:600px){
-
-
 .topo h1{
 
     font-size:20px;
 
 }
-
-
 #listaStatus{
 
     width:95%;

@@ -1,65 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
     <link rel="stylesheet" href="../css/login.css">
 </head>
-
 <body>
 
-    <button class="voltar" onclick="voltarIdentificacao()">
-        ↩
-    </button>
+<button class="voltar" onclick="voltarIdentificacao()">↩</button>
+<img src="../img/Logo.png" class="logo" alt="Logo">
 
-    <img src="../img/Logo.png" class="logo" alt="Logo">
-
-    <div class="container">
-
-        <div class="card">
-
-            <div class="card-top">
-                <h2>Login</h2>
-                <p>Entre na sua conta</p>
-            </div>
-
-            <form class="card-body" onsubmit="entrarSistema(event)">
-
-                <input
-                    type="email"
-                    placeholder="Email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    placeholder="Senha"
-                    required
-                >
-
-                <button type="submit" class="btn-acessar">
-                    Acessar
-                </button>
-
-                <button
-                    type="button"
-                    class="btn-criar"
-                    onclick="irParaCadastro()"
-                >
-                    Criar conta
-                </button>
-
-            </form>
-
+<div class="container">
+    <div class="card">
+        <div class="card-top">
+            <h2>Login</h2>
+            <p>Entre na sua conta de adotante</p>
         </div>
 
+        <form class="card-body" onsubmit="entrarSistema(event)">
+            <input type="email" id="emailLogin" placeholder="Email" required>
+            <input type="password" id="senhaLogin" placeholder="Senha" required>
+
+            <button type="submit" class="btn-acessar">Acessar</button>
+
+            <button type="button" class="btn-criar" onclick="irParaCadastro()">
+                Criar conta
+            </button>
+        </form>
     </div>
+</div>
 
-    <script src="../js/script.js"></script>
-
+<script src="../js/script.js"></script>
 </body>
-
 </html>
