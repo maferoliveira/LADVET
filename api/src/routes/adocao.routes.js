@@ -1,15 +1,11 @@
-const adocaocontroller = require("../controllers/adocao.controller")
-const express = require("express");
-const adocaoroutes = express.Router();
-const validate = require("../middlewares/auth")
-const permitirTipo = require("../middlewares/permitirTipo");
+const express = require("express"); const router = express.Router(); 
+const controller = require("../controllers/adocao.controller"); 
+const { validate, permitirTipo } = require("../middlewares/auth"); 
 
-const { cadastrar, listar, buscar, atualizar, excluir } = require("../controllers/adocao.controller");
+router.get("/listar", validate, permitirTipo("CLINICA"), controller.listar);
+router.get("/minhas", validate, permitirTipo("ADOTANTE"), controller.listarMinhas); 
+router.post("/cadastrar", validate, permitirTipo("ADOTANTE"), controller.cadastrar); 
+router.put("/atualizar/:id", validate, permitirTipo("CLINICA"), controller.atualizar); 
+router.delete("/excluir/:id", validate, permitirTipo("CLINICA"), controller.excluir); 
 
-adocaoroutes.post("/cadastrar", validate, permitirTipo("CLINICA"), cadastrar);
-adocaoroutes.get("/listar", validate, listar);
-adocaoroutes.get("/buscar/:id", validate, buscar);
-adocaoroutes.put("/atualizar/:id", validate, permitirTipo("CLINICA"), atualizar);
-adocaoroutes.delete("/excluir/:id", validate, permitirTipo("CLINICA"), excluir);
-
-module.exports = adocaoroutes;
+module.exports = router;

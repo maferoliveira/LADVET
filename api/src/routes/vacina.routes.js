@@ -1,14 +1,12 @@
 const express = require("express");
-const vacinaroutes = express.Router();
-const validate = require("../middlewares/auth");
-const permitirTipo = require("../middlewares/permitirTipo");
+const router = express.Router();
+const controller = require("../controllers/vacina.controller");
+const { validate, permitirTipo } = require("../middlewares/auth");
 
-const { cadastrar, listarPorAnimal, buscar, atualizar, excluir } = require("../controllers/vacina.controller");
+router.get("/listar/:animalID", controller.listarPorAnimal);
+router.get("/buscar/:id", controller.buscar);
+router.post("/cadastrar", validate, permitirTipo("CLINICA"), controller.cadastrar);
+router.put("/atualizar/:id", validate, permitirTipo("CLINICA"), controller.atualizar);
+router.delete("/excluir/:id", validate, permitirTipo("CLINICA"), controller.excluir);
 
-vacinaroutes.post("/cadastrar", validate, permitirTipo("CLINICA"), cadastrar);
-vacinaroutes.get("/animal/:animalID", validate, listarPorAnimal);
-vacinaroutes.get("/buscar/:id", validate, buscar);
-vacinaroutes.put("/atualizar/:id", validate, permitirTipo("CLINICA"), atualizar);
-vacinaroutes.delete("/excluir/:id", validate, permitirTipo("CLINICA"), excluir);
-
-module.exports = vacinaroutes;
+module.exports = router;

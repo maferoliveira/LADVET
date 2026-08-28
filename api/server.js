@@ -1,26 +1,30 @@
 require("dotenv").config();
 
-const express = require("express")
-const cors = require("cors")
+const express = require("express");
+const cors = require("cors");
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json({ limit: "10mb" }));
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 
-const usuarioroutes = require('./src/routes/usuario.routes');
-app.use('/usuario', usuarioroutes);
+const usuarioroutes = require("./src/routes/usuario.routes");
+const animalroutes = require("./src/routes/animal.routes");
+const adocaoroutes = require("./src/routes/adocao.routes");
+const vacinaroutes = require("./src/routes/vacina.routes");
 
-const animalroutes = require('./src/routes/animal.routes');
-app.use('/animal', animalroutes);
+app.use("/usuario", usuarioroutes);
+app.use("/animal", animalroutes);
+app.use("/adocao", adocaoroutes);
+app.use("/vacina", vacinaroutes);
 
-const adocaoroutes = require('./src/routes/adocao.routes');
-app.use('/adocao', adocaoroutes);
+app.get("/", (req, res) => {
+    res.json({ msg: "API LADVET online" });
+});
 
-const vacinaroutes = require('./src/routes/vacina.routes');
-app.use('/vacina', vacinaroutes);
-
-
-app.listen(process.env.PORT_APP, ()=>{
-    console.log("Online na porta "+ process.env.PORT_APP)
-})
+app.listen(process.env.PORT_APP || 3000, () => {
+    console.log("Online na porta " + (process.env.PORT_APP || 3000));
+});

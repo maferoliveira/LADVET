@@ -13,8 +13,20 @@ model Usuario {
   senha        String
   telefone     String
   cidade       String
+  cep          String?
+  endereco     String?
+  bairro       String?
+  numero       String?
   tipo_usuario tipoUsuario
+
+  //apenas adotante
+  residencia   String?
+  espaco       String?
+  rotina       String?
+
+  //apenas clinica
   crmv         String?
+  validado     Boolean @default(true)
 
   adocoes Adocao[]
   animais Animal[]
@@ -24,10 +36,10 @@ model Animal {
   id           Int          @id @default(autoincrement())
   nome         String
   especie      String
-  raca         String
+  raca         String @default("Não informado")
   idade        Int
   sexo         String
-  porte        String
+  porte        String @default("Não informado")
   temperamento String?
   foto         String
   status       statusAnimal @default(DISPONIVEL)

@@ -1,15 +1,12 @@
-const animalcontroller = require("../controllers/animal.controller")
 const express = require("express");
-const animalroutes = express.Router();
-const validate = require("../middlewares/auth")
-const permitirTipo = require("../middlewares/permitirTipo");
+const router = express.Router();
+const controller = require("../controllers/animal.controller");
+const { validate, permitirTipo } = require("../middlewares/auth");
 
-const { cadastrar, listar, buscar, atualizar, excluir } = require("../controllers/animal.controller");
+router.get("/listar", controller.listar);
+router.get("/buscar/:id", controller.buscar);
+router.post("/cadastrar", validate, permitirTipo("CLINICA"), controller.cadastrar);
+router.put("/atualizar/:id", validate, permitirTipo("CLINICA"), controller.atualizar);
+router.delete("/excluir/:id", validate, permitirTipo("CLINICA"), controller.excluir);
 
-animalroutes.post("/cadastrar",validate, permitirTipo("CLINICA"), cadastrar);
-animalroutes.get("/listar", validate, listar);
-animalroutes.get("/buscar/:id", validate, buscar);
-animalroutes.put("/atualizar/:id", validate, permitirTipo("CLINICA"), atualizar);
-animalroutes.delete("/excluir/:id", validate, permitirTipo("CLINICA"), excluir);
-
-module.exports = animalroutes;
+module.exports = router;
