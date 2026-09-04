@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ladvet/models/pets.dart';
 
 import '../models/pet.dart';
 import 'cards.dart';
@@ -6,92 +7,7 @@ import 'cards.dart';
 class AdocaoPage extends StatelessWidget {
   const AdocaoPage({super.key});
 
-  static const List<Pet> pets = [
-    Pet(
-      nome: 'Tulipa',
-      idade: '10 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'tulipa.png',
-    ),
-    Pet(
-      nome: 'Thor',
-      idade: '8 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'thor.png',
-    ),
-    Pet(
-      nome: 'Pretinho',
-      idade: '5 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'pretinho.png',
-    ),
-    Pet(
-      nome: 'Nina',
-      idade: '3 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'nina.png',
-    ),
-    Pet(
-      nome: 'Meggie',
-      idade: '8 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'meggie.png',
-    ),
-    Pet(
-      nome: 'Salsicha',
-      idade: '3 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'salsicha.jpg',
-    ),
-    Pet(
-      nome: 'Duck',
-      idade: '2 anos',
-      especie: 'Felino',
-      icon: Icons.pets,
-      imagePath: 'duck.png',
-    ),
-    Pet(
-      nome: 'Fred',
-      idade: '3 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'fred.png',
-    ),
-    Pet(
-      nome: 'Jady',
-      idade: '4 anos',
-      especie: 'Canino',
-      icon: Icons.pets,
-      imagePath: 'jady.png',
-    ),
-    Pet(
-      nome: 'Theo',
-      idade: '2 anos',
-      especie: 'Felino',
-      icon: Icons.pets,
-      imagePath: 'theo.png',
-    ),
-    Pet(
-      nome: 'Aurora',
-      idade: '1 ano',
-      especie: 'Felino',
-      icon: Icons.pets,
-      imagePath: 'aurora.jpg',
-    ),
-    Pet(
-      nome: 'Romeu',
-      idade: '1 ano',
-      especie: 'Felino',
-      icon: Icons.pets,
-      imagePath: 'romeu.jpg',
-    ),
-  ];
+  static const List<Pet> pets = MockupPets.pets;
 
   static const Color headerColor = Color.fromARGB(255, 217, 161, 159);
   static const Color cardColor = Color.fromARGB(255, 182, 119, 117);
@@ -186,7 +102,7 @@ class PetCard extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                PetAdoptionCardScreen(pet: pet),
+                                PetAdoptionCardScreen(idPet: pet.id),
                           ),
                         ),
                         child: Image.asset(pet.imagePath!, fit: BoxFit.cover),
