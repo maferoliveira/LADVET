@@ -239,7 +239,9 @@ const atualizar = async (req, res) => {
 const excluir = async (req, res) => {
     const id = Number(req.params.id);
 
-    // Apenas a clínica pode excluir
+    console.log("ID DA VACINA:", id);
+    console.log("USUARIO:", req.usuario);
+
     if (req.usuario.tipo_usuario !== "CLINICA") {
         return res.status(403).json({
             msg: "Apenas a clínica pode excluir vacinas."
@@ -257,6 +259,8 @@ const excluir = async (req, res) => {
             where: { id }
         });
 
+        console.log("VACINA ENCONTRADA:", vacina);
+
         if (!vacina) {
             return res.status(404).json({
                 msg: "Vacina não encontrada."
@@ -267,19 +271,20 @@ const excluir = async (req, res) => {
             where: { id }
         });
 
+        console.log("VACINA DELETADA!");
+
         return res.status(200).json({
             msg: "Vacina excluída com sucesso."
         });
 
     } catch (error) {
-        console.error("Erro ao excluir vacina:", error);
+        console.error("ERRO REAL AO EXCLUIR:", error);
 
         return res.status(500).json({
             msg: "Erro ao excluir vacina."
         });
     }
 };
-
 
 module.exports = {
     cadastrar,
