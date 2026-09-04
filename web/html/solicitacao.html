@@ -1,65 +1,187 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitação de Adoção</title>
-    <link rel="stylesheet" href="../css/solicitacao.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Solicitação de adoção</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/solicitacao.css"
+    >
+
 </head>
+
 <body>
 
-<div class="topo">
-    <button class="voltar" onclick="irParaInicio()">↩</button>
-    <img src="../img/Logo.png" class="logo" alt="LADVET">
-</div>
+    <header class="topo">
 
-<header>
-    <h1>Solicitação de Adoção 🐾</h1>
-    <p>Preencha os dados para demonstrar interesse em adotar</p>
-</header>
+        <button
+            class="voltar"
+            onclick="voltarAdocao()"
+        >
+            ↩
+        </button>
 
-<main>
-<form id="formAdocao">
+        <img
+            src="../img/Logo.png"
+            class="logo"
+            alt="LADVET"
+        >
 
-    <h2>Dados pessoais</h2>
+    </header>
 
-    <input type="text" id="nome" placeholder="Nome completo" required>
-    <input type="number" id="idade" placeholder="Idade" required>
-    <input type="text" id="cidade" placeholder="Cidade e bairro" required>
-    <input type="tel" id="telefone" placeholder="Telefone/WhatsApp" required>
 
-    <h2>Sobre sua residência</h2>
+    <main class="container">
 
-    <select id="moradia" required>
-        <option value="">Tipo de moradia</option>
-        <option>Casa própria</option>
-        <option>Casa alugada</option>
-        <option>Apartamento</option>
-    </select>
+        <div class="card">
 
-    <textarea id="espaco" placeholder="O local possui espaço seguro para o animal?"></textarea>
+            <h1>
+                Solicitação de adoção
+            </h1>
 
-    <h2>Experiência com animais</h2>
+            <p>
+                Preencha as informações para solicitar
+                a adoção deste animal.
+            </p>
 
-    <textarea id="experiencia" placeholder="Já teve animais antes? Possui outros pets?"></textarea>
 
-    <h2>Motivo da adoção</h2>
+            <form id="formAdocao">
 
-    <textarea id="motivo" placeholder="Por que deseja adotar este animal?" required></textarea>
 
-    <h2>Responsabilidade</h2>
+                <label for="nome">
+                    Nome
+                </label>
 
-    <textarea id="cuidados" placeholder="Como pretende cuidar dele?" required></textarea>
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Seu nome"
+                >
 
-    <label>
-        <input type="checkbox" required>
-        Aceito o termo de responsabilidade pela adoção.
-    </label>
 
-    <button type="submit">Enviar solicitação</button>
-</form>
-</main>
+                <label for="idade">
+                    Idade
+                </label>
 
-<script src="../js/solicitacao.js"></script>
+                <input
+                    type="number"
+                    id="idade"
+                    placeholder="Sua idade"
+                >
+
+
+                <label for="cidade">
+                    Cidade
+                </label>
+
+                <input
+                    type="text"
+                    id="cidade"
+                    placeholder="Sua cidade"
+                >
+
+
+                <label for="telefone">
+                    Telefone
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefone"
+                    placeholder="Seu telefone"
+                >
+
+
+                <label for="moradia">
+                    Tipo de moradia
+                </label>
+
+                <input
+                    type="text"
+                    id="moradia"
+                    placeholder="Casa, apartamento..."
+                    required
+                >
+
+
+                <label for="espaco">
+                    Espaço disponível
+                </label>
+
+                <input
+                    type="text"
+                    id="espaco"
+                    placeholder="Possui quintal? Descreva o espaço"
+                    required
+                >
+
+
+                <label for="experiencia">
+                    Experiência com animais
+                </label>
+
+                <textarea
+                    id="experiencia"
+                    placeholder="Conte um pouco sobre sua experiência"
+                ></textarea>
+
+
+                <label for="motivo">
+                    Motivo da adoção
+                </label>
+
+                <textarea
+                    id="motivo"
+                    placeholder="Por que deseja adotar?"
+                ></textarea>
+
+
+                <label for="cuidados">
+                    Tempo disponível para os cuidados
+                </label>
+
+                <textarea
+                    id="cuidados"
+                    placeholder="Descreva quanto tempo terá disponível"
+                    required
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="btn-enviar"
+                >
+                    Enviar solicitação
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn-voltar"
+                    onclick="voltarAdocao()"
+                >
+                    Cancelar
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/script.js"></script>
+
+    <script src="../js/solicitacao.js"></script>
+
 </body>
+
 </html>

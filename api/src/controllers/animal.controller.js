@@ -42,14 +42,16 @@ const cadastrar = async (req, res) => {
 
         return res.status(201).json(item);
 
-    } catch (error) {
-        console.error("Erro ao cadastrar animal:", error);
+    }  catch (error) {
+    console.error("ERRO COMPLETO AO CADASTRAR ANIMAL:");
+    console.error(error);
 
-        return res.status(500).json({
-            msg: "Erro ao cadastrar animal."
-        });
-    }
+    return res.status(500).json({
+        msg: "Erro ao cadastrar animal.",
+        erro: error.message
+    });
 };
+}
 
 
 const listar = async (req, res) => {

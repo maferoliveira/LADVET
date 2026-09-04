@@ -3,8 +3,8 @@ const router = express.Router();
 const controller = require("../controllers/vacina.controller");
 const { validate, permitirTipo } = require("../middlewares/auth");
 
-router.get("/listar/:animalID", controller.listarPorAnimal);
-router.get("/buscar/:id", controller.buscar);
+router.get("/listar/:animalID", validate, controller.listarPorAnimal);
+router.get("/buscar/:id", validate, controller.buscar);
 router.post("/cadastrar", validate, permitirTipo("CLINICA"), controller.cadastrar);
 router.put("/atualizar/:id", validate, permitirTipo("CLINICA"), controller.atualizar);
 router.delete("/excluir/:id", validate, permitirTipo("CLINICA"), controller.excluir);

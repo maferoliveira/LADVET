@@ -18,19 +18,28 @@ function validarUsuario(dados) {
 }
 
 const login = async (req, res) => {
-    const { email, senha } = req.body;
+
+    const email = req.body.email?.trim().toLowerCase();
+    const senha = req.body.senha;
 
     if (!email || !senha) {
-        return res.status(400).json({ msg: "Todos os campos devem ser preenchidos" });
+        return res.status(400).json({
+            msg: "Todos os campos devem ser preenchidos"
+        });
     }
 
     try {
-        const usuario = await prisma.usuario.findFirst({
-            where: { email, senha }
+
+        const usuario = await prisma.usuario.findUnique({
+            where: {
+                email: email
+            }
         });
 
-        if (!usuario) {
-            return res.status(401).json({ msg: "Email ou senha incorretos." });
+        if (!usuario || usuario.senha !== senha) {
+            return res.status(401).json({
+                msg: "Email ou senha incorretos."
+            });
         }
 
         const token = jsonwebtoken.sign(
@@ -40,8 +49,11 @@ const login = async (req, res) => {
                 tipo_usuario: usuario.tipo_usuario
             },
             process.env.SECRET_JWT,
-            { expiresIn: "60min" }
+            {
+                expiresIn: "60min"
+            }
         );
+
         const { senha: _, ...usuarioSemSenha } = usuario;
 
         return res.status(200).json({
@@ -51,8 +63,12 @@ const login = async (req, res) => {
         });
 
     } catch (error) {
+
         console.error(error);
-        return res.status(500).json({ msg: "Internal server error." });
+
+        return res.status(500).json({
+            msg: "Internal server error."
+        });
     }
 };
 

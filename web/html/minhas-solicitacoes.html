@@ -3,46 +3,60 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<title>Minhas Solicitações</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<link rel="stylesheet" href="../css/minhas-solicitacoes.css">
+    <title>Minhas solicitações</title>
 
-<script src="../js/minhas-solicitacoes.js" defer></script>
+    <link
+        rel="stylesheet"
+        href="../css/minhas-solicitacoes.css"
+    >
 
 </head>
 
-
 <body>
 
+    <header class="topo">
 
-<div class="tela">
+        <button
+            class="voltar"
+            onclick="voltarAdocao()"
+        >
+            ↩
+        </button>
 
+        <img
+            src="../img/Logo.png"
+            class="logo"
+            alt="LADVET"
+        >
 
-<header class="topo">
-
-<button onclick="history.back()">
-↩
-</button>
-
-<h1>
-Minhas solicitações
-</h1>
-
-</header>
-
-
-
-<div id="listaStatus">
-
-</div>
+    </header>
 
 
-</div>
+    <main class="container">
+
+        <h1>
+            Minhas solicitações
+        </h1>
+
+        <div
+            id="listaStatus"
+            class="lista-status"
+        ></div>
+
+    </main>
 
 
-<script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
+
+    <script src="../js/minhas-solicitacoes.js"></script>
+
 </body>
 
 </html>
