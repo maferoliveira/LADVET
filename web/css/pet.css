@@ -1,268 +1,183 @@
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:sans-serif;
-    }
-
-    body{
-        background:#eee3e3;
-        min-height:100vh;
-        padding-bottom:50px;
-    }
-
-    .voltar{
-        position:fixed;
-
-        top:25px;
-        left:25px;
-
-        width:45px;
-        height:45px;
-
-        border:none;
-        border-radius:12px;
-
-        background:#c98b8b;
-        color:white;
-
-        font-size:18px;
-        cursor:pointer;
-
-        z-index:100;
-
-        display:flex;
-        justify-content:center;
-        align-items:center;
-
-        transition:.3s;
-    }
-
-    .voltar:hover{
-        opacity:.9;
-    }
-
-    .logo{
-        position:fixed;
-
-        top:20px;
-        right:30px;
-
-        width:170px;
-
-        z-index:100;
-
-        filter:drop-shadow(0 6px 15px rgba(0,0,0,.08));
-    }
-
-    .container{
-        width:780px;
-        max-width:90%;
-
-        margin:90px auto 40px;
-
-        background:#cf8f8f;
-
-        border-radius:20px;
-
-        padding:35px;
-
-        box-shadow:0 8px 20px rgba(0,0,0,.12);
-    }
-
-    #fotoPet{
-        display:block;
-
-        margin:0 auto 25px;
-
-        width:300px;
-        height:350px;
-
-        object-fit:cover;
-
-        border-radius:16px;
-
-        box-shadow:0 5px 15px rgba(0,0,0,.15);
-    }
-
-    .conteudo{
-        background:#c88787;
-
-        color:white;
-
-        border-radius:16px;
-
-        padding:30px;
-    }
-
-    .top-info{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    .favorito{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-
-        width:50px;
-        height:50px;
-
-        font-size:38px;
-        line-height:1;
-
-        cursor:pointer;
-
-        color:white;
-
-        flex-shrink:0;
-    }
-
-    .textos{
-        font-weight:700;
-        line-height:1.8;
-    }
-
-    #nomePet,
-    #idadePet,
-    #especiePet{
-        font-size:20px;
-    }
-
-    .favorito{
-        font-size:42px;
-
-        cursor:pointer;
-
-        color:white;
-
-        transition:.3s;
-    }
-
-    .favorito.ativo{
-        color:red;
-    }
-
-    .divisor,
-    hr{
-        width:100%;
-
-        height:1px;
-
-        border:none;
-
-        background:#e7bdbd;
-
-        margin:20px 0;
-    }
-
-
-    #sexoPet,
-    #vacinaPet,
-    #temperamentoPet,
-    #descricaoPet{
-        font-size:15px;
-
-        font-weight:700;
-
-        margin-bottom:14px;
-
-        line-height:1.6;
-    }
-
-    .status{
-
-    text-align:center;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    margin:20px 0 0;
-
-    color:#6f7ba3;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-    .adotar{
-        display:block;
-
-        margin:30px auto 0;
-
-        width:300px;
-        height:60px;
-
-        border:none;
-        border-radius:16px;
-
-        background:#7f87c9;
-
-        color:white;
-
-        font-size:20px;
-        font-weight:bold;
-
-        cursor:pointer;
-
-        transition:.3s;
-    }
-
-    .adotar:hover{
-        transform:translateY(-2px);
-        background:#7079be;
-    }
-
-
-    @media (max-width:768px){
-
-        .logo{
-            width:130px;
-            right:20px;
-        }
-
-        #fotoPet{
-            width:100%;
-            max-width:300px;
-            height:auto;
-        }
-
-        .top-info{
-            flex-direction:column;
-        }
-
-        .favorito{
-            align-self:flex-end;
-        }
-
-        .adotar{
-            width:100%;
-            max-width:300px;
-        }
-
-    }
-
-.carteira {
-    width: 100%;
-    margin-top: 25px;
+body {
+    min-height: 100vh;
+    background: #eee3e3;
+    padding: 100px 20px 50px;
 }
 
-.carteira h2 {
-    margin-bottom: 15px;
+.voltar {
+    position: fixed;
+
+    top: 20px;
+    left: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #c98b8b;
+    color: white;
+
     font-size: 20px;
+    cursor: pointer;
+
+    z-index: 100;
+}
+
+.logo {
+    position: fixed;
+
+    top: 15px;
+    right: 25px;
+
+    width: 150px;
+
+    z-index: 100;
+}
+
+.container {
+    width: 780px;
+    max-width: 100%;
+
+    margin: auto;
+}
+
+.pet-detalhes {
+    background: #cf8f8f;
+
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+.imagem-pet {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+#fotoPet {
+    width: 320px;
+    height: 320px;
+
+    max-width: 100%;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+.informacoes-pet {
+    background: #c88787;
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+}
+
+#nomePet,
+#idadePet,
+#especiePet,
+#sexoPet,
+#temperamentoPet,
+#statusPet,
+#descricaoPet {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+#nomePet {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#idadePet,
+#especiePet {
+    font-size: 17px;
+}
+
+#sexoPet,
+#temperamentoPet,
+#statusPet,
+#descricaoPet {
+    font-size: 15px;
+}
+
+#statusPet {
+    font-weight: bold;
+}
+
+.adotar {
+    display: block;
+
+    width: 280px;
+    max-width: 100%;
+
+    height: 55px;
+
+    margin: 25px auto 0;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #6f7ba3;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.adotar:hover {
+    background: #5d688f;
+    transform: translateY(-2px);
+}
+
+.carteira-vacinas {
+    margin-top: 25px;
+
+    background: #c88787;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    color: white;
+}
+
+.carteira-vacinas h2 {
+    margin-bottom: 15px;
 }
 
 .tabela-vacinas {
     width: 100%;
+
     border-collapse: collapse;
-    margin-bottom: 15px;
-    background: #7079be;
+
+    background: rgba(255,255,255,.12);
 }
 
 .tabela-vacinas th,
 .tabela-vacinas td {
     padding: 10px;
-    border: 1px solid #ddd;
+
+    border: 1px solid rgba(255,255,255,.4);
+
     text-align: left;
 }
 
@@ -270,68 +185,93 @@
     font-weight: bold;
 }
 
-.vacina-tomada {
-    font-weight: bold;
-}
-
-.vacina-pendente {
-    font-weight: bold;
-}
-
-.btn-editar-vacinas,
-.btn-salvar-vacinas {
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-top: 5px;
-}
-
-.select-vacina {
-    padding: 7px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-.carteira {
-    margin-top: 28px;
-}
-
-.tabela-vacinas {
-    background: rgba(255,255,255,.12);
-}
-
-.tabela-vacinas th,
-.tabela-vacinas td {
-    color: white;
-}
-
 .tabela-vacinas select {
     width: 100%;
-    min-width: 150px;
+
+    padding: 8px;
+
+    border: none;
+    border-radius: 7px;
+
     background: white;
-    color: #555;
 }
 
 .btn-editar-vacinas,
 .btn-salvar-vacinas {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 10px;
+
     background: #6f7ba3;
     color: white;
+
     font-weight: bold;
+
+    cursor: pointer;
 }
 
 .btn-salvar-vacinas {
     background: #5f9b76;
 }
 
-@media (max-width: 600px) {
-    .tabela-vacinas {
-        font-size: 13px;
+@media (max-width: 700px) {
+
+    body {
+        padding: 90px 12px 30px;
     }
 
-    .tabela-vacinas th,
-    .tabela-vacinas td {
-        padding: 8px;
+    .logo {
+        width: 110px;
+        right: 15px;
     }
+
+    .pet-detalhes {
+        padding: 20px;
+    }
+
+    #fotoPet {
+        width: 100%;
+        height: 280px;
+    }
+
+    .informacoes-pet,
+    .carteira-vacinas {
+        padding: 18px;
+    }
+
+    .adotar {
+        width: 100%;
+    }
+
+    .tabela-vacinas {
+        font-size: 12px;
+    }
+}
+.excluir {
+    width: 100%;
+    margin-top: 12px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #9b6266;
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.excluir:hover {
+    background: #824f53;
 }

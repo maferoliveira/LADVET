@@ -2,195 +2,231 @@
 <html lang="pt-br">
 
 <head>
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar animal</title>
 
-<title>
-Cadastro Animal
-</title>
-
-<link
-rel="stylesheet"
-href="../css/cadastro-animal.css">
-
+    <link
+        rel="stylesheet"
+        href="../css/cadastro-animal.css"
+    >
 </head>
 
 <body>
 
+    <header class="topo">
 
-<button
-class="voltar"
-onclick="history.back()">
+        <button
+            class="voltar"
+            onclick="voltarAdocao()"
+            type="button"
+        >
+            ↩
+        </button>
 
-↩
+        <img
+            src="../img/Logo.png"
+            class="logo"
+            alt="LADVET"
+        >
 
-</button>
+    </header>
 
 
-<div class="container">
+    <main class="container">
 
+        <div class="card">
 
-<div class="card">
+            <h1>Cadastrar novo animal</h1>
 
+            <form onsubmit="cadastrarAnimal(event)">
 
-<div class="card-top">
+                <div class="card-body">
 
-Cadastro de novo animal
+                    <div class="campo foto-campo">
 
-</div>
+                        <label for="foto">
+                            Foto
+                        </label>
 
+                        <input
+                            type="file"
+                            id="foto"
+                            accept="image/*"
+                        >
 
+                    </div>
 
-<form class="formulario" onsubmit="cadastrarAnimal(event)">
 
-<div class="upload">
+                    <div class="campo">
 
-<input
-type="file"
-id="foto"
-accept="image/*"
-onchange="mostrarPreview(event)">
+                        <label for="nome">
+                            Nome
+                        </label>
 
-<label for="foto">
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Nome do animal"
+                            required
+                        >
 
-<span id="nomeFoto">
-📷 Escolher foto do animal
-</span>
+                    </div>
 
-<span class="icone">
-🖼️
-</span>
 
-</label>
+                    <div class="campo">
 
-</div>
+                        <label for="idade">
+                            Idade
+                        </label>
 
+                        <input
+                            type="number"
+                            id="idade"
+                            min="0"
+                            placeholder="Idade"
+                            required
+                        >
 
-<input
-type="text"
-id="nome"
-placeholder="Nome"
-required>
+                    </div>
 
 
-<input
-type="number"
-id="idade"
-placeholder="Idade"
-min="0"
-required>
+                    <div class="campo">
 
+                        <label for="especie">
+                            Espécie
+                        </label>
 
-<input
-type="text"
-id="especie"
-placeholder="Espécie"
-required>
+                        <input
+                            type="text"
+                            id="especie"
+                            placeholder="Cachorro, gato..."
+                            required
+                        >
 
-<input
-type="text"
-id="raca"
-placeholder="Raça (opcional)">
+                    </div>
 
-<input
-type="text"
-id="porte"
-placeholder="Porte (opcional)">
 
+                    <div class="campo">
 
-<label>Sexo</label>
+                        <label for="raca">
+                            Raça
+                        </label>
 
-<div class="sexo">
+                        <input
+                            type="text"
+                            id="raca"
+                            placeholder="Raça"
+                        >
 
-<button
-type="button"
-id="btnFemea"
-onclick="selecionarSexo('Fêmea')">
+                    </div>
 
-Fêmea
 
-</button>
+                    <div class="campo">
 
-<button
-type="button"
-id="btnMacho"
-onclick="selecionarSexo('Macho')">
+                        <label for="porte">
+                            Porte
+                        </label>
 
-Macho
+                        <input
+                            type="text"
+                            id="porte"
+                            placeholder="Pequeno, médio ou grande"
+                        >
 
-</button>
+                    </div>
 
-</div>
 
+                    <div class="campo">
 
-<<<<<<< HEAD
-<div class="campo">
+                        <label>
+                            Sexo
+                        </label>
 
-    <label for="vacinasTomadas">
-        Vacinas já tomadas
-    </label>
+                        <div class="sexo">
 
-    <input
-        type="text"
-        id="vacinasTomadas"
-        placeholder="Ex: V10, Antirrábica"
-    >
+                            <button
+                                type="button"
+                                data-sexo="MACHO"
+                                onclick="selecionarSexo('MACHO')"
+                            >
+                                Macho
+                            </button>
 
-</div>
+                            <button
+                                type="button"
+                                data-sexo="FEMEA"
+                                onclick="selecionarSexo('FEMEA')"
+                            >
+                                Fêmea
+                            </button>
 
+                        </div>
 
-<div class="campo">
+                    </div>
 
-    <label for="vacinasNecessarias">
-        Vacinas que necessita tomar
-    </label>
 
-    <input
-        type="text"
-        id="vacinasNecessarias"
-        placeholder="Ex: Polivalente, Giárdia"
-    >
+                    <div class="campo">
 
-</div>
-=======
+                        <label for="temperamento">
+                            Temperamento
+                        </label>
 
->>>>>>> 8b973fd49b2adc0846d2cd963dea3e45030a95c1
+                        <input
+                            type="text"
+                            id="temperamento"
+                            placeholder="Calmo, brincalhão..."
+                        >
 
+                    </div>
 
-<input
-type="text"
-id="temperamento"
-placeholder="Temperamento">
 
+                    <div class="campo campo-descricao">
 
-<textarea
-id="descricao"
-placeholder="Descrição">
-</textarea>
+                        <label for="descricao">
+                            Descrição
+                        </label>
 
+                        <textarea
+                            id="descricao"
+                            placeholder="Informações sobre o animal"
+                        ></textarea>
 
-<button
-class="cadastrar"
-type="submit">
+                    </div>
 
-Cadastrar
 
-</button>
+                    <button
+                        type="submit"
+                        class="btn-cadastrar"
+                    >
+                        Cadastrar animal
+                    </button>
 
-</form>
-</div>
 
+                    <button
+                        type="button"
+                        class="btn-voltar"
+                        onclick="voltarAdocao()"
+                    >
+                        Cancelar
+                    </button>
 
-</div>
+                </div>
 
+            </form>
 
-<script src="../js/script.js"></script>
+        </div>
 
-<script>window.addEventListener("load", function () { protegerPagina("veterinario"); });</script>
+    </main>
+
+
+    <script src="../js/script.js"></script>
+
 </body>
 
 </html>

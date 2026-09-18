@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ladvet/models/pet.dart';
+import 'package:flutter_ladvet/models/pets.dart';
+import 'package:flutter_ladvet/ui/adocao.dart';
 
 class PetAdoptionCardScreen extends StatefulWidget {
   const PetAdoptionCardScreen({
     super.key,
-    required this.pet,
+    required this.idPet,
     this.onBackPressed,
     this.onFavoriteToggle,
     this.onAdoptRequest,
   });
 
-  final PetInfo pet;
+  final int idPet;
   final VoidCallback? onBackPressed;
   final ValueChanged<bool>? onFavoriteToggle;
   final VoidCallback? onAdoptRequest;
@@ -22,9 +25,11 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
   bool _favorito = false;
 
   static const Color _bgColor = Color(0xFFFBE4E4);
-  static const Color _cardHeaderColor = Color(0xFFE8A9AC);
-  static const Color _cardBodyColor = Color(0xFFD98E92);
+  static const Color _cardHeaderColor = Color.fromARGB(255, 189, 146, 149);
+  static const Color _cardBodyColor = Color.fromARGB(255, 184, 130, 133);
   static const Color _buttonColor = Color(0xFF7B84B8);
+
+  static const List<Pet> pets = MockupPets.pets;
 
   void _toggleFavorito() {
     setState(() => _favorito = !_favorito);
@@ -33,7 +38,7 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final pet = widget.pet;
+    final pet = pets.firstWhere((e) => e.id == widget.idPet);
 
     return Scaffold(
       backgroundColor: _bgColor,
@@ -61,9 +66,9 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
                                 borderRadius: BorderRadius.circular(16),
                                 child: AspectRatio(
                                   aspectRatio: 1,
-                                  child: pet.imageUrl != null
+                                  child: pet.imagePath != null
                                       ? Image.network(
-                                          pet.imageUrl!,
+                                          pet.imagePath!,
                                           fit: BoxFit.cover,
                                         )
                                       : Container(
@@ -205,16 +210,24 @@ class _TopBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _CircleIconButton(icon: Icons.replay, onTap: onBackPressed),
+          _CircleIconButton(
+            icon: Icons.replay,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AdocaoPage()),
+              );
+            },
+          ),
           _StatusDot(),
           Row(
             children: [
               Icon(Icons.pets, size: 18, color: Color(0xFFD98E92)),
               SizedBox(width: 4),
               Text(
-                "L'ADVET",
+                "LADVET",
                 style: TextStyle(
-                  color: Color(0xFFD98E92),
+                  color: Color.fromARGB(255, 128, 93, 95),
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
@@ -228,7 +241,7 @@ class _TopBar extends StatelessWidget {
 }
 
 class _StatusDot extends StatelessWidget {
-  _StatusDot();
+  const _StatusDot();
 
   @override
   Widget build(BuildContext context) {
@@ -265,7 +278,11 @@ class _CircleIconButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Icon(icon, size: 18, color: const Color(0xFFD98E92)),
+        child: Icon(
+          icon,
+          size: 18,
+          color: const Color.fromARGB(255, 138, 95, 97),
+        ),
       ),
     );
   }
@@ -313,28 +330,4 @@ class _DetailText extends StatelessWidget {
       ),
     );
   }
-}
-
-class PetInfo {
-  const PetInfo({
-    required this.nome,
-    required this.idade,
-    required this.especie,
-    required this.sexo,
-    required this.vacinas,
-    required this.temperamento,
-    required this.descricao,
-    required this.status,
-    this.imageUrl,
-  });
-
-  final String nome;
-  final String idade;
-  final String especie;
-  final String sexo;
-  final String vacinas;
-  final String temperamento;
-  final String descricao;
-  final String status;
-  final String? imageUrl;
 }

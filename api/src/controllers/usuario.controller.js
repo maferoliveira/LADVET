@@ -18,19 +18,28 @@ function validarUsuario(dados) {
 }
 
 const login = async (req, res) => {
-    const { email, senha } = req.body;
+
+    const email = req.body.email?.trim().toLowerCase();
+    const senha = req.body.senha;
 
     if (!email || !senha) {
-        return res.status(400).json({ msg: "Todos os campos devem ser preenchidos" });
+        return res.status(400).json({
+            msg: "Todos os campos devem ser preenchidos"
+        });
     }
 
     try {
-        const usuario = await prisma.usuario.findFirst({
-            where: { email, senha }
+
+        const usuario = await prisma.usuario.findUnique({
+            where: {
+                email: email
+            }
         });
 
-        if (!usuario) {
-            return res.status(401).json({ msg: "Email ou senha incorretos." });
+        if (!usuario || usuario.senha !== senha) {
+            return res.status(401).json({
+                msg: "Email ou senha incorretos."
+            });
         }
 
         const token = jsonwebtoken.sign(
@@ -40,17 +49,26 @@ const login = async (req, res) => {
                 tipo_usuario: usuario.tipo_usuario
             },
             process.env.SECRET_JWT,
-            { expiresIn: "60min" }
+            {
+                expiresIn: "60min"
+            }
         );
+
+        const { senha: _, ...usuarioSemSenha } = usuario;
 
         return res.status(200).json({
             msg: "Login realizado com sucesso",
             token,
-            usuario
+            usuario: usuarioSemSenha
         });
+
     } catch (error) {
+
         console.error(error);
-        return res.status(500).json({ msg: "Internal server error." });
+
+        return res.status(500).json({
+            msg: "Internal server error."
+        });
     }
 };
 
@@ -62,7 +80,6 @@ const cadastrar = async (req, res) => {
         return res.status(400).json({ msg: erro });
     }
 
-    // Validação específica para ADOTANTE
     if (dados.tipo_usuario === "ADOTANTE") {
         if (!dados.residencia || !dados.espaco || !dados.rotina) {
             return res.status(400).json({
@@ -71,7 +88,6 @@ const cadastrar = async (req, res) => {
         }
     }
 
-    // Validação específica para CLÍNICA
     if (dados.tipo_usuario === "CLINICA") {
         if (!dados.crmv) {
             return res.status(400).json({
@@ -120,8 +136,9 @@ const cadastrar = async (req, res) => {
                 tipo_usuario: dados.tipo_usuario
             }
         });
+        const { senha: _, ...usuarioSemSenha } = novoUsuario;
 
-        return res.status(201).json(novoUsuario);
+        return res.status(201).json(usuarioSemSenha);
 
     } catch (error) {
         console.error(error);
@@ -140,9 +157,32 @@ const cadastrar = async (req, res) => {
 
 const listar = async (req, res) => {
     try {
-        return res.status(200).json(await prisma.usuario.findMany());
+        const usuarios = await prisma.usuario.findMany({
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                telefone: true,
+                cidade: true,
+                cep: true,
+                endereco: true,
+                bairro: true,
+                numero: true,
+                residencia: true,
+                espaco: true,
+                rotina: true,
+                crmv: true,
+                validado: true,
+                tipo_usuario: true
+            }
+        });
+
+        return res.status(200).json(usuarios);
     } catch (error) {
-        return res.status(500).json({ msg: "Erro ao listar usuários." });
+        console.error(error);
+        return res.status(500).json({
+            msg: "Erro ao listar usuários."
+        });
     }
 };
 
@@ -150,9 +190,32 @@ const buscar = async (req, res) => {
     try {
         const id = Number(req.params.id);
 
+        if (!Number.isInteger(id) || id <= 0) {
+            return res.status(400).json({
+                msg: "ID inválido."
+            });
+        }
+
         const item = await prisma.usuario.findUnique({
             where: {
                 id: id
+            },
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                telefone: true,
+                cidade: true,
+                cep: true,
+                endereco: true,
+                bairro: true,
+                numero: true,
+                residencia: true,
+                espaco: true,
+                rotina: true,
+                crmv: true,
+                validado: true,
+                tipo_usuario: true
             }
         });
 
@@ -176,30 +239,116 @@ const buscar = async (req, res) => {
 const atualizar = async (req, res) => {
     try {
         const id = Number(req.params.id);
-        const dados = { ...req.body };
-        delete dados.id;
-        delete dados.tipo_usuario;
+
+        if (!Number.isInteger(id) || id <= 0) {
+            return res.status(400).json({
+                msg: "ID inválido."
+            });
+        }
+
+        if (Number(req.usuario.id) !== id) {
+            return res.status(403).json({
+                msg: "Você não pode alterar outro usuário."
+            });
+        }
+
+        const {
+            nome,
+            email,
+            telefone,
+            cidade,
+            cep,
+            endereco,
+            bairro,
+            numero,
+            residencia,
+            espaco,
+            rotina
+        } = req.body;
+
+        const dados = {
+            nome,
+            email,
+            telefone,
+            cidade,
+            cep,
+            endereco,
+            bairro,
+            numero,
+            residencia,
+            espaco,
+            rotina
+        };
 
         const item = await prisma.usuario.update({
             where: { id },
-            data: dados
+            data: dados,
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                telefone: true,
+                cidade: true,
+                cep: true,
+                endereco: true,
+                bairro: true,
+                numero: true,
+                residencia: true,
+                espaco: true,
+                rotina: true,
+                crmv: true,
+                validado: true,
+                tipo_usuario: true
+            }
         });
 
         return res.status(200).json(item);
+
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ msg: "Erro ao atualizar usuário." });
+
+        if (error.code === "P2002") {
+            return res.status(409).json({
+                msg: "Este email já está cadastrado."
+            });
+        }
+
+        return res.status(500).json({
+            msg: "Erro ao atualizar usuário."
+        });
     }
 };
 
 const excluir = async (req, res) => {
     try {
+        const id = Number(req.params.id);
+
+        if (!Number.isInteger(id) || id <= 0) {
+            return res.status(400).json({
+                msg: "ID inválido."
+            });
+        }
+
+        if (req.usuario.tipo_usuario !== "CLINICA") {
+    return res.status(403).json({
+        msg: "Apenas a clínica pode excluir usuários."
+    });
+}
+
         const item = await prisma.usuario.delete({
-            where: { id: Number(req.params.id) }
+            where: { id }
         });
-        return res.status(200).json(item);
+
+        const { senha: _, ...usuarioSemSenha } = item;
+
+        return res.status(200).json(usuarioSemSenha);
+
     } catch (error) {
-        return res.status(500).json({ msg: "Erro ao excluir usuário." });
+        console.error(error);
+
+        return res.status(500).json({
+            msg: "Erro ao excluir usuário."
+        });
     }
 };
 

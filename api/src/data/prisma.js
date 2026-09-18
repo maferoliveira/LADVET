@@ -3,6 +3,7 @@ require("dotenv").config();
 const { PrismaClient } = require("@prisma/client");
 const { PrismaMariaDb } = require("@prisma/adapter-mariadb");
 
+<<<<<<< HEAD
 const url = new URL(process.env.DATABASE_URL);
 
 const adapter = new PrismaMariaDb({
@@ -13,6 +14,9 @@ const adapter = new PrismaMariaDb({
     database: url.pathname.replace("/", ""),
     connectionLimit: 5
 });
+=======
+const adapter = new PrismaMariaDb(process.env.DATABASE_URL);
+>>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961
 
 const prisma = new PrismaClient({ adapter });
 

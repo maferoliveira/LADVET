@@ -49,6 +49,14 @@ const cadastrar = async (req, res) => {
                 status: "PENDENTE"
             }
         });
+        await prisma.animal.update({
+            where: {
+                id: Number(animalID)
+            },
+            data: {
+                status: "EM_PROCESSO"
+            }
+        });
 
         if (existente) {
             return res.status(409).json({
@@ -102,7 +110,15 @@ const listar = async (req, res) => {
         const lista = await prisma.adocao.findMany({
             include: {
                 animal: true,
-                adotante: true
+                adotante: {
+                    select: {
+                        id: true,
+                        nome: true,
+                        email: true,
+                        telefone: true,
+                        cidade: true
+                    }
+                }
             },
             orderBy: {
                 id: "desc"
@@ -169,7 +185,15 @@ const buscar = async (req, res) => {
             where: { id },
             include: {
                 animal: true,
-                adotante: true
+                adotante: {
+                    select: {
+                        id: true,
+                        nome: true,
+                        email: true,
+                        telefone: true,
+                        cidade: true
+                    }
+                }
             }
         });
 
@@ -257,10 +281,21 @@ const atualizar = async (req, res) => {
                     status: "ADOTADO"
                 }
             });
+<<<<<<< HEAD
         } else {
             await prisma.animal.update({
                 where: { id: item.animalID },
                 data: { status: "DISPONIVEL" }
+=======
+        } else if (status === "RECUSADA") {
+            await prisma.animal.update({
+                where: {
+                    id: item.animalID
+                },
+                data: {
+                    status: "DISPONIVEL"
+                }
+>>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961
             });
         }
 
@@ -278,6 +313,7 @@ const atualizar = async (req, res) => {
 
 // Apenas a clínica pode excluir
 const excluir = async (req, res) => {
+
     const id = Number(req.params.id);
 
     if (req.usuario.tipo_usuario !== "CLINICA") {
@@ -293,6 +329,7 @@ const excluir = async (req, res) => {
     }
 
     try {
+
         const adocao = await prisma.adocao.findUnique({
             where: { id }
         });
@@ -300,6 +337,19 @@ const excluir = async (req, res) => {
         if (!adocao) {
             return res.status(404).json({
                 msg: "Registro de adoção não encontrado."
+            });
+        }
+
+        // Se a adoção ainda estiver pendente,
+        // o animal volta a ficar disponível
+        if (adocao.status === "PENDENTE") {
+            await prisma.animal.update({
+                where: {
+                    id: adocao.animalID
+                },
+                data: {
+                    status: "DISPONIVEL"
+                }
             });
         }
 
@@ -312,6 +362,7 @@ const excluir = async (req, res) => {
         });
 
     } catch (error) {
+
         console.error(error);
 
         return res.status(500).json({

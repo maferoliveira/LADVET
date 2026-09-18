@@ -43,21 +43,30 @@ const cadastrar = async (req, res) => {
 
         return res.status(201).json(item);
 
-    } catch (error) {
-        console.error("Erro ao cadastrar animal:", error);
+    }  catch (error) {
+    console.error("ERRO COMPLETO AO CADASTRAR ANIMAL:");
+    console.error(error);
 
-        return res.status(500).json({
-            msg: "Erro ao cadastrar animal."
-        });
-    }
+    return res.status(500).json({
+        msg: "Erro ao cadastrar animal."
+    });
 };
+}
 
 
 const listar = async (req, res) => {
+
     const { especie, porte, idade } = req.query;
+
     const where = {};
 
+    // Adotante só pode visualizar animais disponíveis
+    if (req.usuario.tipo_usuario === "ADOTANTE") {
+        where.status = "DISPONIVEL";
+    }
+
     if (especie) where.especie = especie;
+
     if (porte) where.porte = porte;
 
     if (idade !== undefined && idade !== "") {
@@ -69,6 +78,7 @@ const listar = async (req, res) => {
     }
 
     try {
+
         const lista = await prisma.animal.findMany({
             where,
             orderBy: {
@@ -79,6 +89,7 @@ const listar = async (req, res) => {
         return res.status(200).json(lista);
 
     } catch (error) {
+
         console.error("Erro ao listar animais:", error);
 
         return res.status(500).json({
@@ -154,6 +165,7 @@ const atualizar = async (req, res) => {
         // Não permite alterar esses campos
         delete dados.id;
         delete dados.usuarioID;
+        delete dados.status;
 
         if (dados.idade !== undefined) {
             const idade = Number(dados.idade);
@@ -185,6 +197,7 @@ const atualizar = async (req, res) => {
 
 
 const excluir = async (req, res) => {
+
     const id = Number(req.params.id);
 
     // Apenas a clínica pode excluir
@@ -201,6 +214,7 @@ const excluir = async (req, res) => {
     }
 
     try {
+
         const animal = await prisma.animal.findUnique({
             where: { id }
         });
@@ -208,6 +222,24 @@ const excluir = async (req, res) => {
         if (!animal) {
             return res.status(404).json({
                 msg: "Animal não encontrado."
+            });
+        }
+
+        const adocao = await prisma.adocao.findFirst({
+            where: {
+                animalID: id
+            }
+        });
+
+        const vacina = await prisma.vacina.findFirst({
+            where: {
+                animalID: id
+            }
+        });
+
+        if (adocao || vacina) {
+            return res.status(400).json({
+                msg: "Não é possível excluir um animal que possui adoção ou vacinação registrada."
             });
         }
 
@@ -220,6 +252,7 @@ const excluir = async (req, res) => {
         });
 
     } catch (error) {
+
         console.error("Erro ao excluir animal:", error);
 
         return res.status(500).json({

@@ -1,38 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Cadastro de Veterinário</title>
-    <link rel="stylesheet" href="../css/login-veterinario.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/login-veterinario.css"
+    >
+
 </head>
+
 <body>
 
-<button class="voltar" onclick="voltarIdentificacao()">↩</button>
-<img src="../img/Logo.png" class="logo" alt="Logo">
+    <button
+        class="voltar"
+        onclick="voltarIdentificacao()"
+    >
+        ↩
+    </button>
 
-<div class="container">
-    <div class="card">
-        <div class="card-top">
-            <h2>Criar conta - Veterinário</h2>
-            <p>Cadastre seus dados para acessar a clínica</p>
+    <img
+        src="../img/Logo.png"
+        class="logo"
+        alt="Logo"
+    >
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <h2>
+                    Criar conta - Clínica
+                </h2>
+
+                <p>
+                    Cadastre os dados da clínica
+                </p>
+
+            </div>
+
+            <form
+                class="card-body"
+                onsubmit="criarContaVeterinario(event)"
+            >
+
+                <input
+                    type="text"
+                    id="nomeVeterinarioCadastro"
+                    placeholder="Nome completo"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="emailVeterinarioCadastro"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    id="telefoneVeterinarioCadastro"
+                    placeholder="Telefone"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="cidadeVeterinarioCadastro"
+                    placeholder="Cidade"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="crmvVeterinarioCadastro"
+                    placeholder="CRMV"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="senhaVeterinarioCadastro"
+                    placeholder="Senha"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn-acessar"
+                >
+                    Criar conta
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-criar"
+                    onclick="voltarIdentificacao()"
+                >
+                    Voltar
+                </button>
+
+            </form>
+
         </div>
 
-        <form class="card-body" onsubmit="criarContaVeterinario(event)">
-            <input type="text" id="nomeVeterinarioCadastro" placeholder="Nome completo" required>
-            <input type="email" id="emailVeterinarioCadastro" placeholder="Email" required>
-            <input type="tel" id="telefoneVeterinarioCadastro" placeholder="Telefone">
-            <input type="password" id="senhaVeterinarioCadastro" placeholder="Senha" required>
-
-            <button type="submit" class="btn-acessar">Criar conta</button>
-
-            <button type="button" class="btn-criar" onclick="voltarIdentificacao()">
-                Voltar
-            </button>
-        </form>
     </div>
-</div>
 
-<script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
+
 </body>
+
 </html>

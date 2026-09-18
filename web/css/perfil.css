@@ -2,277 +2,296 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
 }
-
 
 body {
-    background: #eadede;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f4dddd, #ead2d2, #d9dced);
+    color: #333;
 }
 
-.tela {
-    width: 100%;
-    min-height: 100vh;
-}
+/* TOPO */
 
 .topo {
     width: 100%;
-    height: 90px;
-    background: #d8b4b4;
+    height: 115px;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 35px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.05);
-}
-
-
-.voltar,
-.sair {
-    border: none;
-    background: #c98b8b;
-    color: white;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-
-.voltar {
-    width: 45px;
-    height: 45px;
-    font-size: 18px;
-}
-
-
-.sair {
-    height: 45px;
-    padding: 0 18px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-.voltar:hover,
-.sair:hover {
-    opacity: .9;
-    transform: translateY(-1px);
-}
-
-.foto {
-    width: 200px;
-    height: 200px;
-    background: white;
-    border-radius: 50%;
-    margin: 35px auto 15px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+
+    position: relative;
 }
-
-
-.foto img {
-    width: 120px;
-}
-
-.usuario {
-    text-align: center;
-}
-
-
-.usuario h1 {
-    font-size: 32px;
-    color: #666;
-}
-
-
-.usuario p {
-    margin-top: 8px;
-    font-size: 18px;
-    color: #888;
-}
-
-.linha {
-    width: 80%;
-    max-width: 900px;
-    height: 1px;
-    background: #d7b6b6;
-    margin: 30px auto;
-}
-
-.informacoes {
-    width: 80%;
-    max-width: 700px;
-    margin: 0 auto;
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-}
-
-
-.informacoes h2 {
-    font-size: 22px;
-    color: #6f7ba3;
-    margin: 20px 0 15px;
-}
-
-
-.informacoes h2:first-child {
-    margin-top: 0;
-}
-
-
-.campo {
-    background: #f5e8e8;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-}
-
-
-.campo strong {
-    color: #6f7ba3;
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-
-
-.campo span {
-    color: #666;
-    font-size: 16px;
-    line-height: 1.4;
-}
-
-.menu {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 320px);
-    justify-content: center;
-    align-items: stretch;
-    gap: 25px;
-}
-
-
-.item {
-    width: 320px;
-    height: 75px;
-    background: #6f7ba3;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    transition: .3s;
-}
-
-
-.item i {
-    font-size: 21px;
-}
-
-
-.item:hover {
-    transform: translateY(-3px);
-}
-
-.favoritos {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-}
-
-
-.favoritos .item {
-    width: 320px;
-}
-
-.rodape {
-    margin: 40px auto 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.historia {
-    width: 320px;
-    height: 80px;
-}
-
 
 .logo {
-    width: 160px;
-    filter:
-        drop-shadow(0 6px 12px rgba(111,123,163,.12))
-        drop-shadow(0 8px 15px rgba(201,139,139,.12));
+    width: 125px;
 }
 
+.voltar {
+    position: absolute;
+    left: 25px;
+    top: 25px;
 
-.texto {
-    margin-top: 15px;
-    max-width: 400px;
-    text-align: center;
-    color: #b57f7f;
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #c98d8f;
+    color: white;
+
+    font-size: 27px;
+
+    cursor: pointer;
+}
+
+.voltar:hover {
+    background: #b97b7e;
+}
+
+/* CONTAINER */
+
+.container {
+    width: 900px;
+    max-width: 92%;
+
+    margin: 25px auto 50px;
+}
+
+/* CARD */
+
+.card {
+    background: #d18f91;
+
+    border-radius: 25px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 25px rgba(80, 50, 50, 0.15);
+}
+
+/* TÍTULO */
+
+.card h1 {
+    padding: 25px 30px 18px;
+
+    font-size: 30px;
+
+    color: #171717;
+
+    background: #d18f91;
+}
+
+/* ÁREA DO FORMULÁRIO */
+
+.card-body {
+    padding: 10px 30px 25px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 25px;
+    row-gap: 16px;
+}
+
+/* LABELS */
+
+.card-body label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #ffffff;
+
     font-size: 15px;
-    line-height: 1.5;
+    font-weight: bold;
 }
 
-@media (max-width: 768px) {
+/* INPUTS */
+
+.card-body input,
+.card-body select {
+    width: 100%;
+    height: 43px;
+
+    padding: 0 13px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #444;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.card-body input:focus,
+.card-body select:focus {
+    box-shadow: 0 0 0 3px rgba(111, 123, 163, 0.35);
+}
+
+/* CAMPOS QUE NÃO DEVEM FICAR EDITÁVEIS */
+
+#emailPerfil {
+    background: #eeeeee;
+    color: #777;
+}
+
+/* BOTÃO SALVAR */
+
+.btn-salvar {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    height: 58px;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #7180ae;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-salvar:hover {
+    background: #61709d;
+}
+
+/* ÁREA DOS BOTÕES INFERIORES */
+
+.acoes-perfil {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 3px;
+}
+
+/* BOTÕES DO MENU */
+
+.acoes-perfil button {
+    border: none;
+
+    padding: 9px 13px;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #444;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.acoes-perfil button:hover {
+    background: #eee7e7;
+}
+
+/* CAMPOS DE CLÍNICA */
+
+#campoCrmv {
+    display: none;
+}
+
+/* MENUS */
+
+#menuAdotante,
+#menuClinica,
+#menuNovoAnimal {
+    display: none;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
 
     .topo {
-        padding: 0 15px;
+        height: 95px;
     }
 
-
-    .sair {
-        font-size: 12px;
-        padding: 0 12px;
+    .logo {
+        width: 110px;
     }
 
+    .voltar {
+        left: 15px;
+        top: 18px;
 
-    .foto {
-        width: 170px;
-        height: 170px;
+        width: 45px;
+        height: 45px;
     }
 
-
-    .foto img {
-        width: 100px;
+    .container {
+        max-width: 94%;
+        margin-top: 15px;
     }
 
-
-    .usuario h1 {
-        font-size: 26px;
+    .card h1 {
+        font-size: 25px;
+        padding: 20px;
     }
 
-
-    .informacoes {
-        width: 90%;
-    }
-
-
-    .menu {
+    .card-body {
         grid-template-columns: 1fr;
+
+        padding: 10px 20px 22px;
     }
 
-
-    .item {
-        width: 90%;
-        max-width: 320px;
-        margin: auto;
+    .btn-salvar,
+    .acoes-perfil {
+        grid-column: 1;
     }
 
+    .acoes-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 30px 25px;
+
+    background: #d18f91;
+}
+
+.acoes-perfil button {
+    border: none;
+    border-radius: 9px;
+
+    padding: 10px 16px;
+
+    background: #ffffff;
+    color: #70546f;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.acoes-perfil button:hover {
+    background: #f1e8e8;
+    transform: translateY(-1px);
+}
 }
