@@ -1,11 +1,9 @@
 const jsonwebtoken = require("jsonwebtoken");
 
 const validate = (req, res, next) => {
-    console.log(">>> VALIDATE");
 
     const token = req.headers.authorization?.split(" ")[1];
 
-    console.log(">>> TOKEN:", token);
 
     if (!token) {
         return res.status(401).json({
@@ -19,14 +17,12 @@ const validate = (req, res, next) => {
             process.env.SECRET_JWT
         );
 
-        console.log(">>> PAYLOAD:", payload);
 
         req.usuario = payload;
 
         next();
 
     } catch (err) {
-        console.log(">>> ERRO JWT:", err);
 
         return res.status(401).json({
             msg: "Token inválido ou expirado."

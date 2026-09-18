@@ -151,3 +151,197 @@ body::after{
         padding:16px;
     }
 }
+/* ============================= */
+/* PADRÃO VISUAL LADVET */
+/* ============================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff8fa;
+    color: #5b3b3f;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #70464d;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+/* ============================= */
+/* BOTÕES */
+/* ============================= */
+
+button,
+.btn,
+input[type="submit"],
+input[type="button"] {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Botão principal */
+button:not(.voltar):not(.fechar):not(.excluir),
+.btn-principal {
+    background-color: #b86f7c;
+    color: white;
+}
+
+button:not(.voltar):not(.fechar):not(.excluir):hover,
+.btn-principal:hover {
+    background-color: #9f5967;
+    transform: translateY(-1px);
+}
+
+/* Botão voltar */
+.voltar {
+    background-color: transparent;
+    color: #70464d;
+    border: 1px solid #d9aeb6;
+}
+
+.voltar:hover {
+    background-color: #f8e5e9;
+}
+
+/* Botão cancelar */
+.fechar,
+.cancelar {
+    background-color: #eee1e3;
+    color: #70464d;
+}
+
+.fechar:hover,
+.cancelar:hover {
+    background-color: #e3d0d4;
+}
+
+/* Botão excluir */
+.excluir {
+    background-color: #d87979;
+    color: white;
+}
+
+.excluir:hover {
+    background-color: #c45f5f;
+}
+
+/* ============================= */
+/* INPUTS */
+/* ============================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d9b8be;
+    border-radius: 9px;
+    background-color: #fff;
+    color: #5b3b3f;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #b86f7c;
+    box-shadow: 0 0 0 3px rgba(184, 111, 124, 0.12);
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #70464d;
+    font-weight: bold;
+}
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+
+.card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(91, 59, 63, 0.08);
+    border: 1px solid #f0dfe2;
+}
+
+/* ============================= */
+/* LINKS */
+/* ============================= */
+
+a {
+    color: #a85f6d;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* BOTÃO DE VOLTAR PADRÃO */
+/* ============================= */
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background-color: transparent;
+    color: #70464d;
+    border: 1px solid #d9aeb6;
+    padding: 10px 18px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: #f8e5e9;
+}
+
+/* ============================= */
+/* RESPONSIVO */
+/* ============================= */
+
+@media (max-width: 700px) {
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    button,
+    .btn,
+    input[type="submit"],
+    input[type="button"] {
+        width: 100%;
+    }
+}

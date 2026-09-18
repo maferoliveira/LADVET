@@ -239,9 +239,6 @@ const atualizar = async (req, res) => {
 const excluir = async (req, res) => {
     const id = Number(req.params.id);
 
-    console.log("ID DA VACINA:", id);
-    console.log("USUARIO:", req.usuario);
-
     if (req.usuario.tipo_usuario !== "CLINICA") {
         return res.status(403).json({
             msg: "Apenas a clínica pode excluir vacinas."
@@ -259,7 +256,6 @@ const excluir = async (req, res) => {
             where: { id }
         });
 
-        console.log("VACINA ENCONTRADA:", vacina);
 
         if (!vacina) {
             return res.status(404).json({
@@ -271,7 +267,6 @@ const excluir = async (req, res) => {
             where: { id }
         });
 
-        console.log("VACINA DELETADA!");
 
         return res.status(200).json({
             msg: "Vacina excluída com sucesso."

@@ -7,21 +7,16 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: linear-gradient(
-        135deg,
-        #f4dddd,
-        #ead2d2,
-        #d9dced
-    );
+    background: linear-gradient(135deg, #f4dddd, #ead2d2, #d9dced);
     color: #333;
 }
 
 
-/* Cabeçalho */
+/* ==================== CABEÇALHO ==================== */
 
 .topo {
     width: 100%;
-    height: 100px;
+    height: 110px;
 
     display: flex;
     align-items: center;
@@ -31,15 +26,14 @@ body {
 }
 
 .logo {
-    width: 125px;
+    width: 135px;
     height: auto;
 }
 
 .lado-esquerdo {
     position: absolute;
-
-    left: 25px;
-    top: 25px;
+    left: 30px;
+    top: 30px;
 
     display: flex;
     align-items: center;
@@ -47,23 +41,33 @@ body {
 }
 
 
-/* Botão voltar */
+/* ==================== BOTÕES DO TOPO ==================== */
 
-.voltar {
-    width: 50px;
-    height: 50px;
+.voltar,
+.perfil {
+    width: 48px;
+    height: 48px;
 
     border: none;
-    border-radius: 14px;
-
-    background: #c98d8f;
-    color: white;
-
-    font-size: 27px;
+    border-radius: 13px;
 
     cursor: pointer;
 
     transition: 0.2s;
+}
+
+
+/* Voltar */
+
+.voltar {
+    background: #c98d8f;
+    color: white;
+
+    font-size: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .voltar:hover {
@@ -75,25 +79,12 @@ body {
 /* Perfil */
 
 .perfil {
-    width: 50px;
-    height: 50px;
-
     padding: 0;
-
-    border: none;
-    border-radius: 14px;
-
     background: white;
-
-    cursor: pointer;
 
     overflow: hidden;
 
-    transition: 0.2s;
-}
-
-.perfil:hover {
-    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(80, 50, 50, 0.12);
 }
 
 .perfil img {
@@ -103,18 +94,23 @@ body {
     object-fit: cover;
 }
 
+.perfil:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(80, 50, 50, 0.18);
+}
 
-/* Botão da clínica */
+
+/* Botão novo animal */
 
 .novo-animal {
     display: none;
 
-    height: 50px;
+    height: 48px;
 
-    padding: 0 18px;
+    padding: 0 17px;
 
     border: none;
-    border-radius: 14px;
+    border-radius: 13px;
 
     background: #7180ae;
     color: white;
@@ -133,101 +129,100 @@ body {
 }
 
 
-/* Conteúdo */
+/* ==================== CONTEÚDO ==================== */
 
 .container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1150px;
 
-    margin: 20px auto 50px;
+    margin: 10px auto 60px;
 
-    padding: 0 25px;
+    padding: 0 30px;
 }
 
 .titulo {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .titulo h1 {
-    font-size: 30px;
     color: #4f3f4f;
 
-    margin-bottom: 5px;
+    font-size: 32px;
+    font-weight: bold;
+
+    margin-bottom: 6px;
 }
 
 .titulo p {
     color: #70546f;
+
     font-size: 15px;
 }
 
 
-/* Lista */
+/* ==================== LISTA DE PETS ==================== */
 
 .lista {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-    gap: 22px;
+    gap: 25px;
 }
 
 
-/* Card do animal */
+/* ==================== CARD ==================== */
 
 .pet {
     position: relative;
 
     background: white;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
     overflow: hidden;
 
-    box-shadow:
-        0 8px 20px
-        rgba(80, 50, 50, 0.15);
+    box-shadow: 0 6px 18px rgba(80, 50, 50, 0.13);
 
     cursor: pointer;
 
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+    transition: 0.25s;
 }
 
 .pet:hover {
     transform: translateY(-5px);
 
-    box-shadow:
-        0 12px 25px
-        rgba(80, 50, 50, 0.22);
+    box-shadow: 0 12px 25px rgba(80, 50, 50, 0.20);
 }
 
 
-/* Imagem */
+/* Imagem do pet */
 
 .pet > img {
     width: 100%;
-    height: 220px;
-
-    object-fit: cover;
+    height: 225px;
 
     display: block;
+
+    object-fit: cover;
 
     background: #eee;
 }
 
 
-/* Informações */
+/* ==================== INFORMAÇÕES ==================== */
 
 .info {
-    padding: 16px 18px 20px;
+    min-height: 115px;
+
+    padding: 17px 18px 22px;
 }
 
 .info h3 {
     color: #4f3f4f;
 
     font-size: 20px;
+    font-weight: bold;
 
     margin-bottom: 9px;
 }
@@ -241,13 +236,13 @@ body {
 }
 
 
-/* Favorito */
+/* ==================== FAVORITO ==================== */
 
 .card-footer {
     position: absolute;
 
-    right: 13px;
-    bottom: 13px;
+    right: 14px;
+    bottom: 14px;
 
     width: 40px;
     height: 40px;
@@ -259,10 +254,9 @@ body {
     border-radius: 50%;
 
     background: #f1dddd;
-
     color: #a56f73;
 
-    font-size: 25px;
+    font-size: 24px;
 
     cursor: pointer;
 
@@ -276,40 +270,49 @@ body {
 }
 
 
-/* Mensagens */
+/* ==================== MENSAGEM ==================== */
 
 .lista > p {
     grid-column: 1 / -1;
 
+    width: 100%;
+
     text-align: center;
 
-    padding: 40px 20px;
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 45px 20px;
 
     color: #70546f;
 
     font-size: 16px;
+
+    box-shadow: 0 6px 18px rgba(80, 50, 50, 0.10);
 }
 
 
-/* Responsividade */
+/* ==================== TABLET ==================== */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
     .lista {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .pet > img {
-        height: 200px;
+        height: 210px;
     }
 }
 
+
+/* ==================== CELULAR ==================== */
 
 @media (max-width: 600px) {
 
     .topo {
-        height: 85px;
+        height: 90px;
     }
 
     .logo {
@@ -318,40 +321,51 @@ body {
 
     .lado-esquerdo {
         left: 15px;
-        top: 18px;
+        top: 20px;
+        gap: 7px;
     }
 
     .voltar,
     .perfil {
-        width: 45px;
-        height: 45px;
+        width: 43px;
+        height: 43px;
+    }
+
+    .voltar {
+        font-size: 22px;
     }
 
     .novo-animal {
-        height: 45px;
+        height: 43px;
 
-        padding: 0 12px;
+        padding: 0 11px;
 
         font-size: 12px;
     }
 
     .container {
         padding: 0 15px;
-
         margin-top: 10px;
     }
 
+    .titulo {
+        margin-bottom: 22px;
+    }
+
     .titulo h1 {
-        font-size: 25px;
+        font-size: 27px;
+    }
+
+    .titulo p {
+        font-size: 14px;
     }
 
     .lista {
         grid-template-columns: 1fr;
-
         gap: 18px;
     }
 
     .pet > img {
-        height: 220px;
+        height: 230px;
     }
 }

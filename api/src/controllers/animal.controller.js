@@ -47,8 +47,7 @@ const cadastrar = async (req, res) => {
     console.error(error);
 
     return res.status(500).json({
-        msg: "Erro ao cadastrar animal.",
-        erro: error.message
+        msg: "Erro ao cadastrar animal."
     });
 };
 }

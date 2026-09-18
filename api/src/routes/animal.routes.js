@@ -18,7 +18,7 @@ router.get(
 
 
 router.get(
-    "/buscar/:id",
+    "/buscar/:id", validate,
     controller.buscar
 );
 

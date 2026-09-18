@@ -329,11 +329,11 @@ const excluir = async (req, res) => {
             });
         }
 
-        if (Number(req.usuario.id) !== id) {
-            return res.status(403).json({
-                msg: "Você não pode excluir outro usuário."
-            });
-        }
+        if (req.usuario.tipo_usuario !== "CLINICA") {
+    return res.status(403).json({
+        msg: "Apenas a clínica pode excluir usuários."
+    });
+}
 
         const item = await prisma.usuario.delete({
             where: { id }
