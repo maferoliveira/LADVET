@@ -34,6 +34,7 @@ const cadastrar = async (req, res) => {
                 sexo: data.sexo,
                 porte: data.porte || "Não informado",
                 temperamento: data.temperamento || null,
+                descricao: data.descricao || null,
                 foto: data.foto || "",
                 status: data.status || "DISPONIVEL",
                 usuarioID: req.usuario.id

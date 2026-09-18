@@ -41,6 +41,7 @@ model Animal {
   sexo         String
   porte        String @default("Não informado")
   temperamento String?
+  descricao    String?
   foto         String
   status       statusAnimal @default(DISPONIVEL)
 

@@ -42,16 +42,39 @@ const cadastrar = async (req, res) => {
             });
         }
 
-        const item = await prisma.adocao.create({
-            data: {
+        const existente = await prisma.adocao.findFirst({
+            where: {
                 animalID: Number(animalID),
                 adotanteID: Number(req.usuario.id),
-                moradia,
-                temQuintal: Boolean(temQuintal),
-                experiencia: experiencia || null,
-                tempoDisponivel,
                 status: "PENDENTE"
             }
+        });
+
+        if (existente) {
+            return res.status(409).json({
+                msg: "Você já possui uma solicitação pendente para este animal."
+            });
+        }
+
+        const item = await prisma.$transaction(async tx => {
+            const novaAdocao = await tx.adocao.create({
+                data: {
+                    animalID: Number(animalID),
+                    adotanteID: Number(req.usuario.id),
+                    moradia,
+                    temQuintal: Boolean(temQuintal),
+                    experiencia: experiencia || null,
+                    tempoDisponivel,
+                    status: "PENDENTE"
+                }
+            });
+
+            await tx.animal.update({
+                where: { id: Number(animalID) },
+                data: { status: "EM_PROCESSO" }
+            });
+
+            return novaAdocao;
         });
 
         return res.status(201).json(item);
@@ -224,7 +247,7 @@ const atualizar = async (req, res) => {
             data: { status }
         });
 
-        // Se aprovada, o animal fica adotado
+        // Se aprovada, o animal fica adotado; se recusada, volta a ficar disponível.
         if (status === "APROVADA") {
             await prisma.animal.update({
                 where: {
@@ -233,6 +256,11 @@ const atualizar = async (req, res) => {
                 data: {
                     status: "ADOTADO"
                 }
+            });
+        } else {
+            await prisma.animal.update({
+                where: { id: item.animalID },
+                data: { status: "DISPONIVEL" }
             });
         }
 

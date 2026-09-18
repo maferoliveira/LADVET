@@ -28,3 +28,4 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT_APP || 3000, () => {
     console.log("Online na porta " + (process.env.PORT_APP || 3000));
 });
+
