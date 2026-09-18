@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-const lista = document.getElementById("listaStatus");
-
-function mensagem(status) {
-    if (status === "APROVADA") return "🎉 Parabéns! Sua adoção foi aprovada!";
-    if (status === "RECUSADA") return "😿 Sua solicitação não foi aprovada.";
-    return "⏳ Sua solicitação está sendo analisada.";
-}
-
-async function carregar() {
-    if (!protegerPagina("adotante")) return;
-=======
 const lista =
     document.getElementById(
         "listaStatus"
@@ -35,7 +23,6 @@ async function carregarSolicitacoes() {
     if (!protegerPagina("adotante")) {
         return;
     }
->>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961
 
 
     try {
@@ -108,9 +95,5 @@ async function carregarSolicitacoes() {
     }
 }
 
-<<<<<<< HEAD
-carregar();
-=======
 
 carregarSolicitacoes();
->>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961

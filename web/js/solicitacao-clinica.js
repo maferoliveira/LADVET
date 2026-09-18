@@ -3,10 +3,6 @@ const listaSolicitacoes =
         "listaSolicitacoes"
     );
 
-<<<<<<< HEAD
-async function carregarSolicitacoes() {
-    if (!protegerPagina("veterinario")) return;
-=======
 
 async function carregarSolicitacoesClinica() {
 
@@ -14,7 +10,6 @@ async function carregarSolicitacoesClinica() {
         return;
     }
 
->>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961
 
     try {
 
@@ -37,28 +32,6 @@ async function carregarSolicitacoesClinica() {
 
 
         solicitacoes.forEach(pedido => {
-<<<<<<< HEAD
-            const finalizada = ["APROVADA", "RECUSADA"].includes(pedido.status);
-
-            lista.innerHTML += `
-                <div class="solicitacao">
-                    <h2>🐾 ${pedido.animal?.nome || "Animal"}</h2>
-                    <p><b>Nome:</b> ${pedido.adotante?.nome || "-"}</p>
-                    <p><b>Email:</b> ${pedido.adotante?.email || "-"}</p>
-                    <p><b>Cidade:</b> ${pedido.adotante?.cidade || "-"}</p>
-                    <p><b>Telefone:</b> ${pedido.adotante?.telefone || "-"}</p>
-                    <p><b>Moradia:</b> ${pedido.moradia || "-"}</p>
-                    <p><b>Quintal:</b> ${pedido.temQuintal ? "Sim" : "Não"}</p>
-                    <p><b>Experiência:</b> ${pedido.experiencia || "-"}</p>
-                    <p><b>Tempo disponível:</b> ${pedido.tempoDisponivel || "-"}</p>
-                    <h3>Status: ${pedido.status}</h3>
-                    ${!finalizada ? `
-                        <div class="botoes">
-                            <button class="aceitar" onclick="atualizarStatus(${pedido.id}, 'APROVADA')">Aceitar</button>
-                            <button class="recusar" onclick="atualizarStatus(${pedido.id}, 'RECUSADA')">Recusar</button>
-                        </div>
-                    ` : ""}
-=======
 
             listaSolicitacoes.innerHTML += `
 
@@ -151,7 +124,6 @@ async function carregarSolicitacoesClinica() {
                             : ""
                     }
 
->>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961
                 </div>
 
             `;
@@ -169,15 +141,6 @@ async function carregarSolicitacoesClinica() {
 async function alterarStatus(id, status) {
 
     try {
-<<<<<<< HEAD
-        await apiFetch(`/adocao/atualizar/${id}`, {
-            method: "PUT",
-            body: JSON.stringify({ status })
-        });
-
-        alert(status === "APROVADA" ? "Adoção aprovada! 🐾" : "Adoção recusada.");
-        carregarSolicitacoes();
-=======
 
         await apiFetch(
             `/adocao/atualizar/${id}`,
@@ -198,16 +161,12 @@ async function alterarStatus(id, status) {
 
         carregarSolicitacoesClinica();
 
->>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961
     } catch (erro) {
 
         alert(erro.message);
     }
 }
 
-<<<<<<< HEAD
-carregarSolicitacoes();
-=======
 
 function aprovarSolicitacao(id) {
 
@@ -228,4 +187,3 @@ function recusarSolicitacao(id) {
 
 
 carregarSolicitacoesClinica();
->>>>>>> 23d6582e705e51f51230aa664c3aa93353adf961

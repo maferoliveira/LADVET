@@ -1,13 +1,20 @@
-async function carregarFavoritos() {
+window.addEventListener("load", function () {
     if (!protegerPagina("adotante")) return;
 
-    const lista = document.getElementById("listaFavoritos");
+    const favoritos =
+        JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    const petsNovos =
+        JSON.parse(localStorage.getItem("petsNovos")) || [];
+
+    const lista =
+        document.getElementById("listaFavoritos");
+
     if (!lista) return;
 
-    const favoritos = (JSON.parse(localStorage.getItem("favoritos")) || []).map(String);
     lista.innerHTML = "";
 
-    if (!favoritos.length) {
+    if (favoritos.length === 0) {
         lista.innerHTML = `
             <p style="grid-column:1/-1;text-align:center;">
                 Você ainda não possui favoritos.
@@ -16,35 +23,28 @@ async function carregarFavoritos() {
         return;
     }
 
-    try {
-        const pets = await apiFetch("/animal/listar");
-        const selecionados = pets.filter(pet => favoritos.includes(String(pet.id)));
+    favoritos.forEach(nome => {
+        const petNovo = petsNovos.find(
+            pet => pet.nome === nome
+        );
 
-        if (!selecionados.length) {
-            lista.innerHTML = `<p style="grid-column:1/-1;text-align:center;">Você ainda não possui favoritos.</p>`;
-            return;
-        }
+        const imagem = petNovo?.foto || "../img/" + nome.toLowerCase() + ".png";
 
-        selecionados.forEach(pet => {
-            const imagem = pet.foto?.startsWith("data:image")
-                ? pet.foto
-                : pet.foto?.includes("/") ? pet.foto : `../img/${pet.foto || "user.png"}`;
-
-            lista.innerHTML += `
-                <div class="pet" onclick="abrirPetFavorito(${pet.id})">
-                    <img src="${imagem}" alt="${pet.nome}">
-                    <div class="info"><h3>Nome: ${pet.nome}</h3></div>
+        lista.innerHTML += `
+            <div
+                class="pet"
+                onclick="abrirPetFavorito('${nome.replace(/'/g, "\\'")}')"
+            >
+                <img src="${imagem}" alt="${nome}">
+                <div class="info">
+                    <h3>Nome: ${nome}</h3>
                 </div>
-            `;
-        });
-    } catch (erro) {
-        lista.innerHTML = `<p>${erro.message}</p>`;
-    }
-}
+            </div>
+        `;
+    });
+});
 
-function abrirPetFavorito(id) {
-    localStorage.setItem("petSelecionado", String(id));
+function abrirPetFavorito(nome) {
+    localStorage.setItem("petSelecionado", nome);
     window.location.href = "pet.html";
 }
-
-carregarFavoritos();
