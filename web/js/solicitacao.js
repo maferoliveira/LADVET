@@ -1,13 +1,10 @@
-const form =
-    document.getElementById("formAdocao");
+const form = document.getElementById("formAdocao");
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+const params = new URLSearchParams(
+    window.location.search
+);
 
-const animalID =
-    Number(params.get("pet"));
+const animalID = Number(params.get("pet"));
 
 
 if (!getToken()) {
@@ -23,7 +20,7 @@ if (!getToken()) {
 
 form?.addEventListener(
     "submit",
-    async function(event) {
+    async function (event) {
 
         event.preventDefault();
 
@@ -38,31 +35,30 @@ form?.addEventListener(
         }
 
 
+        const motivo =
+            document.getElementById("motivo").value.trim();
+
+        const tempoDisponivel =
+            document.getElementById("cuidados").value.trim();
+
+
+        if (!motivo || !tempoDisponivel) {
+
+            alert(
+                "Preencha todos os campos."
+            );
+
+            return;
+        }
+
+
         const dados = {
 
             animalID,
 
-            moradia:
-                document.getElementById(
-                    "moradia"
-                ).value,
+            motivo,
 
-            temQuintal:
-                /quintal/i.test(
-                    document.getElementById(
-                        "espaco"
-                    ).value
-                ),
-
-            experiencia:
-                document.getElementById(
-                    "experiencia"
-                ).value,
-
-            tempoDisponivel:
-                document.getElementById(
-                    "cuidados"
-                ).value
+            tempoDisponivel
 
         };
 
@@ -73,9 +69,7 @@ form?.addEventListener(
                 "/adocao/cadastrar",
                 {
                     method: "POST",
-
-                    body:
-                        JSON.stringify(dados)
+                    body: JSON.stringify(dados)
                 }
             );
 
@@ -92,6 +86,7 @@ form?.addEventListener(
         } catch (erro) {
 
             alert(erro.message);
+
         }
 
     }

@@ -44,127 +44,213 @@
 
             <h1>Meu perfil</h1>
 
+
             <form onsubmit="salvarConfiguracoes(event)">
 
                 <div class="card-body">
 
+                    <!-- NOME -->
+
                     <div class="campo">
-                        <label for="nomePerfil">Nome</label>
+
+                        <label for="nomePerfil">
+                            Nome
+                        </label>
 
                         <input
                             type="text"
                             id="nomePerfil"
                         >
+
                     </div>
 
 
+                    <!-- EMAIL -->
+
                     <div class="campo">
-                        <label for="emailPerfil">Email</label>
+
+                        <label for="emailPerfil">
+                            Email
+                        </label>
 
                         <input
                             type="email"
                             id="emailPerfil"
                             disabled
                         >
+
                     </div>
 
 
+                    <!-- TELEFONE -->
+
                     <div class="campo">
-                        <label for="telefonePerfil">Telefone</label>
+
+                        <label for="telefonePerfil">
+                            Telefone
+                        </label>
 
                         <input
                             type="tel"
                             id="telefonePerfil"
                         >
+
                     </div>
 
 
+                    <!-- CIDADE -->
+
                     <div class="campo">
-                        <label for="cidadePerfil">Cidade</label>
+
+                        <label for="cidadePerfil">
+                            Cidade
+                        </label>
 
                         <input
                             type="text"
                             id="cidadePerfil"
                         >
+
                     </div>
 
 
+                    <!-- CEP -->
+
                     <div class="campo">
-                        <label for="cepPerfil">CEP</label>
+
+                        <label for="cepPerfil">
+                            CEP
+                        </label>
 
                         <input
                             type="text"
                             id="cepPerfil"
                         >
+
                     </div>
 
 
+                    <!-- ENDEREÇO -->
+
                     <div class="campo">
-                        <label for="enderecoPerfil">Endereço</label>
+
+                        <label for="enderecoPerfil">
+                            Endereço
+                        </label>
 
                         <input
                             type="text"
                             id="enderecoPerfil"
                         >
+
                     </div>
 
 
+                    <!-- BAIRRO -->
+
                     <div class="campo">
-                        <label for="bairroPerfil">Bairro</label>
+
+                        <label for="bairroPerfil">
+                            Bairro
+                        </label>
 
                         <input
                             type="text"
                             id="bairroPerfil"
                         >
+
                     </div>
 
 
+                    <!-- NÚMERO -->
+
                     <div class="campo">
-                        <label for="numeroPerfil">Número</label>
+
+                        <label for="numeroPerfil">
+                            Número
+                        </label>
 
                         <input
                             type="text"
                             id="numeroPerfil"
                         >
+
                     </div>
 
 
+                    <!-- RESIDÊNCIA -->
+
                     <div class="campo">
-                        <label for="residenciaPerfil">Residência</label>
+
+                        <label for="residenciaPerfil">
+                            Residência
+                        </label>
 
                         <input
                             type="text"
                             id="residenciaPerfil"
                         >
+
                     </div>
 
 
+                    <!-- ESPAÇO -->
+
                     <div class="campo">
-                        <label for="espacoPerfil">Espaço</label>
+
+                        <label for="espacoPerfil">
+                            Espaço
+                        </label>
 
                         <input
                             type="text"
                             id="espacoPerfil"
                         >
+
                     </div>
 
 
+                    <!-- EXPERIÊNCIA -->
+
                     <div class="campo">
-                        <label for="rotinaPerfil">Rotina</label>
+
+                        <label for="experienciaPerfil">
+                            Experiência com animais
+                        </label>
+
+                        <input
+                            type="text"
+                            id="experienciaPerfil">
+
+                    </div>
+
+
+                    <!-- ROTINA -->
+
+                    <div class="campo">
+
+                        <label for="rotinaPerfil">
+                            Rotina
+                        </label>
 
                         <input
                             type="text"
                             id="rotinaPerfil"
                         >
+
                     </div>
 
+
+                    <!-- CRMV -->
 
                     <div
                         class="campo"
                         id="campoCrmv"
                     >
 
-                        <label for="crmvPerfil">CRMV</label>
+                        <label for="crmvPerfil">
+                            CRMV
+                        </label>
 
                         <input
                             type="text"
@@ -174,6 +260,8 @@
 
                     </div>
 
+
+                    <!-- SALVAR -->
 
                     <button
                         type="submit"
@@ -187,7 +275,12 @@
             </form>
 
 
+            <!-- BOTÕES DO PERFIL -->
+
             <div class="acoes-perfil">
+
+
+                <!-- ADOTANTE -->
 
                 <button
                     type="button"
@@ -196,7 +289,15 @@
                 >
                     Minhas solicitações
                 </button>
+<button
+    type="button"
+    onclick="window.location.href='favoritos.html'"
+    id="menuFavoritos"
+>
+    Meus favoritos
+</button>
 
+                <!-- CLÍNICA -->
 
                 <button
                     type="button"
@@ -215,6 +316,41 @@
                     Cadastrar animal
                 </button>
 
+
+                <!-- CONTATOS -->
+
+                <button
+                    type="button"
+                    onclick="window.location.href='contatos.html'"
+                    id="menuContatos"
+                >
+                    Contatos
+                </button>
+
+
+                <!-- NOSSA HISTÓRIA -->
+
+                <button
+                    type="button"
+                    onclick="window.location.href='historia.html'"
+                    id="menuHistoria"
+                >
+                    Nossa história
+                </button>
+
+
+                <!-- CONFIGURAÇÕES -->
+
+                <button
+                    type="button"
+                    onclick="window.location.href='configuracoes.html'"
+                    id="menuConfiguracoes"
+                >
+                    Configurações
+                </button>
+
+
+                <!-- SAIR -->
 
                 <button
                     type="button"
@@ -257,15 +393,22 @@
             usuario.tipo_usuario === "CLINICA"
         ) {
 
+            // Esconde funções do adotante
+
             menuAdotante.style.display = "none";
+
+
+            // Mostra funções da clínica
 
             menuClinica.style.display = "block";
 
             menuNovoAnimal.style.display = "block";
 
-            campoCrmv.style.display = "flex";
+            campoCrmv.style.display = "block";
 
         } else {
+
+            // Esconde funções da clínica
 
             menuClinica.style.display = "none";
 

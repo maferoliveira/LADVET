@@ -117,5 +117,35 @@ async function carregarPets() {
         `;
     }
 }
+function favoritar(elemento, event) {
+
+    event.stopPropagation();
+
+    const card = elemento.closest(".pet");
+
+    const petID = Number(card.dataset.pet);
+
+    let favoritos =
+        JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    if (favoritos.includes(petID)) {
+
+        favoritos = favoritos.filter(id => id !== petID);
+
+        elemento.textContent = "♡";
+
+    } else {
+
+        favoritos.push(petID);
+
+        elemento.textContent = "♥";
+
+    }
+
+    localStorage.setItem(
+        "favoritos",
+        JSON.stringify(favoritos)
+    );
+}
 
 carregarPets();

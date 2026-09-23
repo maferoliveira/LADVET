@@ -5,43 +5,81 @@
     font-family: Arial, sans-serif;
 }
 
+
 body {
     min-height: 100vh;
-    background: #eee3e3;
-    padding: 100px 20px 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4dddd,
+            #ead2d2,
+            #d9dced
+        );
+
+    padding: 20px 20px 50px;
 }
 
+
+/* =========================
+   TOPO
+========================= */
+
+.topo {
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    margin-bottom: 10px;
+}
+
+
 .voltar {
-    position: fixed;
+    position: absolute;
 
-    top: 20px;
-    left: 20px;
+    top: 0;
+    left: 0;
 
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
 
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
 
-    background: #c98b8b;
+    background: #c98d8f;
     color: white;
 
-    font-size: 20px;
+    font-size: 27px;
+
     cursor: pointer;
 
     z-index: 100;
+
+    transition: .2s;
 }
+
+
+.voltar:hover {
+    background: #b97b7e;
+
+    transform: translateY(-1px);
+}
+
 
 .logo {
-    position: fixed;
-
-    top: 15px;
-    right: 25px;
-
-    width: 150px;
-
-    z-index: 100;
+    width: 135px;
+    height: auto;
 }
+
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
     width: 780px;
@@ -50,6 +88,11 @@ body {
     margin: auto;
 }
 
+
+/* =========================
+   CARD DO ANIMAL
+========================= */
+
 .pet-detalhes {
     background: #cf8f8f;
 
@@ -57,14 +100,22 @@ body {
 
     padding: 30px;
 
-    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .12);
 }
+
+
+/* =========================
+   FOTO
+========================= */
 
 .imagem-pet {
     display: flex;
     justify-content: center;
+
     margin-bottom: 25px;
 }
+
 
 #fotoPet {
     width: 320px;
@@ -76,8 +127,14 @@ body {
 
     border-radius: 18px;
 
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, .15);
 }
+
+
+/* =========================
+   INFORMAÇÕES DO ANIMAL
+========================= */
 
 .informacoes-pet {
     background: #c88787;
@@ -89,6 +146,7 @@ body {
     border-radius: 18px;
 }
 
+
 #nomePet,
 #idadePet,
 #especiePet,
@@ -96,30 +154,43 @@ body {
 #temperamentoPet,
 #statusPet,
 #descricaoPet {
+
     margin-bottom: 12px;
+
     line-height: 1.5;
 }
 
+
 #nomePet {
     font-size: 25px;
+
     font-weight: bold;
 }
+
 
 #idadePet,
 #especiePet {
     font-size: 17px;
 }
 
+
 #sexoPet,
 #temperamentoPet,
 #statusPet,
 #descricaoPet {
+
     font-size: 15px;
 }
+
 
 #statusPet {
     font-weight: bold;
 }
+
+
+/* =========================
+   BOTÃO ADOTAR
+========================= */
 
 .adotar {
     display: block;
@@ -127,151 +198,425 @@ body {
     width: 280px;
     max-width: 100%;
 
-    height: 55px;
+    height: 50px;
 
     margin: 25px auto 0;
 
     border: none;
-    border-radius: 14px;
+
+    border-radius: 12px;
 
     background: #6f7ba3;
+
     color: white;
 
-    font-size: 17px;
+    font-size: 16px;
+
     font-weight: bold;
 
     cursor: pointer;
+
+    transition: .2s;
 }
+
 
 .adotar:hover {
     background: #5d688f;
+
     transform: translateY(-2px);
 }
 
+
+/* =========================
+   CARTEIRA DE VACINAÇÃO
+========================= */
+
 .carteira-vacinas {
+
     margin-top: 25px;
 
-    background: #c88787;
+    background: #f8eeee;
 
-    padding: 20px;
+    padding: 25px;
 
     border-radius: 18px;
 
-    color: white;
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, .08);
 }
 
-.carteira-vacinas h2 {
-    margin-bottom: 15px;
-}
 
-.tabela-vacinas {
+/* =========================
+   TABELA
+========================= */
+
+.tabela-container {
+
     width: 100%;
 
-    border-collapse: collapse;
-
-    background: rgba(255,255,255,.12);
+    overflow-x: auto;
 }
 
-.tabela-vacinas th,
-.tabela-vacinas td {
-    padding: 10px;
 
-    border: 1px solid rgba(255,255,255,.4);
+.tabela-vacinas {
 
-    text-align: left;
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    background: white;
+
+    border: 1px solid #decaca;
+
+    border-radius: 12px;
+
+    overflow: hidden;
 }
+
+
+/* CABEÇALHO */
 
 .tabela-vacinas th {
+
+    padding: 13px 12px;
+
+    background: #c98b8b;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-align: left;
+
+    white-space: nowrap;
+
+    border: none;
+}
+
+
+/* CÉLULAS */
+
+.tabela-vacinas td {
+
+    padding: 13px 12px;
+
+    background: white;
+
+    color: #555;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    vertical-align: middle;
+
+    border-top: 1px solid #eee1e1;
+}
+
+
+/* LINHAS ALTERNADAS */
+
+.tabela-vacinas tbody tr:nth-child(even) td {
+
+    background: #fdf8f8;
+}
+
+
+/* AO PASSAR O MOUSE */
+
+.tabela-vacinas tbody tr:hover td {
+
+    background: #f8eeee;
+}
+
+
+/* PRIMEIRA COLUNA */
+
+.tabela-vacinas td:first-child {
+
+    color: #7d5555;
+
     font-weight: bold;
 }
 
-.tabela-vacinas select {
-    width: 100%;
 
-    padding: 8px;
+/* =========================
+   BOTÃO CADASTRAR VACINA
+========================= */
 
-    border: none;
-    border-radius: 7px;
+.btn-cadastrar-vacina {
 
-    background: white;
-}
+    display: block;
 
-.btn-editar-vacinas,
-.btn-salvar-vacinas {
-    width: 100%;
+    width: auto;
 
-    padding: 12px;
+    min-width: 190px;
 
-    margin-top: 10px;
+    margin: 15px 0 0 auto;
+
+    padding: 11px 18px;
 
     border: none;
+
     border-radius: 10px;
 
     background: #6f7ba3;
+
     color: white;
+
+    font-size: 13px;
 
     font-weight: bold;
 
     cursor: pointer;
+
+    transition: .2s;
 }
 
-.btn-salvar-vacinas {
-    background: #5f9b76;
+
+.btn-cadastrar-vacina:hover {
+
+    background: #5d688f;
+
+    transform: translateY(-1px);
 }
 
-@media (max-width: 700px) {
 
-    body {
-        padding: 90px 12px 30px;
-    }
+/* =========================
+   AÇÕES DA VACINA
+========================= */
 
-    .logo {
-        width: 110px;
-        right: 15px;
-    }
+.acoes-vacina {
 
-    .pet-detalhes {
-        padding: 20px;
-    }
+    display: flex;
 
-    #fotoPet {
-        width: 100%;
-        height: 280px;
-    }
+    justify-content: center;
 
-    .informacoes-pet,
-    .carteira-vacinas {
-        padding: 18px;
-    }
+    align-items: center;
 
-    .adotar {
-        width: 100%;
-    }
-
-    .tabela-vacinas {
-        font-size: 12px;
-    }
+    gap: 6px;
 }
-.excluir {
+
+
+.acoes-vacina button {
+
+    padding: 7px 10px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+/* EDITAR */
+
+.btn-editar-vacina {
+
+    background: #6f7ba3;
+}
+
+
+.btn-editar-vacina:hover {
+
+    background: #5d688f;
+}
+
+
+/* EXCLUIR */
+
+.btn-excluir-vacina {
+
+    background: #9b6266;
+}
+
+
+.btn-excluir-vacina:hover {
+
+    background: #824f53;
+}
+
+
+/* =========================
+   CAMPOS EDITÁVEIS
+========================= */
+
+.tabela-vacinas input,
+.tabela-vacinas select {
+
     width: 100%;
+
+    min-width: 90px;
+
+    padding: 7px 8px;
+
+    border: 1px solid #d8c5c5;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #555;
+
+    font-size: 12px;
+
+    outline: none;
+}
+
+
+.tabela-vacinas input:focus,
+.tabela-vacinas select:focus {
+
+    border-color: #c98b8b;
+
+    box-shadow:
+        0 0 0 2px rgba(201, 139, 139, .15);
+}
+
+
+.tabela-vacinas input::placeholder {
+
+    color: #aaa;
+}
+
+
+/* =========================
+   BOTÃO EXCLUIR ANIMAL
+========================= */
+
+.excluir {
+
+    width: 100%;
+
     margin-top: 12px;
 
     padding: 13px;
 
     border: none;
+
     border-radius: 10px;
 
     background: #9b6266;
+
     color: white;
 
     font-size: 14px;
+
     font-weight: bold;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: .2s;
 }
 
+
 .excluir:hover {
+
     background: #824f53;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding:
+            10px
+            12px
+            30px;
+    }
+
+
+    .topo {
+
+        height: 80px;
+    }
+
+
+    .logo {
+
+        width: 110px;
+    }
+
+
+    .voltar {
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 24px;
+    }
+
+
+    .pet-detalhes {
+
+        padding: 20px;
+    }
+
+
+    #fotoPet {
+
+        width: 100%;
+
+        height: 280px;
+    }
+
+
+    .informacoes-pet {
+
+        padding: 18px;
+    }
+
+
+    .carteira-vacinas {
+
+        padding: 18px;
+    }
+
+
+    .adotar {
+
+        width: 100%;
+    }
+
+
+    .tabela-vacinas {
+
+        min-width: 700px;
+    }
+
+
+    .tabela-vacinas th,
+    .tabela-vacinas td {
+
+        padding: 9px;
+
+        font-size: 12px;
+    }
+
+
+    .btn-cadastrar-vacina {
+
+        width: 100%;
+    }
+
 }

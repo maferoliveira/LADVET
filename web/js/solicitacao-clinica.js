@@ -70,6 +70,26 @@ async function carregarSolicitacoesClinica() {
                     </p>
 
                     <p>
+                        <strong>CEP:</strong>
+                        ${pedido.adotante?.cep || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Endereço:</strong>
+                        ${pedido.adotante?.endereco || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Bairro:</strong>
+                        ${pedido.adotante?.bairro || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Número:</strong>
+                        ${pedido.adotante?.numero || "-"}
+                    </p>
+
+                    <p>
                         <strong>Cidade:</strong>
                         ${
                             pedido.adotante?.cidade ||
@@ -88,6 +108,21 @@ async function carregarSolicitacoesClinica() {
                             pedido.experiencia ||
                             "-"
                         }
+                    </p>
+
+                    <p>
+                        <strong>Espaço:</strong>
+                        ${pedido.adotante?.espaco || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Rotina:</strong>
+                        ${pedido.adotante?.rotina || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Motivo da adoção:</strong>
+                        ${pedido.motivo || "-"}
                     </p>
 
                     <p>

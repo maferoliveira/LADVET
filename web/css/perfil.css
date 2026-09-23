@@ -16,11 +16,9 @@ body {
 .topo {
     width: 100%;
     height: 115px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: relative;
 }
 
@@ -32,18 +30,13 @@ body {
     position: absolute;
     left: 25px;
     top: 25px;
-
     width: 50px;
     height: 50px;
-
     border: none;
     border-radius: 14px;
-
     background: #c98d8f;
     color: white;
-
     font-size: 27px;
-
     cursor: pointer;
 }
 
@@ -51,66 +44,58 @@ body {
     background: #b97b7e;
 }
 
+
 /* CONTAINER */
 
 .container {
     width: 900px;
     max-width: 92%;
-
     margin: 25px auto 50px;
 }
+
 
 /* CARD */
 
 .card {
     background: #d18f91;
-
     border-radius: 25px;
-
     padding: 0;
-
     overflow: hidden;
-
     box-shadow: 0 10px 25px rgba(80, 50, 50, 0.15);
 }
+
 
 /* TÍTULO */
 
 .card h1 {
     padding: 25px 30px 18px;
-
     font-size: 30px;
-
     color: #171717;
-
     background: #d18f91;
 }
+
 
 /* ÁREA DO FORMULÁRIO */
 
 .card-body {
     padding: 10px 30px 25px;
-
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     column-gap: 25px;
     row-gap: 16px;
 }
+
 
 /* LABELS */
 
 .card-body label {
     display: block;
-
     margin-bottom: 6px;
-
     color: #ffffff;
-
     font-size: 15px;
     font-weight: bold;
 }
+
 
 /* INPUTS */
 
@@ -118,18 +103,12 @@ body {
 .card-body select {
     width: 100%;
     height: 43px;
-
     padding: 0 13px;
-
     border: none;
     border-radius: 9px;
-
     background: #ffffff;
-
     color: #444;
-
     font-size: 14px;
-
     outline: none;
 }
 
@@ -138,6 +117,7 @@ body {
     box-shadow: 0 0 0 3px rgba(111, 123, 163, 0.35);
 }
 
+
 /* CAMPOS QUE NÃO DEVEM FICAR EDITÁVEIS */
 
 #emailPerfil {
@@ -145,27 +125,26 @@ body {
     color: #777;
 }
 
+#crmvPerfil {
+    background: #eeeeee;
+    color: #777;
+}
+
+
 /* BOTÃO SALVAR */
 
 .btn-salvar {
     grid-column: 1 / -1;
-
     width: 100%;
     height: 58px;
-
     margin-top: 5px;
-
     border: none;
     border-radius: 15px;
-
     background: #7180ae;
     color: white;
-
     font-size: 17px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
@@ -173,45 +152,46 @@ body {
     background: #61709d;
 }
 
-/* ÁREA DOS BOTÕES INFERIORES */
+
+/* ÁREA DOS BOTÕES DO PERFIL */
 
 .acoes-perfil {
-    grid-column: 1 / -1;
-
-    display: flex;
-    align-items: center;
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-
-    padding-top: 3px;
+    padding: 0 30px 25px;
+    background: #d18f91;
 }
+
 
 /* BOTÕES DO MENU */
 
 .acoes-perfil button {
+    width: 100%;
+    min-height: 42px;
     border: none;
-
-    padding: 9px 13px;
-
-    border-radius: 7px;
-
+    border-radius: 9px;
+    padding: 10px 12px;
     background: #ffffff;
-    color: #444;
-
+    color: #70546f;
     font-size: 13px;
-
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .acoes-perfil button:hover {
-    background: #eee7e7;
+    background: #f1e8e8;
+    transform: translateY(-1px);
 }
+
 
 /* CAMPOS DE CLÍNICA */
 
 #campoCrmv {
     display: none;
 }
+
 
 /* MENUS */
 
@@ -220,6 +200,7 @@ body {
 #menuNovoAnimal {
     display: none;
 }
+
 
 /* RESPONSIVO */
 
@@ -236,7 +217,6 @@ body {
     .voltar {
         left: 15px;
         top: 18px;
-
         width: 45px;
         height: 45px;
     }
@@ -253,45 +233,22 @@ body {
 
     .card-body {
         grid-template-columns: 1fr;
-
         padding: 10px 20px 22px;
     }
 
-    .btn-salvar,
-    .acoes-perfil {
+    .btn-salvar {
         grid-column: 1;
     }
 
     .acoes-perfil {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+        grid-column: 1;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0 20px 25px;
+    }
 
-    padding: 0 30px 25px;
-
-    background: #d18f91;
-}
-
-.acoes-perfil button {
-    border: none;
-    border-radius: 9px;
-
-    padding: 10px 16px;
-
-    background: #ffffff;
-    color: #70546f;
-
-    font-size: 13px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.acoes-perfil button:hover {
-    background: #f1e8e8;
-    transform: translateY(-1px);
-}
+    .acoes-perfil button {
+        font-size: 13px;
+        padding: 11px 8px;
+    }
 }

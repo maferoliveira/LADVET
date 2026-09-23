@@ -2,15 +2,12 @@
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Animal</title>
 
     <link rel="stylesheet" href="../css/pet.css">
-
 </head>
 
 <body>
@@ -21,27 +18,33 @@
             ↩
         </button>
 
-        <img src="../img/Logo.png" class="logo" alt="LADVET">
+        <img
+            src="../img/Logo.png"
+            class="logo"
+            alt="LADVET">
 
     </header>
 
 
     <main class="container">
 
+        <!-- INFORMAÇÕES DO ANIMAL -->
+
         <section class="pet-detalhes">
 
             <div class="imagem-pet">
 
-                <img id="fotoPet" src="../img/user.png" alt="Foto do animal">
+                <img
+                    id="fotoPet"
+                    src="../img/user.png"
+                    alt="Foto do animal">
 
             </div>
 
 
             <div class="informacoes-pet">
 
-                <h1 id="nomePet">
-                    Carregando...
-                </h1>
+                <h1 id="nomePet"></h1>
 
                 <p id="idadePet"></p>
 
@@ -53,15 +56,26 @@
 
                 <p id="statusPet"></p>
 
-
                 <p id="descricaoPet"></p>
 
 
-                <button class="adotar" type="button">
+                <button
+                    class="adotar"
+                    type="button">
+
                     Solicitar adoção
+
                 </button>
-                <button class="adotar" type="button">
-                    Solicitar adoção
+
+
+                <button
+                    class="excluir"
+                    id="btnExcluir"
+                    type="button"
+                    style="display: none;">
+
+                    Excluir animal
+
                 </button>
 
             </div>
@@ -69,15 +83,71 @@
         </section>
 
 
-        <section id="carteiraVacinas" class="carteira-vacinas">
+        <!-- CARTEIRA DE VACINAÇÃO -->
 
-            <h3>
-                Carteira de vacinação
-            </h3>
+        <section
+            id="carteiraVacinas"
+            class="carteira-vacinas">
 
-            <p>
-                Carregando...
-            </p>
+            <div class="tabela-container">
+
+                <table class="tabela-vacinas">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Vacina
+                            </th>
+
+                            <th>
+                                Aplicação
+                            </th>
+
+                            <th>
+                                Próxima dose
+                            </th>
+
+                            <th>
+                                Veterinário
+                            </th>
+
+                            <th>
+                                Lote
+                            </th>
+
+                            <th
+                                id="colunaAcoes"
+                                style="display: none;">
+
+                                Ações
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tabelaVacinasBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <button
+                class="btn-cadastrar-vacina"
+                id="btnCadastrarVacina"
+                type="button"
+                style="display: none;">
+
+                + Cadastrar vacina
+
+            </button>
 
         </section>
 
@@ -85,7 +155,6 @@
 
 
     <script src="../js/script.js"></script>
-
     <script src="../js/pet.js"></script>
 
 </body>

@@ -22,6 +22,7 @@ model Usuario {
   //apenas adotante
   residencia   String?
   espaco       String?
+  experiencia  String?
   rotina       String?
 
   //apenas clinica
@@ -42,7 +43,7 @@ model Animal {
   porte        String @default("Não informado")
   temperamento String?
   descricao    String?
-  foto         String
+  foto String @db.LongText
   status       statusAnimal @default(DISPONIVEL)
 
   usuarioID Int
@@ -65,17 +66,19 @@ model Vacina {
 }
 
 model Adocao {
+
   id              Int          @id @default(autoincrement())
   moradia         String
   temQuintal      Boolean
   experiencia     String?
+  motivo          String
   tempoDisponivel String
-  status          statusAdocao @default(PENDENTE)
 
-  animalID   Int
-  adotanteID Int
-  animal     Animal  @relation(fields: [animalID], references: [id])
-  adotante   Usuario @relation(fields: [adotanteID], references: [id])
+  status          statusAdocao @default(PENDENTE)
+  animalID        Int
+  adotanteID      Int
+  animal          Animal       @relation(fields: [animalID], references: [id])
+  adotante        Usuario      @relation(fields: [adotanteID], references: [id])
 }
 
 enum tipoUsuario {

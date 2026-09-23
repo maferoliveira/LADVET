@@ -1,191 +1,122 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-
-body{
-
-    background:#eadede;
-
-    min-height:100vh;
-
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f4dddd, #ead2d2, #d9dced);
+    color: #333;
+    padding-bottom: 50px;
 }
 
-
-
-.tela{
-
-    width:100%;
-
-    min-height:100vh;
-
-    padding-bottom:40px;
-
-}
-.topo{
-
-    width:100%;
-
-    height:90px;
-
-    background:#6f7ba3;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    position:relative;
-
+.topo {
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-
-
-.topo h1{
-
-    color:white;
-
-    font-size:24px;
-
+.logo {
+    width: 135px;
+    height: auto;
 }
 
-
-
-.topo button{
-
-    position:absolute;
-
-    left:20px;
-
-    width:45px;
-
-    height:45px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:white;
-
-    font-size:22px;
-
-    cursor:pointer;
-
+.voltar {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 14px;
+    background: #c98d8f;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+    transition: .2s;
 }
 
-#listaStatus{
-
-    width:90%;
-
-    max-width:600px;
-
-    margin:35px auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
+.voltar:hover {
+    background: #b97b7e;
+    transform: translateY(-1px);
 }
 
-.card{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-
+.container {
+    width: 900px;
+    max-width: 92%;
+    margin: 10px auto 50px;
 }
 
-
-
-.card h2{
-
-    color:#6f7ba3;
-
-    margin-bottom:15px;
-
+.container > h1 {
+    color: #4f3f4f;
+    font-size: 30px;
+    margin-bottom: 25px;
 }
 
-
-
-.card p{
-
-    color:#555;
-
-    margin:8px 0;
-
+#listaStatus {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.status{
-
-    margin-top:20px;
-
-    padding:15px;
-
-    border-radius:15px;
-
-    font-weight:bold;
-
-    text-align:center;
-
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(80, 50, 50, .13);
 }
 
-.Pendente{
-
-    background:#fff2b8;
-
-    color:#9b7a00;
-
+.card h2 {
+    color: #6f7ba3;
+    margin-bottom: 15px;
 }
 
-.Aceito{
-
-    background:#b8e6b8;
-
-    color:#287228;
-
-}
-.Recusado{
-
-    background:#f3b5b5;
-
-    color:#a12d2d;
-
-}
-.vazio{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    color:#777;
-
+.card p {
+    color: #555;
+    margin: 8px 0;
+    line-height: 1.4;
 }
 
-@media(max-width:600px){
-.topo h1{
-
-    font-size:20px;
-
-}
-#listaStatus{
-
-    width:95%;
-
+.status {
+    margin-top: 20px;
+    padding: 13px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
 }
 
+.Pendente {
+    background: #fff2b8;
+    color: #9b7a00;
+}
 
+.Aceito {
+    background: #b8e6b8;
+    color: #287228;
+}
+
+.Recusado {
+    background: #f3b5b5;
+    color: #a12d2d;
+}
+
+.vazio {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    color: #777;
+}
+
+@media (max-width: 600px) {
+    .topo { height: 95px; }
+    .logo { width: 110px; }
+    .voltar { left: 15px; top: 18px; width: 45px; height: 45px; }
+    .container { max-width: 94%; }
+    .container > h1 { font-size: 25px; }
 }

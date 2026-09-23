@@ -2,13 +2,29 @@ const prisma = require("../data/prisma");
 const jsonwebtoken = require("jsonwebtoken");
 
 function validarUsuario(dados) {
-    const { nome, email, senha, tipo_usuario, telefone, cidade } = dados;
+    const {
+        nome,
+        email,
+        senha,
+        tipo_usuario,
+        telefone,
+        cidade
+    } = dados;
 
-    if (!nome || !email || !senha || !tipo_usuario || !telefone || !cidade) {
+    if (
+        !nome ||
+        !email ||
+        !senha ||
+        !tipo_usuario ||
+        !telefone ||
+        !cidade
+    ) {
         return "Campos obrigatórios faltando";
     }
 
-    if (!email.includes("@")) return "Email inválido";
+    if (!email.includes("@")) {
+        return "Email inválido";
+    }
 
     if (!["ADOTANTE", "CLINICA"].includes(tipo_usuario)) {
         return "Tipo de usuário inválido";
@@ -17,8 +33,9 @@ function validarUsuario(dados) {
     return null;
 }
 
-const login = async (req, res) => {
 
+// LOGIN
+const login = async (req, res) => {
     const email = req.body.email?.trim().toLowerCase();
     const senha = req.body.senha;
 
@@ -29,7 +46,6 @@ const login = async (req, res) => {
     }
 
     try {
-
         const usuario = await prisma.usuario.findUnique({
             where: {
                 email: email
@@ -54,7 +70,10 @@ const login = async (req, res) => {
             }
         );
 
-        const { senha: _, ...usuarioSemSenha } = usuario;
+        const {
+            senha: _,
+            ...usuarioSemSenha
+        } = usuario;
 
         return res.status(200).json({
             msg: "Login realizado com sucesso",
@@ -63,7 +82,6 @@ const login = async (req, res) => {
         });
 
     } catch (error) {
-
         console.error(error);
 
         return res.status(500).json({
@@ -72,16 +90,27 @@ const login = async (req, res) => {
     }
 };
 
+
+// CADASTRAR
 const cadastrar = async (req, res) => {
-    const dados = { ...req.body };
+    const dados = {
+        ...req.body
+    };
 
     const erro = validarUsuario(dados);
+
     if (erro) {
-        return res.status(400).json({ msg: erro });
+        return res.status(400).json({
+            msg: erro
+        });
     }
 
     if (dados.tipo_usuario === "ADOTANTE") {
-        if (!dados.residencia || !dados.espaco || !dados.rotina) {
+        if (
+            !dados.residencia ||
+            !dados.espaco ||
+            !dados.rotina
+        ) {
             return res.status(400).json({
                 msg: "Preencha todos os dados necessários do adotante."
             });
@@ -104,39 +133,51 @@ const cadastrar = async (req, res) => {
                 senha: dados.senha,
                 telefone: dados.telefone,
                 cidade: dados.cidade,
-
                 cep: dados.cep || null,
                 endereco: dados.endereco || null,
                 bairro: dados.bairro || null,
                 numero: dados.numero || null,
 
                 // Apenas adotante
-                residencia: dados.tipo_usuario === "ADOTANTE"
-                    ? dados.residencia
-                    : null,
+                residencia:
+                    dados.tipo_usuario === "ADOTANTE"
+                        ? dados.residencia
+                        : null,
 
-                espaco: dados.tipo_usuario === "ADOTANTE"
-                    ? dados.espaco
-                    : null,
+                espaco:
+                    dados.tipo_usuario === "ADOTANTE"
+                        ? dados.espaco
+                        : null,
 
-                rotina: dados.tipo_usuario === "ADOTANTE"
-                    ? dados.rotina
-                    : null,
+                experiencia:
+                    dados.tipo_usuario === "ADOTANTE"
+                        ? dados.experiencia || null
+                        : null,
+
+                rotina:
+                    dados.tipo_usuario === "ADOTANTE"
+                        ? dados.rotina
+                        : null,
 
                 // Apenas clínica
-                crmv: dados.tipo_usuario === "CLINICA"
-                    ? dados.crmv
-                    : null,
+                crmv:
+                    dados.tipo_usuario === "CLINICA"
+                        ? dados.crmv
+                        : null,
 
-                // Para testes
-                validado: dados.tipo_usuario === "CLINICA"
-                    ? true
-                    : false,
+                validado:
+                    dados.tipo_usuario === "CLINICA"
+                        ? true
+                        : false,
 
                 tipo_usuario: dados.tipo_usuario
             }
         });
-        const { senha: _, ...usuarioSemSenha } = novoUsuario;
+
+        const {
+            senha: _,
+            ...usuarioSemSenha
+        } = novoUsuario;
 
         return res.status(201).json(usuarioSemSenha);
 
@@ -155,6 +196,8 @@ const cadastrar = async (req, res) => {
     }
 };
 
+
+// LISTAR
 const listar = async (req, res) => {
     try {
         const usuarios = await prisma.usuario.findMany({
@@ -170,6 +213,7 @@ const listar = async (req, res) => {
                 numero: true,
                 residencia: true,
                 espaco: true,
+                experiencia: true,
                 rotina: true,
                 crmv: true,
                 validado: true,
@@ -178,14 +222,18 @@ const listar = async (req, res) => {
         });
 
         return res.status(200).json(usuarios);
+
     } catch (error) {
         console.error(error);
+
         return res.status(500).json({
             msg: "Erro ao listar usuários."
         });
     }
 };
 
+
+// BUSCAR
 const buscar = async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -200,6 +248,7 @@ const buscar = async (req, res) => {
             where: {
                 id: id
             },
+
             select: {
                 id: true,
                 nome: true,
@@ -212,6 +261,7 @@ const buscar = async (req, res) => {
                 numero: true,
                 residencia: true,
                 espaco: true,
+                experiencia: true,
                 rotina: true,
                 crmv: true,
                 validado: true,
@@ -236,6 +286,8 @@ const buscar = async (req, res) => {
     }
 };
 
+
+// ATUALIZAR
 const atualizar = async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -263,6 +315,7 @@ const atualizar = async (req, res) => {
             numero,
             residencia,
             espaco,
+            experiencia,
             rotina
         } = req.body;
 
@@ -277,12 +330,17 @@ const atualizar = async (req, res) => {
             numero,
             residencia,
             espaco,
+            experiencia,
             rotina
         };
 
         const item = await prisma.usuario.update({
-            where: { id },
+            where: {
+                id: id
+            },
+
             data: dados,
+
             select: {
                 id: true,
                 nome: true,
@@ -295,6 +353,7 @@ const atualizar = async (req, res) => {
                 numero: true,
                 residencia: true,
                 espaco: true,
+                experiencia: true,
                 rotina: true,
                 crmv: true,
                 validado: true,
@@ -319,6 +378,8 @@ const atualizar = async (req, res) => {
     }
 };
 
+
+// EXCLUIR
 const excluir = async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -330,16 +391,21 @@ const excluir = async (req, res) => {
         }
 
         if (req.usuario.tipo_usuario !== "CLINICA") {
-    return res.status(403).json({
-        msg: "Apenas a clínica pode excluir usuários."
-    });
-}
+            return res.status(403).json({
+                msg: "Apenas a clínica pode excluir usuários."
+            });
+        }
 
         const item = await prisma.usuario.delete({
-            where: { id }
+            where: {
+                id: id
+            }
         });
 
-        const { senha: _, ...usuarioSemSenha } = item;
+        const {
+            senha: _,
+            ...usuarioSemSenha
+        } = item;
 
         return res.status(200).json(usuarioSemSenha);
 
@@ -351,6 +417,7 @@ const excluir = async (req, res) => {
         });
     }
 };
+
 
 module.exports = {
     validarUsuario,
