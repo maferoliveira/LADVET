@@ -20,25 +20,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Baixar arquivos do projeto
+      - name: Baixar arquivos
         uses: actions/checkout@v6
 
-      - name: Configurar GitHub Pages
+      - name: Configurar Pages
         uses: actions/configure-pages@v5
 
       - name: Montar site
         run: |
           mkdir site
-          cp -r web/html/* site/
-          cp -r web/css site/
-          cp -r web/js site/
-          cp -r web/img site/
+          cp web/html/index.html site/
+          cp -r web/css site/css
+          cp -r web/js site/js
+          cp -r web/img site/img
 
       - name: Enviar site
         uses: actions/upload-pages-artifact@v4
         with:
           path: './site'
 
-      - name: Publicar site
+      - name: Publicar
         id: deployment
         uses: actions/deploy-pages@v4
