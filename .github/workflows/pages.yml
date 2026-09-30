@@ -26,10 +26,18 @@ jobs:
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Enviar pasta web
+      - name: Montar site
+        run: |
+          mkdir site
+          cp -r web/html/* site/
+          cp -r web/css site/
+          cp -r web/js site/
+          cp -r web/img site/
+
+      - name: Enviar site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: './web/html'
+          path: './site'
 
       - name: Publicar site
         id: deployment
