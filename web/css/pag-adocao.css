@@ -1,68 +1,83 @@
+/* FONTE */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+/* FUNDO */
 body {
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f4dddd, #ead2d2, #d9dced);
+    background: linear-gradient(135deg, #aaafcf, #c59e9e, #aaafcf);
     color: #333;
 }
 
-
-/* ==================== CABEÇALHO ==================== */
-
+/* CABEÇALHO */
 .topo {
     width: 100%;
-    height: 110px;
+    min-height: 110px;
+    padding: 15px 30px;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    justify-content: center;
+    gap: 15px;
 
     position: relative;
 }
 
-.logo {
-    width: 135px;
-    height: auto;
-}
-
+/* BOTÕES DA ESQUERDA */
 .lado-esquerdo {
-    position: absolute;
-    left: 30px;
-    top: 30px;
+    grid-column: 1;
+    grid-row: 1;
 
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 10px;
+
+    min-width: 0;
+    position: static;
 }
 
+/* LOGO CENTRALIZADA */
+.logo {
+    grid-column: 2;
+    grid-row: 1;
 
-/* ==================== BOTÕES DO TOPO ==================== */
+    display: block;
+    width: clamp(100px, 15vw, 160px);
+    max-width: 100%;
+    height: auto;
 
+    object-fit: contain;
+    justify-self: center;
+    align-self: center;
+}
+
+/* BOTÕES DO CABEÇALHO */
 .voltar,
 .perfil {
     width: 48px;
     height: 48px;
+    flex-shrink: 0;
 
     border: none;
     border-radius: 13px;
-
     cursor: pointer;
 
     transition: 0.2s;
 }
 
-
-/* Voltar */
-
+/* VOLTAR */
 .voltar {
     background: #c98d8f;
     color: white;
-
     font-size: 25px;
 
     display: flex;
@@ -75,22 +90,19 @@ body {
     transform: translateY(-2px);
 }
 
-
-/* Perfil */
-
+/* PERFIL */
 .perfil {
     padding: 0;
     background: white;
-
     overflow: hidden;
 
     box-shadow: 0 3px 10px rgba(80, 50, 50, 0.12);
 }
 
 .perfil img {
+    display: block;
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 }
 
@@ -99,15 +111,19 @@ body {
     box-shadow: 0 5px 14px rgba(80, 50, 50, 0.18);
 }
 
-
-/* Botão novo animal */
-
+/* CADASTRAR ANIMAL */
 .novo-animal {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+
     display: none;
+    align-items: center;
+    justify-content: center;
 
-    height: 48px;
-
-    padding: 0 17px;
+    min-height: 48px;
+    max-width: 100%;
+    padding: 10px 17px;
 
     border: none;
     border-radius: 13px;
@@ -116,10 +132,10 @@ body {
     color: white;
 
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
+    text-align: center;
 
     cursor: pointer;
-
     transition: 0.2s;
 }
 
@@ -128,119 +144,92 @@ body {
     transform: translateY(-2px);
 }
 
-
-/* ==================== CONTEÚDO ==================== */
-
+/* CONTEÚDO */
 .container {
     width: 100%;
     max-width: 1150px;
-
     margin: 10px auto 60px;
-
     padding: 0 30px;
 }
 
+/* TÍTULO */
 .titulo {
     margin-bottom: 28px;
 }
 
 .titulo h1 {
     color: #4f3f4f;
-
     font-size: 32px;
-    font-weight: bold;
-
+    font-weight: 700;
     margin-bottom: 6px;
 }
 
 .titulo p {
     color: #70546f;
-
     font-size: 15px;
+    line-height: 1.6;
 }
 
-
-/* ==================== LISTA DE PETS ==================== */
-
+/* LISTA DE ANIMAIS */
 .lista {
     display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 25px;
 }
 
-
-/* ==================== CARD ==================== */
-
+/* CARD DO ANIMAL */
 .pet {
     position: relative;
+    min-width: 0;
 
     background: white;
-
     border-radius: 20px;
-
     overflow: hidden;
 
-    box-shadow: 0 6px 18px rgba(80, 50, 50, 0.13);
-
+    box-shadow: 0 6px 18px #50323221;
     cursor: pointer;
 
-    transition: 0.25s;
+    transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .pet:hover {
     transform: translateY(-5px);
-
     box-shadow: 0 12px 25px rgba(80, 50, 50, 0.20);
 }
 
-
-/* Imagem do pet */
-
+/* IMAGEM DO ANIMAL */
 .pet > img {
+    display: block;
     width: 100%;
     height: 225px;
-
-    display: block;
-
     object-fit: cover;
-
     background: #eee;
 }
 
-
-/* ==================== INFORMAÇÕES ==================== */
-
+/* INFORMAÇÕES */
 .info {
     min-height: 115px;
-
+    background-color: #ddcad1;
     padding: 17px 18px 22px;
 }
 
 .info h3 {
-    color: #4f3f4f;
-
+    color: #533545;
     font-size: 20px;
-    font-weight: bold;
-
+    font-weight: 700;
     margin-bottom: 9px;
 }
 
 .info p {
-    color: #666;
-
+    color: #362328;
     font-size: 14px;
-
     margin-bottom: 5px;
+    line-height: 1.5;
 }
 
-
-/* ==================== FAVORITO ==================== */
-
+/* FAVORITOS */
 .card-footer {
     position: absolute;
-
     right: 14px;
     bottom: 14px;
 
@@ -252,95 +241,98 @@ body {
     justify-content: center;
 
     border-radius: 50%;
-
     background: #f1dddd;
     color: #a56f73;
 
     font-size: 24px;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
 .card-footer:hover {
     background: #e8caca;
-
     transform: scale(1.08);
 }
 
-
-/* ==================== MENSAGEM ==================== */
-
+/* MENSAGEM DA LISTA */
 .lista > p {
     grid-column: 1 / -1;
-
     width: 100%;
 
     text-align: center;
-
     background: white;
-
     border-radius: 18px;
-
     padding: 45px 20px;
 
     color: #70546f;
-
     font-size: 16px;
 
     box-shadow: 0 6px 18px rgba(80, 50, 50, 0.10);
 }
 
-
-/* ==================== TABLET ==================== */
-
+/* TABLET */
 @media (max-width: 900px) {
-
     .lista {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .pet > img {
         height: 210px;
     }
-}
-
-
-/* ==================== CELULAR ==================== */
-
-@media (max-width: 600px) {
 
     .topo {
-        height: 90px;
-    }
-
-    .logo {
-        width: 110px;
-    }
-
-    .lado-esquerdo {
-        left: 15px;
-        top: 20px;
-        gap: 7px;
+        padding: 15px 20px;
+        gap: 10px;
     }
 
     .voltar,
     .perfil {
-        width: 43px;
-        height: 43px;
-    }
-
-    .voltar {
-        font-size: 22px;
+        width: 44px;
+        height: 44px;
     }
 
     .novo-animal {
-        height: 43px;
-
-        padding: 0 11px;
-
+        padding: 10px 12px;
         font-size: 12px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+    .topo {
+        min-height: 85px;
+        padding: 12px 10px;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 5px;
+    }
+
+    .lado-esquerdo {
+        gap: 5px;
+    }
+
+    .logo {
+        width: clamp(75px, 23vw, 110px);
+    }
+
+    .voltar,
+    .perfil {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+
+    .voltar {
+        font-size: 21px;
+    }
+
+    .novo-animal {
+        min-height: 36px;
+        padding: 7px 8px;
+        font-size: 10px;
+        line-height: 1.3;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        border-radius: 10px;
     }
 
     .container {
@@ -361,11 +353,38 @@ body {
     }
 
     .lista {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 18px;
     }
 
     .pet > img {
         height: 230px;
+    }
+}
+
+/* TELAS MUITO PEQUENAS */
+@media (max-width: 360px) {
+    .topo {
+        padding: 10px 6px;
+        gap: 4px;
+    }
+
+    .lado-esquerdo {
+        gap: 4px;
+    }
+
+    .voltar,
+    .perfil {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo {
+        width: 72px;
+    }
+
+    .novo-animal {
+        padding: 6px;
+        font-size: 9px;
     }
 }
