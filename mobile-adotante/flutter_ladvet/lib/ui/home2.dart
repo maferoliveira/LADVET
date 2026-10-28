@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ladvet/ui/login.dart';
 
-import 'loginvet.dart';
+import 'login.dart';
 
 class Home2Page extends StatelessWidget {
   const Home2Page({super.key});
@@ -75,7 +75,7 @@ class Home2Page extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 190),
 
                 const Text(
                   'Seja bem-vindo!',
@@ -86,10 +86,33 @@ class Home2Page extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 200),
+                const SizedBox(height: 15),
 
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(135, 247, 244, 243),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: const Text(
+                    'Este app é exclusivo para você que sonha em ter um amigo!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 24, 24, 70),
+                    ),
+                  ),
+                ),
+
+               const SizedBox(height: 35),
                 _OptionCard(
-                  label: 'Sou adotante',
+                  label: 'Doação',
                   imagePath: 'adotante.jpg',
                   onTap: () {
                     Navigator.push(
@@ -97,19 +120,6 @@ class Home2Page extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => const LoginPage(),
                       ),
-                    );
-                  },
-                ),
-
-                const SizedBox(height: 40),
-
-                _OptionCard(
-                  label: 'Sou veterinário',
-                  imagePath: 'veterinario.png',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginVet()),
                     );
                   },
                 ),
@@ -198,7 +208,7 @@ class _OptionCard extends StatelessWidget {
 
                       errorBuilder: (context, error, stackTrace) => Icon(
                         Icons.pets,
-                        color: const Color(0xFFD98B7A),
+                        color: const Color.fromRGBO(217, 139, 122, 1),
                         size: 30,
                       ),
                     ),

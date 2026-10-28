@@ -1,5 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'cadastroanimal.dart';
+import 'package:flutter_ladvet/ui/contato.dart';
 
 const Color rosaFundo = Color(0xFFF3DEDE);
 const Color rosa = Color(0xFFD18F92);
@@ -11,18 +12,21 @@ class ConfiguracaoPage extends StatefulWidget {
   const ConfiguracaoPage({super.key});
 
   @override
-  State<ConfiguracaoPage> createState() => _ConfiguracaoPageState();
+  State<ConfiguracaoPage> createState() =>
+      _ConfiguracaoPageState();
 }
 
 class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final nomeController = TextEditingController(text: 'Marina Defendi');
-  final emailController = TextEditingController(
-    text: 'marinadefendi771@gmail.com',
-  );
-  final telefoneController = TextEditingController(text: '19994521154');
-  final cidadeController = TextEditingController(text: 'Pedreira');
+  final nomeController =
+      TextEditingController(text: 'Marina Defendi');
+  final emailController =
+      TextEditingController(text: 'marinadefendi771@gmail.com');
+  final telefoneController =
+      TextEditingController(text: '19994521154');
+  final cidadeController =
+      TextEditingController(text: 'Pedreira');
   final cepController = TextEditingController();
   final enderecoController = TextEditingController();
   final bairroController = TextEditingController();
@@ -71,10 +75,15 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
         TextFormField(
           controller: controller,
           readOnly: somenteLeitura,
-          style: const TextStyle(color: Color(0xFF303030), fontSize: 14),
+          style: const TextStyle(
+            color: Color(0xFF303030),
+            fontSize: 14,
+          ),
           decoration: InputDecoration(
             filled: true,
-            fillColor: somenteLeitura ? const Color(0xFFEEEEEE) : Colors.white,
+            fillColor: somenteLeitura
+                ? const Color(0xFFEEEEEE)
+                : Colors.white,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 15,
               vertical: 15,
@@ -89,7 +98,10 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(22),
-              borderSide: const BorderSide(color: azul, width: 1.5),
+              borderSide: const BorderSide(
+                color: azul,
+                width: 1.5,
+              ),
             ),
           ),
         ),
@@ -104,14 +116,15 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
       child: ElevatedButton(
         onPressed: acao,
         style: ButtonStyle(
-          // Movemos a lógica do Hover para o lugar correto (dentro do ElevatedButton)
-          backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+          backgroundColor:
+              WidgetStateProperty.resolveWith<Color>((states) {
             if (states.contains(WidgetState.hovered)) {
               return rosa;
             }
             return brancoRosa;
           }),
-          foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+          foregroundColor:
+              WidgetStateProperty.resolveWith<Color>((states) {
             if (states.contains(WidgetState.hovered)) {
               return Colors.white;
             }
@@ -119,13 +132,18 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
           }),
           elevation: const WidgetStatePropertyAll(0),
           shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(22),
+            ),
           ),
         ),
         child: Text(
           texto,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
         ),
       ),
     );
@@ -134,7 +152,9 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
   void salvar() {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Alterações salvas nesta tela!')),
+        const SnackBar(
+          content: Text('Alterações salvas nesta tela!'),
+        ),
       );
     }
   }
@@ -171,10 +191,10 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
                       ),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     right: 16,
                     top: 18,
-                    child: const Text(
+                    child: Text(
                       '⌂ LAD\n   VET',
                       textAlign: TextAlign.right,
                       style: TextStyle(
@@ -197,7 +217,7 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
                 ),
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: rosa,
                     borderRadius: BorderRadius.circular(28),
@@ -209,193 +229,252 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
                       ),
                     ],
                   ),
-           
-child: Form(
-  key: _formKey,
-  child: Column(
-    children: [
-      const Text(
-        'Meu perfil',
-        style: TextStyle(
-          color: textoEscuro,
-          fontSize: 26,
-          fontWeight: FontWeight.w900,
-        ),
-      ),
-      const SizedBox(height: 25),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Meu perfil',
+                          style: TextStyle(
+                            color: textoEscuro,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const SizedBox(height: 25),
 
-      // Nome e e-mail
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: campo('Nome', nomeController)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: campo(
-              'Email',
-              emailController,
-              somenteLeitura: true,
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 17),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'Nome',
+                                nomeController,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: campo(
+                                'Email',
+                                emailController,
+                                somenteLeitura: true,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 17),
 
-      // Telefone e cidade
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: campo('Telefone', telefoneController)),
-          const SizedBox(width: 12),
-          Expanded(child: campo('Cidade', cidadeController)),
-        ],
-      ),
-      const SizedBox(height: 17),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'Telefone',
+                                telefoneController,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: campo(
+                                'Cidade',
+                                cidadeController,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 17),
 
-      // CEP e endereço
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: campo('CEP', cepController)),
-          const SizedBox(width: 12),
-          Expanded(child: campo('Endereço', enderecoController)),
-        ],
-      ),
-      const SizedBox(height: 17),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'CEP',
+                                cepController,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: campo(
+                                'Endereço',
+                                enderecoController,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 17),
 
-      // Bairro e número
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: campo('Bairro', bairroController)),
-          const SizedBox(width: 12),
-          Expanded(child: campo('Número', numeroController)),
-        ],
-      ),
-      const SizedBox(height: 17),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'Bairro',
+                                bairroController,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: campo(
+                                'Número',
+                                numeroController,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 17),
 
-      // Residência e espaço
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: campo('Residência', residenciaController)),
-          const SizedBox(width: 12),
-          Expanded(child: campo('Espaço', espacoController)),
-        ],
-      ),
-      const SizedBox(height: 17),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'Residência',
+                                residenciaController,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: campo(
+                                'Espaço',
+                                espacoController,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 17),
 
-      // Experiência e rotina
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: campo(
-              'Experiência com animais',
-              experienciaController,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(child: campo('Rotina', rotinaController)),
-        ],
-      ),
-      const SizedBox(height: 17),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'Experiência com animais',
+                                experienciaController,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: campo(
+                                'Rotina',
+                                rotinaController,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 17),
 
-      // CRMV e espaço vazio para manter o alinhamento
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: campo(
-              'CRMV',
-              crmvController,
-              somenteLeitura: true,
-            ),
-          ),
-          const SizedBox(width: 12),
-          const Expanded(child: SizedBox()),
-        ],
-      ),
+                        Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: campo(
+                                'CRMV',
+                                crmvController,
+                                somenteLeitura: true,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            const Expanded(
+                              child: SizedBox(),
+                            ),
+                          ],
+                        ),
 
-      const SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
-      // Salvar alterações
-      SizedBox(
-        width: double.infinity,
-        height: 58,
-        child: ElevatedButton(
-          onPressed: salvar,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: azul,
-            foregroundColor: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(17),
-            ),
-          ),
-          child: const Text(
-            'Salvar alterações',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 58,
+                          child: ElevatedButton(
+                            onPressed: salvar,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: azul,
+                              foregroundColor: Colors.white,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(17),
+                              ),
+                            ),
+                            child: const Text(
+                              'Salvar alterações',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
 
-      const SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
-      // Botões de navegação em duas colunas
-      LayoutBuilder(
-        builder: (context, constraints) {
-          final botoes = [
-            botao('Meus favoritos', () {}),
-            botao('Solicitações de adoção', () {}),
-            botao('Cadastrar animal', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const CadastrarAnimalPage(),
-                ),
-              );
-            }),
-            botao('Contatos', () {}),
-            botao('Nossa história', () {}),
-            botao('Configurações', () {}),
-          ];
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            final botoes = [
+                              botao('Meus favoritos', () {}),
 
-          return Column(
-            children: [
-              for (int i = 0; i < botoes.length; i += 2)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Row(
-                    children: [
-                      Expanded(child: botoes[i]),
-                      const SizedBox(width: 10),
-                      Expanded(child: botoes[i + 1]),
-                    ],
+                              botao('Contatos', () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ContatosPage(),
+                                  ),
+                                );
+                              }),
+
+                              botao('Nossa história', () {}),
+                              botao('Configurações', () {}),
+                            ];
+
+                            return Column(
+                              children: [
+                                for (
+                                  int i = 0;
+                                  i < botoes.length;
+                                  i += 2
+                                )
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(
+                                      bottom: 12,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: botoes[i],
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: botoes[i + 1],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
+                        ),
+
+                        const SizedBox(height: 5),
+
+                        SizedBox(
+                          width: 220,
+                          child: botao('Sair', () {
+                            Navigator.pop(context);
+                          }),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-            ],
-          );
-        },
-      ),
-
-      const SizedBox(height: 5),
-
-      // Sair
-      SizedBox(
-        width: 220,
-        child: botao('Sair', () {
-          Navigator.pop(context);
-        }),
-      ),
-    ],
-  ),
-),
-
                 ),
               ),
             ),
