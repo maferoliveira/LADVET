@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ladvet/ui/configuracao.dart';
 
 void main() {
   runApp(const MyApp());
@@ -165,10 +166,17 @@ class ContatosPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFFD49A9F), // Tom rosado do cabeçalho
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {},
-        ),
+       leading: IconButton(
+  icon: const Icon(Icons.arrow_back, color: Colors.white),
+  onPressed: () {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ConfiguracaoPage(),
+      ),
+    );
+  },
+),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

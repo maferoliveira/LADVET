@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ladvet/ui/contato.dart';
+import 'package:flutter_ladvet/ui/historia.dart';
 
 const Color rosaFundo = Color(0xFFF3DEDE);
 const Color rosa = Color(0xFFD18F92);
@@ -430,8 +431,14 @@ class _ConfiguracaoPageState extends State<ConfiguracaoPage> {
                                   ),
                                 );
                               }),
-
-                              botao('Nossa história', () {}),
+botao('Nossa história', () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const NossaHistoriaPage(),
+    ),
+  );
+}),
                               botao('Configurações', () {}),
                             ];
 
