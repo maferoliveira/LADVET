@@ -58,6 +58,15 @@ const login = async (req, res) => {
             });
         }
 
+        if (
+            usuario.tipo_usuario === "CLINICA" &&
+            (!usuario.crmv || !usuario.validado)
+        ) {
+            return res.status(403).json({
+                msg: "A conta da clínica ainda não foi validada. Verifique o CRMV antes de entrar."
+            });
+        }
+
         const token = jsonwebtoken.sign(
             {
                 id: usuario.id,
@@ -165,10 +174,9 @@ const cadastrar = async (req, res) => {
                         ? dados.crmv
                         : null,
 
-                validado:
-                    dados.tipo_usuario === "CLINICA"
-                        ? true
-                        : false,
+                // Informar um número de CRMV não comprova que ele é válido.
+                // A clínica fica pendente até existir uma validação real do registro.
+                validado: false,
 
                 tipo_usuario: dados.tipo_usuario
             }
@@ -253,6 +261,7 @@ const buscar = async (req, res) => {
                 id: true,
                 nome: true,
                 email: true,
+                fotoPerfil: true,
                 telefone: true,
                 cidade: true,
                 cep: true,
@@ -316,7 +325,8 @@ const atualizar = async (req, res) => {
             residencia,
             espaco,
             experiencia,
-            rotina
+            rotina,
+            fotoPerfil
         } = req.body;
 
         const dados = {
@@ -331,7 +341,8 @@ const atualizar = async (req, res) => {
             residencia,
             espaco,
             experiencia,
-            rotina
+            rotina,
+            fotoPerfil
         };
 
         const item = await prisma.usuario.update({
@@ -345,6 +356,7 @@ const atualizar = async (req, res) => {
                 id: true,
                 nome: true,
                 email: true,
+                fotoPerfil: true,
                 telefone: true,
                 cidade: true,
                 cep: true,
@@ -378,6 +390,138 @@ const atualizar = async (req, res) => {
     }
 };
 
+
+// ALTERAR SENHA
+const alterarSenha = async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        if (!Number.isInteger(id) || id <= 0) {
+            return res.status(400).json({ msg: "ID inválido." });
+        }
+        if (Number(req.usuario.id) !== id) {
+            return res.status(403).json({ msg: "Você não pode alterar a senha de outro usuário." });
+        }
+        const { senhaAtual, novaSenha } = req.body;
+        if (!senhaAtual || !novaSenha || novaSenha.length < 8) {
+            return res.status(400).json({ msg: "Informe a senha atual e uma nova senha com pelo menos 8 caracteres." });
+        }
+        const usuario = await prisma.usuario.findUnique({ where: { id } });
+        if (!usuario || usuario.senha !== senhaAtual) {
+            return res.status(400).json({ msg: "A senha atual está incorreta." });
+        }
+        await prisma.usuario.update({ where: { id }, data: { senha: novaSenha } });
+        return res.status(200).json({ msg: "Senha alterada com sucesso." });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ msg: "Erro ao alterar senha." });
+    }
+};
+
+// LOGIN COM GOOGLE
+// O token é verificado pela biblioteca oficial do Google no backend.
+const { OAuth2Client } = require("google-auth-library");
+
+const loginGoogle = async (req, res) => {
+    try {
+        const { credential } = req.body;
+        const clientId = process.env.GOOGLE_CLIENT_ID;
+
+        if (!credential || !clientId) {
+            return res.status(400).json({
+                msg: "Login Google não configurado. Verifique o GOOGLE_CLIENT_ID."
+            });
+        }
+
+        const clienteGoogle = new OAuth2Client(clientId);
+        const ticket = await clienteGoogle.verifyIdToken({
+            idToken: credential,
+            audience: clientId
+        });
+
+        const google = ticket.getPayload();
+
+        if (!google || !google.sub || !google.email || google.email_verified !== true) {
+            return res.status(401).json({
+                msg: "A conta Google não pôde ser confirmada."
+            });
+        }
+
+        const email = google.email.trim().toLowerCase();
+        let usuario = await prisma.usuario.findUnique({
+            where: { email }
+        });
+
+        if (usuario) {
+            // O Google não pode liberar uma conta de clínica pendente de validação.
+            if (
+                usuario.tipo_usuario === "CLINICA" &&
+                (!usuario.crmv || !usuario.validado)
+            ) {
+                return res.status(403).json({
+                    msg: "A conta da clínica ainda não foi validada. Verifique o CRMV antes de entrar."
+                });
+            }
+
+            if (usuario.googleId && usuario.googleId !== google.sub) {
+                return res.status(409).json({
+                    msg: "Este e-mail já está vinculado a outra conta Google."
+                });
+            }
+
+            const atualizacao = {};
+            if (!usuario.googleId) atualizacao.googleId = google.sub;
+            if (!usuario.fotoPerfil && google.picture) {
+                atualizacao.fotoPerfil = google.picture;
+            }
+
+            if (Object.keys(atualizacao).length > 0) {
+                usuario = await prisma.usuario.update({
+                    where: { id: usuario.id },
+                    data: atualizacao
+                });
+            }
+        } else {
+            // O cadastro pelo Google cria somente uma conta de adotante.
+            // Dados complementares podem ser preenchidos depois no perfil.
+            usuario = await prisma.usuario.create({
+                data: {
+                    nome: google.name || email.split("@")[0],
+                    email,
+                    senha: `google-${google.sub}-${require("node:crypto").randomUUID()}`,
+                    googleId: google.sub,
+                    fotoPerfil: google.picture || null,
+                    telefone: "",
+                    cidade: "",
+                    tipo_usuario: "ADOTANTE",
+                    validado: false
+                }
+            });
+        }
+
+        const token = jsonwebtoken.sign(
+            {
+                id: usuario.id,
+                email: usuario.email,
+                tipo_usuario: usuario.tipo_usuario
+            },
+            process.env.SECRET_JWT,
+            { expiresIn: "60min" }
+        );
+
+        const { senha: _, ...usuarioSemSenha } = usuario;
+
+        return res.status(200).json({
+            msg: "Login com Google realizado com sucesso.",
+            token,
+            usuario: usuarioSemSenha
+        });
+    } catch (error) {
+        console.error("Erro no login Google:", error);
+        return res.status(401).json({
+            msg: "Não foi possível validar a conta Google."
+        });
+    }
+};
 
 // EXCLUIR
 const excluir = async (req, res) => {
@@ -426,5 +570,7 @@ module.exports = {
     listar,
     buscar,
     atualizar,
+    alterarSenha,
+    loginGoogle,
     excluir
 };

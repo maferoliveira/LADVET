@@ -1,74 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-Configurações
-</title>
-
-<link
-rel="stylesheet"
-href="../css/configuracoes.css">
-
-<script
-src="../js/script.js"
-defer>
-</script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações da conta</title>
+    <link rel="stylesheet" href="../css/configuracoes.css">
+    <script src="../js/script.js" defer></script>
+    <script src="../js/configuracoes.js" defer></script>
 </head>
-
 <body>
+    <main class="container">
+        <button class="voltar" onclick="history.back()" type="button" title="Voltar">↩</button>
 
-<div class="container">
+        <h1>Configurações da conta</h1>
 
-<button
-class="voltar"
-onclick="history.back()">
+        <form id="formConfiguracoes" onsubmit="salvarConfiguracoes(event)">
+            <div class="foto">
+                <img src="../img/userrosa.png" id="preview" alt="Prévia da foto de perfil">
+            </div>
 
-↩
+            <label for="inputFoto">Foto de perfil</label>
+            <input
+                type="file"
+                id="inputFoto"
+                accept="image/png,image/jpeg,image/webp"
+                onchange="trocarFoto(event)"
+            >
 
-</button>
+            <label for="nome">Nome completo</label>
+            <input id="nome" name="nome" type="text" placeholder="Nome completo" required>
 
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Email" required>
 
-<h1>
+            <label for="telefone">Telefone</label>
+            <input id="telefone" name="telefone" type="tel" placeholder="Telefone">
 
-Configurações da conta
-
-</h1>
-
-
-<div class="foto">
-
-<img
-src="../img/userrosa.png"
-id="preview">
-
-</div>
-
-
-<input
-type="file"
-onchange="trocarFoto(event)">
-
-
-
-<input
-id="nome"
-placeholder="Nome completo">
-
-
-<input
-id="email"
-placeholder="Email">
-
-
-<input
-id="telefone"
-placeholder="Telefone">
+            <button class="salvar" type="submit" id="btnSalvar">Salvar alterações</button>
+        </form>
+    </main>
+</body>
+</html>

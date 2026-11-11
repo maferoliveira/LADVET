@@ -13,7 +13,11 @@
 /* FUNDO */
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #aaafcf, #c59e9e, #aaafcf);
+    background:
+        radial-gradient(ellipse at 10% 10%, rgba(201, 141, 143, 0.20), transparent 40%),
+        radial-gradient(ellipse at 90% 85%, rgba(113, 128, 174, 0.18), transparent 45%),
+        linear-gradient(135deg, #d5c2d8 0%, #ddc8ce 50%, #c3bfd4 100%);
+    background-attachment: fixed;
     color: #333;
 }
 
@@ -158,7 +162,7 @@ body {
 }
 
 .titulo h1 {
-    color: #4f3f4f;
+    color: #2d2745;
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 6px;
@@ -209,7 +213,7 @@ body {
 /* INFORMAÇÕES */
 .info {
     min-height: 115px;
-    background-color: #ddcad1;
+    background-color: #ae8c98;
     padding: 17px 18px 22px;
 }
 

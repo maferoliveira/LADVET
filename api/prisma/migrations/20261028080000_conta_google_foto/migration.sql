@@ -1,0 +1,26 @@
+SET @sql = IF(
+  (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Usuario' AND COLUMN_NAME = 'googleId') = 0,
+  'ALTER TABLE `Usuario` ADD COLUMN `googleId` VARCHAR(191) NULL',
+  'SELECT 1'
+);
+PREPARE ladvet_stmt FROM @sql;
+EXECUTE ladvet_stmt;
+DEALLOCATE PREPARE ladvet_stmt;
+
+SET @sql = IF(
+  (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Usuario' AND COLUMN_NAME = 'fotoPerfil') = 0,
+  'ALTER TABLE `Usuario` ADD COLUMN `fotoPerfil` LONGTEXT NULL',
+  'SELECT 1'
+);
+PREPARE ladvet_stmt FROM @sql;
+EXECUTE ladvet_stmt;
+DEALLOCATE PREPARE ladvet_stmt;
+
+SET @sql = IF(
+  (SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Usuario' AND INDEX_NAME = 'Usuario_googleId_key') = 0,
+  'CREATE UNIQUE INDEX `Usuario_googleId_key` ON `Usuario`(`googleId`)',
+  'SELECT 1'
+);
+PREPARE ladvet_stmt FROM @sql;
+EXECUTE ladvet_stmt;
+DEALLOCATE PREPARE ladvet_stmt;
