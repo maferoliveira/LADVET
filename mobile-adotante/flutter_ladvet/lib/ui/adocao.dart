@@ -1,0 +1,187 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_ladvet/models/pets.dart';
+import 'package:flutter_ladvet/ui/configuracao.dart';
+
+import '../models/pet.dart';
+import 'cards.dart';
+
+class AdocaoPage extends StatelessWidget {
+  const AdocaoPage({super.key});
+
+  static const List<Pet> pets = MockupPets.pets;
+
+  static const Color headerColor = Color.fromARGB(255, 217, 161, 159);
+  static const Color cardColor = Color.fromARGB(255, 182, 119, 117);
+  static const Color textColor = Color(0xFF4B1528);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFFBEAF0),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              color: headerColor,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+              IconButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ConfiguracaoPage(),
+      ),
+    );
+  },
+  icon: const Icon(
+    Icons.account_circle_outlined,
+    color: Colors.white,
+    size: 26,
+  ),
+),
+                  const Text(
+                    'LADVET',
+                    style: TextStyle(
+                      color: Color(0xFFFBEAF0),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  children: [
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: pets.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.78,
+                          ),
+                      itemBuilder: (context, index) {
+                        return PetCard(pet: pets[index]);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Fim.',
+                      style: TextStyle(color: Color(0xFF993556), fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PetCard extends StatelessWidget {
+  final Pet pet;
+
+  const PetCard({super.key, required this.pet});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        color: AdocaoPage.cardColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: SizedBox(
+                width: double.infinity,
+                child: pet.imagePath != null
+                    ? GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PetAdoptionCardScreen(idPet: pet.id),
+                          ),
+                        ),
+                        child: Image.asset(pet.imagePath!, fit: BoxFit.cover),
+                      )
+                    : Container(
+                        color: AdocaoPage.headerColor,
+                        alignment: Alignment.center,
+                        child: Icon(
+                          pet.icon,
+                          size: 34,
+                          color: Color(0xFFFBEAF0),
+                        ),
+                      ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Nome: ${pet.nome}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromARGB(255, 249, 242, 244),
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Text(
+                        'Idade: ${pet.idade}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Color.fromARGB(255, 245, 234, 238),
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Especie: ${pet.especie}',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Color.fromARGB(255, 247, 239, 242),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {},
+                            child: Icon(
+                              Icons.favorite_border,
+                              size: 14,
+                              color: Color.fromARGB(255, 248, 238, 242),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

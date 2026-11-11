@@ -1,425 +1,272 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Meu perfil</title>
-
-    <link
-        rel="stylesheet"
-        href="../css/perfil.css"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu perfil | LADVET</title>
+    <link rel="stylesheet" href="../css/perfil.css">
 </head>
 
 <body>
 
+    <!-- TOPO -->
     <header class="topo">
-
         <button
             class="voltar"
             onclick="voltarAdocao()"
             type="button"
+            aria-label="Voltar"
+            title="Voltar"
         >
             ↩
         </button>
 
-        <img
-            src="../img/Logo.png"
-            class="logo"
-            alt="LADVET"
-        >
-
+        <img src="../img/Logo.png" class="logo" alt="LADVET">
     </header>
 
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
-
         <div class="card">
 
             <h1>Meu perfil</h1>
 
-
-            <form onsubmit="salvarConfiguracoes(event)">
-
-                <div class="card-body">
-
-                    <!-- NOME -->
-
-                    <div class="campo">
-
-                        <label for="nomePerfil">
-                            Nome
-                        </label>
-
-                        <input
-                            type="text"
-                            id="nomePerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- EMAIL -->
-
-                    <div class="campo">
-
-                        <label for="emailPerfil">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            id="emailPerfil"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <!-- TELEFONE -->
-
-                    <div class="campo">
-
-                        <label for="telefonePerfil">
-                            Telefone
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="telefonePerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- CIDADE -->
-
-                    <div class="campo">
-
-                        <label for="cidadePerfil">
-                            Cidade
-                        </label>
-
-                        <input
-                            type="text"
-                            id="cidadePerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- CEP -->
-
-                    <div class="campo">
-
-                        <label for="cepPerfil">
-                            CEP
-                        </label>
-
-                        <input
-                            type="text"
-                            id="cepPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- ENDEREÇO -->
-
-                    <div class="campo">
-
-                        <label for="enderecoPerfil">
-                            Endereço
-                        </label>
-
-                        <input
-                            type="text"
-                            id="enderecoPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- BAIRRO -->
-
-                    <div class="campo">
-
-                        <label for="bairroPerfil">
-                            Bairro
-                        </label>
-
-                        <input
-                            type="text"
-                            id="bairroPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- NÚMERO -->
-
-                    <div class="campo">
-
-                        <label for="numeroPerfil">
-                            Número
-                        </label>
-
-                        <input
-                            type="text"
-                            id="numeroPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- RESIDÊNCIA -->
-
-                    <div class="campo">
-
-                        <label for="residenciaPerfil">
-                            Residência
-                        </label>
-
-                        <input
-                            type="text"
-                            id="residenciaPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- ESPAÇO -->
-
-                    <div class="campo">
-
-                        <label for="espacoPerfil">
-                            Espaço
-                        </label>
-
-                        <input
-                            type="text"
-                            id="espacoPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- EXPERIÊNCIA -->
-
-                    <div class="campo">
-
-                        <label for="experienciaPerfil">
-                            Experiência com animais
-                        </label>
-
-                        <input
-                            type="text"
-                            id="experienciaPerfil">
-
-                    </div>
-
-
-                    <!-- ROTINA -->
-
-                    <div class="campo">
-
-                        <label for="rotinaPerfil">
-                            Rotina
-                        </label>
-
-                        <input
-                            type="text"
-                            id="rotinaPerfil"
-                        >
-
-                    </div>
-
-
-                    <!-- CRMV -->
-
-                    <div
-                        class="campo"
-                        id="campoCrmv"
+            <!-- FOTO DE PERFIL -->
+            <section class="foto-perfil">
+                <div class="preview-foto">
+                    <img
+                        id="previewFotoPerfil"
+                        alt="Foto de perfil"
                     >
-
-                        <label for="crmvPerfil">
-                            CRMV
-                        </label>
-
-                        <input
-                            type="text"
-                            id="crmvPerfil"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <!-- SALVAR -->
-
-                    <button
-                        type="submit"
-                        class="btn-salvar"
-                    >
-                        Salvar alterações
-                    </button>
-
                 </div>
 
-            </form>
+                <label for="fotoPerfil" class="btn-foto">
+                    Alterar foto de perfil
+                </label>
 
-
-            <!-- BOTÕES DO PERFIL -->
-
-            <div class="acoes-perfil">
-
-
-                <!-- ADOTANTE -->
+                <input
+                    type="file"
+                    id="fotoPerfil"
+                    accept="image/png, image/jpeg, image/webp"
+                    hidden
+                >
 
                 <button
                     type="button"
-                    onclick="abrirMinhasSolicitacoes()"
-                    id="menuAdotante"
+                    id="removerFotoPerfil"
+                    class="btn-remover-foto"
                 >
-                    Minhas solicitações
-                </button>
-<button
-    type="button"
-    onclick="window.location.href='favoritos.html'"
-    id="menuFavoritos"
->
-    Meus favoritos
-</button>
-
-                <!-- CLÍNICA -->
-
-                <button
-                    type="button"
-                    onclick="abrirSolicitacoes()"
-                    id="menuClinica"
-                >
-                    Solicitações de adoção
+                    Remover foto
                 </button>
 
+                <p>Escolha uma imagem JPG, PNG ou WEBP. Máximo de 2 MB.</p>
+            </section>
+
+            <!-- MENU FLUTUANTE -->
+            <nav class="acoes-perfil" aria-label="Navegação do perfil">
 
                 <button
                     type="button"
-                    onclick="abrirCadastroAnimal()"
-                    id="menuNovoAnimal"
-                >
-                    Cadastrar animal
-                </button>
-
-
-                <!-- CONTATOS -->
-
-                <button
-                    type="button"
+                    class="btn-menu"
                     onclick="window.location.href='contatos.html'"
-                    id="menuContatos"
                 >
                     Contatos
                 </button>
 
-
-                <!-- NOSSA HISTÓRIA -->
-
                 <button
                     type="button"
-                    onclick="window.location.href='historia.html'"
-                    id="menuHistoria"
-                >
-                    Nossa história
-                </button>
-
-
-                <!-- CONFIGURAÇÕES -->
-
-                <button
-                    type="button"
+                    class="btn-menu"
                     onclick="window.location.href='configuracoes.html'"
-                    id="menuConfiguracoes"
                 >
                     Configurações
                 </button>
 
-
-                <!-- SAIR -->
+                <button
+                    type="button"
+                    class="btn-menu"
+                    id="menuFavoritos"
+                    onclick="window.location.href='favoritos.html'"
+                >
+                    Meus favoritos
+                </button>
 
                 <button
-                    type="button" id="sair"
+                    type="button"
+                    id="sair"
                     onclick="sair()"
                 >
                     Sair
                 </button>
+            </nav>
 
-            </div>
+            <!-- FORMULÁRIO -->
+            <form onsubmit="salvarConfiguracoes(event)">
+
+                <div class="card-body">
+
+                    <div class="campo">
+                        <label for="nomePerfil">Nome</label>
+                        <input
+                            type="text"
+                            id="nomePerfil"
+                            placeholder="Digite seu nome"
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="emailPerfil">E-mail</label>
+                        <input
+                            type="email"
+                            id="emailPerfil"
+                            placeholder="Seu e-mail"
+                            disabled
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefonePerfil">Telefone</label>
+                        <input
+                            type="tel"
+                            id="telefonePerfil"
+                            placeholder="Digite seu telefone"
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="cidadePerfil">Cidade</label>
+                        <input
+                            type="text"
+                            id="cidadePerfil"
+                            placeholder="Digite sua cidade"
+                        >
+                    </div>
+
+                    <!-- DADOS EXCLUSIVOS DO ADOTANTE -->
+
+                    <div class="campo dados-adotante">
+                        <label for="cepPerfil">CEP</label>
+                        <input
+                            type="text"
+                            id="cepPerfil"
+                            placeholder="Digite seu CEP"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="enderecoPerfil">Endereço</label>
+                        <input
+                            type="text"
+                            id="enderecoPerfil"
+                            placeholder="Digite seu endereço"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="bairroPerfil">Bairro</label>
+                        <input
+                            type="text"
+                            id="bairroPerfil"
+                            placeholder="Digite seu bairro"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="numeroPerfil">Número</label>
+                        <input
+                            type="text"
+                            id="numeroPerfil"
+                            placeholder="Número da residência"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="residenciaPerfil">Residência</label>
+                        <input
+                            type="text"
+                            id="residenciaPerfil"
+                            placeholder="Tipo de residência"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="espacoPerfil">Espaço</label>
+                        <input
+                            type="text"
+                            id="espacoPerfil"
+                            placeholder="Espaço disponível para o animal"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="experienciaPerfil">Experiência com animais</label>
+                        <input
+                            type="text"
+                            id="experienciaPerfil"
+                            placeholder="Conte sua experiência"
+                        >
+                    </div>
+
+                    <div class="campo dados-adotante">
+                        <label for="rotinaPerfil">Rotina</label>
+                        <input
+                            type="text"
+                            id="rotinaPerfil"
+                            placeholder="Descreva sua rotina"
+                        >
+                    </div>
+
+                    <!-- CRMV: SOMENTE VETERINÁRIO -->
+
+                    <div class="campo" id="campoCrmv">
+                        <label for="crmvPerfil">CRMV</label>
+                        <input
+                            type="text"
+                            id="crmvPerfil"
+                            placeholder="CRMV cadastrado"
+                            disabled
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-salvar">
+                        Salvar alterações
+                    </button>
+
+                </div>
+            </form>
 
         </div>
-
     </main>
 
-
+    <!-- SCRIPTS -->
     <script src="../js/script.js"></script>
-
     <script src="../js/perfil.js"></script>
 
-
+    <!-- CONTROLE DO TIPO DE USUÁRIO -->
     <script>
+        const usuario = typeof getUsuario === "function"
+            ? getUsuario()
+            : null;
 
-        const usuario = getUsuario();
+        const tipoUsuario = (
+            usuario?.tipo_usuario ||
+            usuario?.tipo ||
+            ""
+        ).toUpperCase();
 
-        const menuAdotante =
-            document.getElementById("menuAdotante");
+        const ehVeterinario =
+            tipoUsuario === "VETERINARIO" ||
+            tipoUsuario === "CLINICA";
 
-        const menuClinica =
-            document.getElementById("menuClinica");
+        document.querySelectorAll(".dados-adotante").forEach(campo => {
+            campo.style.display = ehVeterinario ? "none" : "flex";
+        });
 
-        const menuNovoAnimal =
-            document.getElementById("menuNovoAnimal");
+        document.getElementById("campoCrmv").style.display =
+            ehVeterinario ? "flex" : "none";
 
-        const campoCrmv =
-            document.getElementById("campoCrmv");
-
-
-        if (
-            usuario &&
-            usuario.tipo_usuario === "CLINICA"
-        ) {
-
-            // Esconde funções do adotante
-
-            menuAdotante.style.display = "none";
-
-
-            // Mostra funções da clínica
-
-            menuClinica.style.display = "block";
-
-            menuNovoAnimal.style.display = "block";
-
-            campoCrmv.style.display = "block";
-
-        } else {
-
-            // Esconde funções da clínica
-
-            menuClinica.style.display = "none";
-
-            menuNovoAnimal.style.display = "none";
-
-            campoCrmv.style.display = "none";
-
-        }
-
+        document.getElementById("menuFavoritos").style.display =
+            ehVeterinario ? "none" : "flex";
     </script>
 
 </body>
-
 </html>

@@ -1,171 +1,135 @@
-let fotoPerfilSelecionada = null;
 
-function usuarioAtualizadoLocal(usuario) {
-    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-}
+const API_CONFIG = "http://localhost:3000";
 
-function mostrarFotoConfiguracao(foto) {
-    const preview = document.getElementById("preview");
-    if (!preview) return;
-
-    preview.src = foto || "../img/userrosa.png";
-}
-
-async function carregarConfiguracoes() {
-    if (!protegerPagina()) return;
-
-    const usuarioLocal = getUsuario();
-    if (!usuarioLocal || !usuarioLocal.id) {
-        alert("Não foi possível identificar sua conta. Entre novamente.");
-        window.location.href = "identificacao.html";
-        return;
-    }
-
+function usuarioAtual() {
     try {
-        // Busca os dados atualizados no banco, inclusive a foto salva.
-        const usuario = await apiFetch(`/usuario/buscar/${usuarioLocal.id}`);
-
-        document.getElementById("nome").value = usuario.nome || "";
-        document.getElementById("email").value = usuario.email || "";
-        document.getElementById("telefone").value = usuario.telefone || "";
-
-        usuarioAtualizadoLocal({ ...usuarioLocal, ...usuario });
-        mostrarFotoConfiguracao(usuario.fotoPerfil);
-    } catch (erro) {
-        console.error("Erro ao carregar configurações:", erro);
-
-        // Mantém a página utilizável com os dados que já estão no navegador.
-        document.getElementById("nome").value = usuarioLocal.nome || "";
-        document.getElementById("email").value = usuarioLocal.email || "";
-        document.getElementById("telefone").value = usuarioLocal.telefone || "";
-        mostrarFotoConfiguracao(usuarioLocal.fotoPerfil);
-        alert(erro.message || "Não foi possível carregar os dados da conta.");
+        return JSON.parse(localStorage.getItem("usuarioLogado"));
+    } catch {
+        return null;
     }
 }
 
-function converterFotoPerfil(arquivo) {
-    return new Promise((resolve, reject) => {
-        const leitor = new FileReader();
+function tokenAtual() {
+    return localStorage.getItem("token");
+}
 
-        leitor.onload = () => {
-            const imagem = new Image();
+function mostrarMensagem(texto, erro = false) {
+    let elemento = document.getElementById("mensagem");
 
-            imagem.onload = () => {
-                const limite = 700;
-                let largura = imagem.width;
-                let altura = imagem.height;
+    if (!elemento) {
+        elemento = document.createElement("p");
+        elemento.id = "mensagem";
+        elemento.className = "mensagem";
 
-                if (largura > altura && largura > limite) {
-                    altura = Math.round(altura * limite / largura);
-                    largura = limite;
-                } else if (altura > limite) {
-                    largura = Math.round(largura * limite / altura);
-                    altura = limite;
-                }
+        document.getElementById("formSenha").appendChild(elemento);
+    }
 
-                const canvas = document.createElement("canvas");
-                canvas.width = largura;
-                canvas.height = altura;
+    elemento.textContent = texto;
+    elemento.className = erro
+        ? "mensagem erro"
+        : "mensagem sucesso";
+}
 
-                const contexto = canvas.getContext("2d");
-                contexto.drawImage(imagem, 0, 0, largura, altura);
-
-                // JPEG comprimido para evitar enviar arquivos enormes à API.
-                resolve(canvas.toDataURL("image/jpeg", 0.82));
-            };
-
-            imagem.onerror = () => reject(new Error("Não foi possível abrir essa imagem."));
-            imagem.src = leitor.result;
-        };
-
-        leitor.onerror = () => reject(new Error("Não foi possível ler o arquivo."));
-        leitor.readAsDataURL(arquivo);
+async function requisicao(endpoint, opcoes = {}) {
+    const resposta = await fetch(`${API_CONFIG}${endpoint}`, {
+        ...opcoes,
+        headers: {
+            ...(opcoes.body ? {
+                "Content-Type": "application/json"
+            } : {}),
+            Authorization: `Bearer ${tokenAtual()}`,
+            ...(opcoes.headers || {})
+        }
     });
+
+    const dados = await resposta.json().catch(() => ({}));
+
+    if (!resposta.ok) {
+        throw new Error(
+            dados.msg || "Não foi possível concluir a operação."
+        );
+    }
+
+    return dados;
 }
 
-async function trocarFoto(event) {
-    const arquivo = event?.target?.files?.[0];
-    if (!arquivo) return;
+// VERIFICAR LOGIN
+function verificarUsuario() {
+    const usuario = usuarioAtual();
 
-    if (!arquivo.type.startsWith("image/")) {
-        alert("Selecione um arquivo de imagem.");
-        event.target.value = "";
-        return;
-    }
-
-    if (arquivo.size > 8 * 1024 * 1024) {
-        alert("A imagem deve ter no máximo 8 MB.");
-        event.target.value = "";
-        return;
-    }
-
-    try {
-        fotoPerfilSelecionada = await converterFotoPerfil(arquivo);
-        mostrarFotoConfiguracao(fotoPerfilSelecionada);
-    } catch (erro) {
-        console.error(erro);
-        alert(erro.message || "Não foi possível carregar a imagem.");
-        event.target.value = "";
+    if (!usuario || !usuario.id || !tokenAtual()) {
+        window.location.href = "identificacao.html";
     }
 }
 
-async function salvarConfiguracoes(event) {
-    event.preventDefault();
+// ALTERAR SENHA
+async function alterarSenha(evento) {
+    evento.preventDefault();
 
-    if (!protegerPagina()) return;
+    const usuario = usuarioAtual();
 
-    const usuario = getUsuario();
-    if (!usuario || !usuario.id) {
-        alert("Sua sessão não foi identificada. Entre novamente.");
+    if (!usuario?.id) {
+        mostrarMensagem("Não foi possível identificar sua conta.", true);
         return;
     }
 
-    const dados = {
-        nome: document.getElementById("nome").value.trim(),
-        email: document.getElementById("email").value.trim().toLowerCase(),
-        telefone: document.getElementById("telefone").value.trim()
-    };
+    const senhaAtual = document.getElementById("senhaAtual").value;
+    const novaSenha = document.getElementById("novaSenha").value;
+    const confirmarSenha = document.getElementById("confirmarSenha").value;
 
-    if (!dados.nome || !dados.email) {
-        alert("Preencha seu nome e email.");
+    if (novaSenha.length < 8) {
+        mostrarMensagem("A nova senha deve ter pelo menos 8 caracteres.", true);
         return;
     }
 
-    // Só envia foto quando uma nova imagem foi escolhida.
-    if (fotoPerfilSelecionada) {
-        dados.fotoPerfil = fotoPerfilSelecionada;
+    if (novaSenha !== confirmarSenha) {
+        mostrarMensagem("As senhas não coincidem.", true);
+        return;
+    }
+
+    if (senhaAtual === novaSenha) {
+        mostrarMensagem("A nova senha deve ser diferente da atual.", true);
+        return;
     }
 
     const botao = document.getElementById("btnSalvar");
     botao.disabled = true;
-    botao.textContent = "Salvando...";
 
     try {
-        const resposta = await apiFetch(`/usuario/atualizar/${usuario.id}`, {
+        await requisicao(`/usuario/alterar-senha/${usuario.id}`, {
             method: "PUT",
-            body: JSON.stringify(dados)
+            body: JSON.stringify({
+                senhaAtual: senhaAtual,
+                novaSenha: novaSenha
+            })
         });
 
-        const usuarioAtualizado = {
-            ...usuario,
-            ...resposta
-        };
+        document.getElementById("formSenha").reset();
 
-        usuarioAtualizadoLocal(usuarioAtualizado);
-        fotoPerfilSelecionada = null;
+        mostrarMensagem("Senha alterada com sucesso!");
 
-        alert("Configurações salvas com sucesso!");
-        mostrarFotoConfiguracao(usuarioAtualizado.fotoPerfil);
     } catch (erro) {
-        console.error("Erro ao salvar configurações:", erro);
-        alert(erro.message || "Não foi possível salvar as alterações.");
+        console.error("Erro ao alterar senha:", erro);
+        mostrarMensagem(erro.message, true);
+
     } finally {
         botao.disabled = false;
-        botao.textContent = "Salvar alterações";
     }
 }
 
-window.trocarFoto = trocarFoto;
-window.salvarConfiguracoes = salvarConfiguracoes;
+// SAIR DA CONTA
+function sairDaConta() {
+    const confirmar = confirm("Deseja realmente sair da sua conta?");
 
-document.addEventListener("DOMContentLoaded", carregarConfiguracoes);
+    if (!confirmar) return;
+
+    localStorage.removeItem("usuarioLogado");
+    localStorage.removeItem("token");
+
+    window.location.href = "identificacao.html";
+}
+
+window.alterarSenha = alterarSenha;
+window.sairDaConta = sairDaConta;
+
+document.addEventListener("DOMContentLoaded", verificarUsuario);
