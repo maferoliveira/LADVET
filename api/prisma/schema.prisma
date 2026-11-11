@@ -12,7 +12,7 @@ model Usuario {
   email        String      @unique
   senha        String
   googleId     String?     @unique
-  fotoPerfil   String?     @db.LongText
+  fotoPerfil String? @db.Text
   telefone     String
   cidade       String
   cep          String?
