@@ -1090,6 +1090,28 @@ function usuarioEstaLogado() {
     return !!getToken() && !!getUsuario();
 
 }
+function carregarFotoPerfilMenu() {
+    try {
+        const usuario = JSON.parse(
+            localStorage.getItem("usuarioLogado")
+        );
+
+        const imagem = document.getElementById("fotoPerfilMenu");
+
+        if (!imagem) return;
+
+        imagem.src = usuario?.fotoPerfil || "../img/user.png";
+
+        imagem.onerror = () => {
+            imagem.src = "../img/user.png";
+        };
+
+    } catch (erro) {
+        console.error("Erro ao carregar foto do perfil:", erro);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", carregarFotoPerfilMenu);
 
  
 

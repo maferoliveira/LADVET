@@ -1,24 +1,31 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f4dddd, #ead2d2, #d9dced);
-    color: #333;
-    padding-bottom: 50px;
+    background:
+        radial-gradient(ellipse at 5% 10%, rgba(201, 141, 143, 0.22), transparent 40%),
+        radial-gradient(ellipse at 95% 90%, rgba(113, 128, 174, 0.20), transparent 45%),
+        linear-gradient(135deg, #f7eff2 0%, #f0e8ef 50%, #e9ebf5 100%);
+    background-attachment: fixed;
+    color: #514454;
+    padding-bottom: 60px;
 }
+
+/* TOPO */
 
 .topo {
     width: 100%;
-    height: 110px;
+    height: 115px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,109 +35,214 @@ body {
 .logo {
     width: 135px;
     height: auto;
+    object-fit: contain;
 }
 
 .voltar {
     position: absolute;
-    left: 25px;
-    top: 25px;
-    width: 50px;
-    height: 50px;
+    left: 30px;
+    top: 28px;
+    width: 48px;
+    height: 48px;
     border: none;
     border-radius: 14px;
-    background: #c98d8f;
+    background: #c98b8b;
     color: white;
-    font-size: 27px;
+    font-size: 25px;
     cursor: pointer;
-    transition: .2s;
+    box-shadow: 0 4px 12px rgba(201, 139, 139, 0.20);
+    transition: all 0.25s ease;
 }
 
 .voltar:hover {
     background: #b97b7e;
-    transform: translateY(-1px);
+    transform: translateX(-3px);
+    box-shadow: 0 6px 15px rgba(185, 123, 126, 0.25);
 }
+
+/* CONTEÚDO */
 
 .container {
     width: 900px;
     max-width: 92%;
-    margin: 10px auto 50px;
+    margin: 18px auto 50px;
+    animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .container > h1 {
-    color: #4f3f4f;
-    font-size: 30px;
-    margin-bottom: 7px;
+    color: #70546f;
+    font-size: 29px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
 }
 
 .container > p {
-    color: #70546f;
-    font-size: 15px;
-    margin-bottom: 25px;
+    color: #887789;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
 }
+
+/* LISTA */
 
 .lista-solicitacoes {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
 }
 
+/* CARTÕES */
+
 .solicitacao {
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 6px 18px rgba(80, 50, 50, .13);
+    position: relative;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(235, 220, 231, 0.85);
+    border-radius: 21px;
+    padding: 27px 29px;
+    box-shadow: 0 8px 25px rgba(80, 50, 70, 0.08);
+    transition: all 0.25s ease;
+}
+
+.solicitacao:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 30px rgba(80, 50, 70, 0.12);
+    border-color: #e5ced9;
 }
 
 .solicitacao h2 {
-    color: #6f7ba3;
-    margin-bottom: 15px;
+    color: #7180ae;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 17px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0e6ed;
 }
 
 .solicitacao p {
-    margin: 8px 0;
-    color: #555;
-    line-height: 1.4;
+    margin: 10px 0;
+    color: #665b68;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
 }
+
+.solicitacao p strong {
+    color: #70546f;
+    font-weight: 600;
+}
+
+/* BOTÕES */
 
 .acoes {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 13px;
+    margin-top: 23px;
+    padding-top: 17px;
+    border-top: 1px solid #f0e6ed;
 }
 
 .acoes button {
     flex: 1;
-    min-height: 45px;
+    min-height: 47px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     color: white;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-    transition: .2s;
+    transition: all 0.25s ease;
 }
 
 .acoes button:first-child {
-    background: #6f9b78;
+    background: linear-gradient(135deg, #789b82, #659078);
+    box-shadow: 0 4px 10px rgba(101, 144, 120, 0.15);
 }
 
 .acoes button:first-child:hover {
-    background: #588465;
+    background: linear-gradient(135deg, #668c72, #547f65);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(101, 144, 120, 0.22);
 }
 
 .acoes button:last-child {
-    background: #9b6266;
+    background: linear-gradient(135deg, #c98b8b, #b87980);
+    box-shadow: 0 4px 10px rgba(185, 123, 126, 0.15);
 }
 
 .acoes button:last-child:hover {
-    background: #824f53;
+    background: linear-gradient(135deg, #b87980, #a76570);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(185, 123, 126, 0.22);
 }
 
+.acoes button:active {
+    transform: translateY(0);
+}
+
+/* RESPONSIVIDADE */
+
 @media (max-width: 600px) {
-    .topo { height: 95px; }
-    .logo { width: 110px; }
-    .voltar { left: 15px; top: 18px; width: 45px; height: 45px; }
-    .container { max-width: 94%; }
-    .container > h1 { font-size: 25px; }
-    .acoes { flex-direction: column; }
+    body {
+        padding-bottom: 35px;
+    }
+
+    .topo {
+        height: 95px;
+    }
+
+    .logo {
+        width: 110px;
+    }
+
+    .voltar {
+        left: 15px;
+        top: 20px;
+        width: 43px;
+        height: 43px;
+        font-size: 23px;
+    }
+
+    .container {
+        max-width: 94%;
+        margin-top: 15px;
+    }
+
+    .container > h1 {
+        font-size: 24px;
+    }
+
+    .container > p {
+        font-size: 13px;
+    }
+
+    .solicitacao {
+        padding: 21px 18px;
+        border-radius: 17px;
+    }
+
+    .solicitacao h2 {
+        font-size: 17px;
+    }
+
+    .acoes {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .acoes button {
+        min-height: 46px;
+    }
 }

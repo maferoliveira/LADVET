@@ -11,6 +11,8 @@ model Usuario {
   nome         String
   email        String      @unique
   senha        String
+  googleId     String?     @unique
+  fotoPerfil   String?     @db.LongText
   telefone     String
   cidade       String
   cep          String?

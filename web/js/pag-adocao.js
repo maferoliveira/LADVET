@@ -1,5 +1,30 @@
 const lista = document.getElementById("listaPets");
 
+// Carrega a foto mais recente salva na conta do usuário.
+async function carregarFotoPerfilHeader() {
+    const imagem = document.getElementById("fotoPerfilHeader");
+    if (!imagem) return;
+
+    const usuarioLocal = getUsuario();
+    imagem.src = usuarioLocal?.fotoPerfil || "../img/user.png";
+
+    if (!usuarioLocal?.id || !getToken()) return;
+
+    try {
+        const usuarioAtualizado = await apiFetch(`/usuario/buscar/${usuarioLocal.id}`);
+        imagem.src = usuarioAtualizado.fotoPerfil || "../img/user.png";
+
+        // Atualiza o cache local para que a foto também fique disponível
+        // nas outras páginas do sistema.
+        localStorage.setItem(
+            "usuarioLogado",
+            JSON.stringify({ ...usuarioLocal, ...usuarioAtualizado })
+        );
+    } catch (erro) {
+        console.error("Não foi possível atualizar a foto do perfil:", erro);
+    }
+}
+
 function imagemPet(pet) {
     if (!pet.foto) {
         return "../img/user.png";
@@ -148,4 +173,5 @@ function favoritar(elemento, event) {
     );
 }
 
+carregarFotoPerfilHeader();
 carregarPets();

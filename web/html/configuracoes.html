@@ -1,74 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações da conta</title>
 
-<meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/configuracoes.css">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-Configurações
-</title>
-
-<link
-rel="stylesheet"
-href="../css/configuracoes.css">
-
-<script
-src="../js/script.js"
-defer>
-</script>
-
+    <script src="../js/script.js" defer></script>
+    <script src="../js/configuracoes.js" defer></script>
 </head>
 
 <body>
+    <main class="container">
 
-<div class="container">
+        <button class="voltar" onclick="history.back()" type="button" title="Voltar">
+            ↩
+        </button>
 
-<button
-class="voltar"
-onclick="history.back()">
+        <h1>Configurações da conta</h1>
 
-↩
+        <section>
+            <h2>Segurança da conta</h2>
+            <p>Altere sua senha para manter sua conta protegida.</p>
 
-</button>
+            <form id="formSenha" onsubmit="alterarSenha(event)">
 
+                <label for="senhaAtual">Senha atual</label>
+                <input
+                    type="password"
+                    id="senhaAtual"
+                    placeholder="Digite sua senha atual"
+                    required
+                >
 
-<h1>
+                <label for="novaSenha">Nova senha</label>
+                <input
+                    type="password"
+                    id="novaSenha"
+                    placeholder="Digite sua nova senha"
+                    minlength="8"
+                    required
+                >
 
-Configurações da conta
+                <label for="confirmarSenha">Confirmar nova senha</label>
+                <input
+                    type="password"
+                    id="confirmarSenha"
+                    placeholder="Digite novamente sua nova senha"
+                    minlength="8"
+                    required
+                >
 
-</h1>
+                <button class="salvar" type="submit" id="btnSalvar">
+                    Alterar senha
+                </button>
 
+            </form>
+        </section>
 
-<div class="foto">
+        <section>
+            <h2>Gerenciamento da conta</h2>
+            <p>Encerre sua sessão neste dispositivo.</p>
 
-<img
-src="../img/userrosa.png"
-id="preview">
+            <button class="salvar" type="button" onclick="sairDaConta()">
+                Sair da conta
+            </button>
+        </section>
 
-</div>
-
-
-<input
-type="file"
-onchange="trocarFoto(event)">
-
-
-
-<input
-id="nome"
-placeholder="Nome completo">
-
-
-<input
-id="email"
-placeholder="Email">
-
-
-<input
-id="telefone"
-placeholder="Telefone">
+    </main>
+</body>
+</html>
