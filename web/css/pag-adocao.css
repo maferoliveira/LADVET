@@ -388,3 +388,230 @@ body {
         font-size: 9px;
     }
 }
+
+/* ==============================
+   MENU INSTITUCIONAL E AÇÕES
+============================== */
+
+.lado-direito {
+    grid-column: 3;
+    grid-row: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.menu-institucional {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-institucional a {
+    color: #2c3a64;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.menu-institucional a:hover {
+    color: #a96570;
+}
+
+/* BOTÃO DE SOLICITAÇÕES */
+
+.btn-notificacoes {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 10px 15px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #f5e5e5;
+    color: #864763;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-notificacoes:hover {
+    background: #ead2d2;
+    transform: translateY(-2px);
+}
+
+.sino {
+    font-size: 21px;
+    line-height: 1;
+}
+
+.texto-notificacao {
+    white-space: nowrap;
+}
+
+/* BOTÃO CADASTRAR ANIMAL */
+
+.novo-animal {
+    display: none;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .lado-direito {
+        gap: 8px;
+    }
+
+    .menu-institucional a {
+        font-size: 11px;
+    }
+
+    .btn-notificacoes {
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+    .novo-animal {
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .topo {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        justify-content: space-between;
+
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .lado-esquerdo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .logo-link {
+        grid-column: 2;
+        grid-row: 1;
+
+        justify-self: end;
+    }
+
+    .lado-direito {
+        grid-column: 1 / -1;
+        grid-row: 2;
+
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .menu-institucional {
+        flex: 1;
+    }
+
+    .menu-institucional a {
+        font-size: 12px;
+    }
+
+    .btn-notificacoes,
+    .novo-animal {
+        min-height: 38px;
+        padding: 8px 11px;
+
+        border-radius: 10px;
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .lado-direito {
+        gap: 5px;
+    }
+
+    .menu-institucional a {
+        font-size: 10px;
+    }
+
+    .btn-notificacoes,
+    .novo-animal {
+        padding: 7px;
+        font-size: 9px;
+    }
+
+}
+/* BOTÃO NOSSA HISTÓRIA */
+
+.btn-historia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 10px 15px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #2c3a64;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.btn-historia:hover {
+    background: #435581;
+    transform: translateY(-2px);
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+    .btn-historia {
+        min-height: 38px;
+        padding: 8px 11px;
+        border-radius: 10px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .btn-historia {
+        padding: 7px;
+        font-size: 9px;
+    }
+}

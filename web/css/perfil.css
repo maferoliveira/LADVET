@@ -1,18 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    --rosa: #d18f91;
+    --rosa-escuro: #b9797c;
+    --rosa-claro: #f4dddd;
+    --rosa-fundo: #ead2d2;
+
+    --azul: #2c3a64;
+    --azul-hover: #445783;
+
+    --branco: #ffffff;
+    --cinza: #eeeeee;
+
+    --texto: #844949;
+    --texto-menu: #864763;
 }
 
 body {
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f4dddd, #ead2d2, #d9dced);
+    background: linear-gradient(
+        135deg,
+        #f4dddd,
+        #ead2d2,
+        #d9dced
+    );
     color: #333;
 }
 
@@ -20,272 +42,389 @@ body {
 
 .topo {
     width: 100%;
-    height: 115px;
+    height: 110px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     position: relative;
 }
 
 .logo {
-    width: 125px;
+    width: 120px;
+    max-height: 90px;
+    object-fit: contain;
 }
 
 .voltar {
     position: absolute;
     left: 25px;
-    top: 25px;
-    width: 50px;
-    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
     border: none;
     border-radius: 14px;
-    background: #c98d8f;
-    color: white;
+
+    background: var(--rosa);
+    color: var(--branco);
+
     font-size: 27px;
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 .voltar:hover {
-    background: #b97b7e;
+    background: var(--rosa-escuro);
+    transform: translateY(-50%) scale(1.04);
 }
-
 
 /* CONTAINER */
 
 .container {
-    width: 900px;
-    max-width: 92%;
-    margin: 25px auto 50px;
+    width: 100%;
+    max-width: 850px;
+
+    padding: 15px 20px 40px;
+    margin: 0 auto;
 }
 
-
-/* CARD */
+/* CARD PRINCIPAL */
 
 .card {
-    background: #d18f91;
-    border-radius: 25px;
-    padding: 0;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(80, 50, 50, 0.15);
-}
+    width: 100%;
 
+    background: var(--rosa);
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(80, 50, 50, 0.13);
+}
 
 /* TÍTULO */
 
 .card h1 {
-    padding: 25px 30px 18px;
-    font-size: 30px;
-    color: #844949;
-    background: #d18f91;
-    display: flex;
-    flex-direction: column;
+    padding: 25px 20px 12px;
+
     text-align: center;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    color: var(--texto);
 }
 
-
-/* ÁREA DO FORMULÁRIO */
+/* FORMULÁRIO */
 
 .card-body {
-    padding: 10px 30px 25px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 25px;
-    row-gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px 22px;
+
+    padding: 15px 35px 25px;
 }
 
+/* CAMPOS */
 
-/* LABELS */
+.campo {
+    display: flex;
+    flex-direction: column;
 
-.card-body label {
-    display: block;
-    margin-bottom: 6px;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: bold;
+    min-width: 0;
 }
 
+.campo label {
+    margin-bottom: 7px;
 
-/* INPUTS */
+    color: var(--branco);
 
-.card-body input,
-.card-body select {
-    width: 100%;
-    height: 50px;
-    padding: 0 13px;
-    border: none;
-    border-radius: 20px;
-    background: #ffffff;
-    color: #444;
     font-size: 14px;
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 15px;
+
+    border: 2px solid transparent;
+    border-radius: 13px;
+
+    background: var(--branco);
+    color: #444;
+
+    font-size: 14px;
+
     outline: none;
+
+    transition: 0.2s;
 }
 
-.card-body input:focus,
-.card-body select:focus {
-    box-shadow: 0 0 0 3px rgba(111, 123, 163, 0.35);
+.campo input:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(44, 58, 100, 0.12);
 }
 
-
-/* CAMPOS QUE NÃO DEVEM FICAR EDITÁVEIS */
-
-#emailPerfil {
-    background: #eeeeee;
+.campo input:disabled {
+    background: var(--cinza);
     color: #777;
+    cursor: not-allowed;
 }
 
-#crmvPerfil {
-    background: #eeeeee;
-    color: #777;
-}
+/* CRMV */
 
+#campoCrmv {
+    display: none;
+    grid-column: 1 / -1;
+}
 
 /* BOTÃO SALVAR */
 
 .btn-salvar {
     grid-column: 1 / -1;
-    width: 80%;
-    height: 58px;
+
+    width: 65%;
+    min-height: 50px;
+
     justify-self: center;
     margin-top: 5px;
+
     border: none;
-    border-radius: 15px;
-    background: #2c3a64;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
+    border-radius: 13px;
+
+    background: var(--azul);
+    color: var(--branco);
+
+    font-size: 15px;
+    font-weight: 600;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
 .btn-salvar:hover {
-    background: #7180ae;
-    color: #291958;
+    background: var(--azul-hover);
+    transform: translateY(-2px);
 }
-
-
-/* ÁREA DOS BOTÕES DO PERFIL */
-
 .acoes-perfil {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: fit-content;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
     gap: 10px;
-    padding: 0 30px 25px;
-    background: #d18f91;
+
+    margin: 10px auto 25px;
+    padding: 12px;
+
+    background: #ffffff;
+    border: 1px solid #f0dddd;
+    border-radius: 18px;
+
+    box-shadow: 0 5px 20px rgba(80, 50, 50, 0.08);
 }
-
-
-/* BOTÕES DO MENU */
 
 .acoes-perfil button {
-    width: 90%;
-    min-height: 55px;
-    justify-self: center;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 12px;
-    background: #e8dfdf;
-    color: #864763;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
+    min-height: 42px;
+    padding: 10px 17px;
 
-.acoes-perfil #sair {
-grid-column: 1 / -1;
-width: 50%;
-justify-self: center;
+    border: none;
+    border-radius: 11px;
+
+    background: #f7e9e9;
+    color: #864763;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.25s;
 }
 
 .acoes-perfil button:hover {
-    background: #c6adad;
-    color: #69304a;
-    transform: translateY(-1px);
+    background: #ead2d2;
+    transform: translateY(-2px);
 }
 
+.acoes-perfil #sair {
+    width: auto;
+    margin: 0;
 
-/* CAMPOS DE CLÍNICA */
-
-#campoCrmv {
-    display: none;
+    background: #2c3a64;
+    color: white;
 }
 
+.acoes-perfil #sair:hover {
+    background: #435581;
+}
 
-/* MENUS */
+@media (max-width: 480px) {
+    .acoes-perfil {
+        width: 100%;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .acoes-perfil button {
+        flex: 1 1 42%;
+        padding: 9px;
+        font-size: 11px;
+    }
+}
+/* CONTROLE INICIAL DOS MENUS */
 
 #menuAdotante,
+#menuFavoritos,
 #menuClinica,
 #menuNovoAnimal {
     display: none;
 }
 
-
-/* RESPONSIVO */
+/* TABLETS */
 
 @media (max-width: 700px) {
 
     .topo {
-        height: 95px;
+        height: 90px;
     }
 
     .logo {
-        width: 110px;
+        width: 105px;
     }
 
     .voltar {
         left: 15px;
-        top: 18px;
-        width: 45px;
-        height: 45px;
+
+        width: 43px;
+        height: 43px;
     }
 
     .container {
-        max-width: 94%;
-        margin-top: 15px;
+        max-width: 580px;
+        padding: 10px 15px 30px;
     }
 
     .card h1 {
         font-size: 25px;
-        padding: 20px;
+        padding-top: 22px;
+    }
+
+    .card-body {
+        padding: 15px 22px 22px;
+        gap: 15px;
+    }
+
+    .btn-salvar {
+        width: 80%;
+    }
+
+    .acoes-perfil {
+        padding: 5px 22px 25px;
+        gap: 10px;
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 480px) {
+
+    .topo {
+        height: 80px;
+    }
+
+    .logo {
+        width: 95px;
+    }
+
+    .voltar {
+        left: 12px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 23px;
+    }
+
+    .container {
+        padding: 10px 12px 25px;
+    }
+
+    .card {
+        border-radius: 18px;
+    }
+
+    .card h1 {
+        font-size: 23px;
+        padding: 20px 15px 10px;
     }
 
     .card-body {
         grid-template-columns: 1fr;
-        padding: 10px 20px 22px;
+
+        padding: 15px 20px 22px;
+
+        gap: 14px;
+    }
+
+    .campo input {
+        height: 46px;
+    }
+
+    #campoCrmv {
+        grid-column: 1;
     }
 
     .btn-salvar {
         grid-column: 1;
+
+        width: 100%;
+        min-height: 48px;
+
+        font-size: 14px;
     }
 
     .acoes-perfil {
-        grid-column: 1;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 0 20px 25px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        padding: 0 20px 22px;
+
+        gap: 9px;
     }
 
     .acoes-perfil button {
-        font-size: 13px;
-        padding: 11px 8px;
+        min-height: 46px;
+
+        font-size: 12px;
+
+        padding: 9px 7px;
+    }
+
+    .acoes-perfil #sair {
+        width: 70%;
     }
 }
-.acoes-perfil {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
 
-.acoes-perfil #sair {
-    grid-column: 1 / 3;
-    width: 50%;
-    justify-self: center;
-    margin-top: 15px;
-}
-.acoes-perfil #sair:hover {
-    grid-column: 1 / 3;
-    width: 50%;
-    justify-self: center;
-    background-color: #69304a;
-    color: #c6adad;
+/* TELAS MUITO PEQUENAS */
+
+@media (max-width: 340px) {
+
+    .acoes-perfil {
+        grid-template-columns: 1fr;
+    }
+
+    .acoes-perfil #sair {
+        grid-column: 1;
+        width: 100%;
+    }
 }

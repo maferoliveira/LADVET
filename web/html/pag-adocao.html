@@ -1,26 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Animais para adoção</title>
+    <title>Animais para adoção | LADVET</title>
 
-    <link
-        rel="stylesheet"
-        href="../css/pag-adocao.css"
-    >
+    <link rel="stylesheet" href="../css/pag-adocao.css">
 </head>
 
 <body>
 
+    <!-- CABEÇALHO -->
     <header class="topo">
 
+        <!-- LADO ESQUERDO -->
         <div class="lado-esquerdo">
 
             <button
@@ -28,6 +25,7 @@
                 onclick="sair()"
                 type="button"
                 title="Sair"
+                aria-label="Sair"
             >
                 ↩
             </button>
@@ -37,13 +35,51 @@
                 onclick="abrirPerfil()"
                 type="button"
                 title="Meu perfil"
+                aria-label="Meu perfil"
             >
-                <img
-                    src="../img/user.png"
-                    alt="Perfil"
-                >
+                <img src="../img/user.png" alt="Perfil">
             </button>
 
+        </div>
+
+
+        <!-- LOGO -->
+        <a href="pag-adocao.html" class="logo-link">
+            <img
+                src="../img/Logo.png"
+                class="logo"
+                alt="LADVET"
+            >
+        </a>
+
+
+        <!-- MENU E AÇÕES -->
+        <div class="lado-direito">
+
+           <button
+    class="btn-historia"
+    type="button"
+    onclick="window.location.href='historia.html'"
+>
+    ♥ Nossa História
+</button>
+
+
+            <!-- NOTIFICAÇÕES -->
+            <button
+                id="btnSolicitacoes"
+                class="btn-notificacoes"
+                type="button"
+                onclick="abrirSolicitacoesUsuario()"
+                title="Minhas solicitações"
+                aria-label="Minhas solicitações"
+            >
+                <span class="sino">🕭</span>
+                <span class="texto-notificacao">Solicitações</span>
+            </button>
+
+
+            <!-- CADASTRAR ANIMAL: SOMENTE VETERINÁRIO -->
             <button
                 id="novoAnimal"
                 class="novo-animal"
@@ -55,15 +91,10 @@
 
         </div>
 
-        <img
-            src="../img/Logo.png"
-            class="logo"
-            alt="LADVET"
-        >
-
     </header>
 
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
 
         <div class="titulo">
@@ -77,6 +108,7 @@
         </div>
 
 
+        <!-- LISTA DE ANIMAIS -->
         <section
             class="lista"
             id="listaPets"
@@ -87,9 +119,107 @@
     </main>
 
 
+    <!-- SCRIPTS -->
     <script src="../js/script.js"></script>
 
     <script src="../js/pag-adocao.js"></script>
+
+
+    <!-- CONTROLE DOS BOTÕES POR TIPO DE USUÁRIO -->
+    <script>
+
+        function abrirSolicitacoesUsuario() {
+
+            const usuario = typeof getUsuario === "function"
+                ? getUsuario()
+                : null;
+
+            const tipo = (
+                usuario?.tipo_usuario ||
+                usuario?.tipo ||
+                ""
+            ).toUpperCase();
+
+            const ehVeterinario =
+                tipo === "VETERINARIO" ||
+                tipo === "CLINICA";
+
+            if (ehVeterinario) {
+
+                if (typeof abrirSolicitacoes === "function") {
+                    abrirSolicitacoes();
+                }
+
+            } else {
+
+                if (typeof abrirMinhasSolicitacoes === "function") {
+                    abrirMinhasSolicitacoes();
+                }
+
+            }
+
+        }
+
+
+        // Configuração inicial
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const usuario = typeof getUsuario === "function"
+                ? getUsuario()
+                : null;
+
+            const tipo = (
+                usuario?.tipo_usuario ||
+                usuario?.tipo ||
+                ""
+            ).toUpperCase();
+
+            const ehVeterinario =
+                tipo === "VETERINARIO" ||
+                tipo === "CLINICA";
+
+            const botaoAnimal =
+                document.getElementById("novoAnimal");
+
+            const botaoSolicitacoes =
+                document.getElementById("btnSolicitacoes");
+
+            // Cadastro de animais somente para veterinário
+            botaoAnimal.style.display =
+                ehVeterinario ? "flex" : "none";
+
+            // Notificações para os dois tipos de usuário
+            botaoSolicitacoes.style.display = "flex";
+
+            // Ajusta identificação do botão
+            if (ehVeterinario) {
+
+                botaoSolicitacoes.title =
+                    "Solicitações de adoção recebidas";
+
+                botaoSolicitacoes.setAttribute(
+                    "aria-label",
+                    "Solicitações de adoção recebidas"
+                );
+
+                botaoSolicitacoes.querySelector(
+                    ".texto-notificacao"
+                ).textContent = "Solicitações";
+
+            } else {
+
+                botaoSolicitacoes.title =
+                    "Minhas solicitações";
+
+                botaoSolicitacoes.querySelector(
+                    ".texto-notificacao"
+                ).textContent = "Minhas solicitações";
+
+            }
+
+        });
+
+    </script>
 
 </body>
 

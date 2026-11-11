@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,22 +10,23 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Meu perfil</title>
+    <title>Meu perfil | LADVET</title>
 
-    <link
-        rel="stylesheet"
-        href="../css/perfil.css"
-    >
+    <link rel="stylesheet" href="../css/perfil.css">
+
 </head>
 
 <body>
 
+    <!-- TOPO -->
     <header class="topo">
 
         <button
             class="voltar"
             onclick="voltarAdocao()"
             type="button"
+            aria-label="Voltar"
+            title="Voltar"
         >
             ↩
         </button>
@@ -38,6 +40,7 @@
     </header>
 
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
 
         <div class="card">
@@ -45,37 +48,79 @@
             <h1>Meu perfil</h1>
 
 
+            <!-- MENU FLUTUANTE -->
+            <nav class="acoes-perfil" aria-label="Navegação do perfil">
+
+                <!-- OPÇÕES GERAIS -->
+
+                <button
+                    type="button"
+                    class="btn-menu"
+                    onclick="window.location.href='contatos.html'"
+                >
+                    Contatos
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-menu"
+                    onclick="window.location.href='configuracoes.html'"
+                >
+                    Configurações
+                </button>
+
+
+                <!-- SOMENTE ADOTANTE -->
+                <button
+                    type="button"
+                    class="btn-menu"
+                    id="menuFavoritos"
+                    onclick="window.location.href='favoritos.html'"
+                >
+                    Meus favoritos
+                </button>
+
+
+                <!-- SAIR -->
+                <button
+                    type="button"
+                    id="sair"
+                    onclick="sair()"
+                >
+                    Sair
+                </button>
+
+            </nav>
+
+
+            <!-- FORMULÁRIO -->
             <form onsubmit="salvarConfiguracoes(event)">
 
                 <div class="card-body">
 
                     <!-- NOME -->
-
                     <div class="campo">
 
-                        <label for="nomePerfil">
-                            Nome
-                        </label>
+                        <label for="nomePerfil">Nome</label>
 
                         <input
                             type="text"
                             id="nomePerfil"
+                            placeholder="Digite seu nome"
                         >
 
                     </div>
 
 
                     <!-- EMAIL -->
-
                     <div class="campo">
 
-                        <label for="emailPerfil">
-                            Email
-                        </label>
+                        <label for="emailPerfil">E-mail</label>
 
                         <input
                             type="email"
                             id="emailPerfil"
+                            placeholder="Seu e-mail"
                             disabled
                         >
 
@@ -83,136 +128,114 @@
 
 
                     <!-- TELEFONE -->
-
                     <div class="campo">
 
-                        <label for="telefonePerfil">
-                            Telefone
-                        </label>
+                        <label for="telefonePerfil">Telefone</label>
 
                         <input
                             type="tel"
                             id="telefonePerfil"
+                            placeholder="Digite seu telefone"
                         >
 
                     </div>
 
 
                     <!-- CIDADE -->
-
                     <div class="campo">
 
-                        <label for="cidadePerfil">
-                            Cidade
-                        </label>
+                        <label for="cidadePerfil">Cidade</label>
 
                         <input
                             type="text"
                             id="cidadePerfil"
+                            placeholder="Digite sua cidade"
                         >
 
                     </div>
 
 
-                    <!-- CEP -->
+                    <!-- DADOS EXCLUSIVOS DO ADOTANTE -->
 
-                    <div class="campo">
+                    <div class="campo dados-adotante">
 
-                        <label for="cepPerfil">
-                            CEP
-                        </label>
+                        <label for="cepPerfil">CEP</label>
 
                         <input
                             type="text"
                             id="cepPerfil"
+                            placeholder="Digite seu CEP"
                         >
 
                     </div>
 
 
-                    <!-- ENDEREÇO -->
+                    <div class="campo dados-adotante">
 
-                    <div class="campo">
-
-                        <label for="enderecoPerfil">
-                            Endereço
-                        </label>
+                        <label for="enderecoPerfil">Endereço</label>
 
                         <input
                             type="text"
                             id="enderecoPerfil"
+                            placeholder="Digite seu endereço"
                         >
 
                     </div>
 
 
-                    <!-- BAIRRO -->
+                    <div class="campo dados-adotante">
 
-                    <div class="campo">
-
-                        <label for="bairroPerfil">
-                            Bairro
-                        </label>
+                        <label for="bairroPerfil">Bairro</label>
 
                         <input
                             type="text"
                             id="bairroPerfil"
+                            placeholder="Digite seu bairro"
                         >
 
                     </div>
 
 
-                    <!-- NÚMERO -->
+                    <div class="campo dados-adotante">
 
-                    <div class="campo">
-
-                        <label for="numeroPerfil">
-                            Número
-                        </label>
+                        <label for="numeroPerfil">Número</label>
 
                         <input
                             type="text"
                             id="numeroPerfil"
+                            placeholder="Número da residência"
                         >
 
                     </div>
 
 
-                    <!-- RESIDÊNCIA -->
+                    <div class="campo dados-adotante">
 
-                    <div class="campo">
-
-                        <label for="residenciaPerfil">
-                            Residência
-                        </label>
+                        <label for="residenciaPerfil">Residência</label>
 
                         <input
                             type="text"
                             id="residenciaPerfil"
+                            placeholder="Tipo de residência"
                         >
 
                     </div>
 
 
-                    <!-- ESPAÇO -->
+                    <div class="campo dados-adotante">
 
-                    <div class="campo">
-
-                        <label for="espacoPerfil">
-                            Espaço
-                        </label>
+                        <label for="espacoPerfil">Espaço</label>
 
                         <input
                             type="text"
                             id="espacoPerfil"
+                            placeholder="Espaço disponível para o animal"
                         >
 
                     </div>
 
 
-                    <!-- EXPERIÊNCIA -->
-
-                    <div class="campo">
+                    <div class="campo dados-adotante">
 
                         <label for="experienciaPerfil">
                             Experiência com animais
@@ -220,48 +243,43 @@
 
                         <input
                             type="text"
-                            id="experienciaPerfil">
-
-                    </div>
-
-
-                    <!-- ROTINA -->
-
-                    <div class="campo">
-
-                        <label for="rotinaPerfil">
-                            Rotina
-                        </label>
-
-                        <input
-                            type="text"
-                            id="rotinaPerfil"
+                            id="experienciaPerfil"
+                            placeholder="Conte sua experiência"
                         >
 
                     </div>
 
 
-                    <!-- CRMV -->
+                    <div class="campo dados-adotante">
 
-                    <div
-                        class="campo"
-                        id="campoCrmv"
-                    >
+                        <label for="rotinaPerfil">Rotina</label>
 
-                        <label for="crmvPerfil">
-                            CRMV
-                        </label>
+                        <input
+                            type="text"
+                            id="rotinaPerfil"
+                            placeholder="Descreva sua rotina"
+                        >
+
+                    </div>
+
+
+                    <!-- CRMV: SOMENTE VETERINÁRIO -->
+
+                    <div class="campo" id="campoCrmv">
+
+                        <label for="crmvPerfil">CRMV</label>
 
                         <input
                             type="text"
                             id="crmvPerfil"
+                            placeholder="CRMV cadastrado"
                             disabled
                         >
 
                     </div>
 
 
-                    <!-- SALVAR -->
+                    <!-- SALVAR ALTERAÇÕES -->
 
                     <button
                         type="submit"
@@ -274,149 +292,51 @@
 
             </form>
 
-
-            <!-- BOTÕES DO PERFIL -->
-
-            <div class="acoes-perfil">
-
-
-                <!-- ADOTANTE -->
-
-                <button
-                    type="button"
-                    onclick="abrirMinhasSolicitacoes()"
-                    id="menuAdotante"
-                >
-                    Minhas solicitações
-                </button>
-<button
-    type="button"
-    onclick="window.location.href='favoritos.html'"
-    id="menuFavoritos"
->
-    Meus favoritos
-</button>
-
-                <!-- CLÍNICA -->
-
-                <button
-                    type="button"
-                    onclick="abrirSolicitacoes()"
-                    id="menuClinica"
-                >
-                    Solicitações de adoção
-                </button>
-
-
-                <button
-                    type="button"
-                    onclick="abrirCadastroAnimal()"
-                    id="menuNovoAnimal"
-                >
-                    Cadastrar animal
-                </button>
-
-
-                <!-- CONTATOS -->
-
-                <button
-                    type="button"
-                    onclick="window.location.href='contatos.html'"
-                    id="menuContatos"
-                >
-                    Contatos
-                </button>
-
-
-                <!-- NOSSA HISTÓRIA -->
-
-                <button
-                    type="button"
-                    onclick="window.location.href='historia.html'"
-                    id="menuHistoria"
-                >
-                    Nossa história
-                </button>
-
-
-                <!-- CONFIGURAÇÕES -->
-
-                <button
-                    type="button"
-                    onclick="window.location.href='configuracoes.html'"
-                    id="menuConfiguracoes"
-                >
-                    Configurações
-                </button>
-
-
-                <!-- SAIR -->
-
-                <button
-                    type="button" id="sair"
-                    onclick="sair()"
-                >
-                    Sair
-                </button>
-
-            </div>
-
         </div>
 
     </main>
 
 
+    <!-- SCRIPTS -->
     <script src="../js/script.js"></script>
 
     <script src="../js/perfil.js"></script>
 
 
+    <!-- CONTROLE DO TIPO DE USUÁRIO -->
     <script>
 
-        const usuario = getUsuario();
+        const usuario = typeof getUsuario === "function"
+            ? getUsuario()
+            : null;
 
-        const menuAdotante =
-            document.getElementById("menuAdotante");
-
-        const menuClinica =
-            document.getElementById("menuClinica");
-
-        const menuNovoAnimal =
-            document.getElementById("menuNovoAnimal");
-
-        const campoCrmv =
-            document.getElementById("campoCrmv");
+        const tipoUsuario = (
+            usuario?.tipo_usuario ||
+            usuario?.tipo ||
+            ""
+        ).toUpperCase();
 
 
-        if (
-            usuario &&
-            usuario.tipo_usuario === "CLINICA"
-        ) {
-
-            // Esconde funções do adotante
-
-            menuAdotante.style.display = "none";
+        // Identifica veterinário ou clínica
+        const ehVeterinario =
+            tipoUsuario === "VETERINARIO" ||
+            tipoUsuario === "CLINICA";
 
 
-            // Mostra funções da clínica
+        // Campos exclusivos do adotante
+        document.querySelectorAll(".dados-adotante").forEach(campo => {
 
-            menuClinica.style.display = "block";
+            campo.style.display = ehVeterinario ? "none" : "flex";
 
-            menuNovoAnimal.style.display = "block";
+        });
 
-            campoCrmv.style.display = "block";
 
-        } else {
+        // CRMV: somente veterinário
+        document.getElementById("campoCrmv").style.display =
+            ehVeterinario ? "flex" : "none";
 
-            // Esconde funções da clínica
-
-            menuClinica.style.display = "none";
-
-            menuNovoAnimal.style.display = "none";
-
-            campoCrmv.style.display = "none";
-
-        }
+        document.getElementById("menuFavoritos").style.display =
+            ehVeterinario ? "none" : "flex";
 
     </script>
 
