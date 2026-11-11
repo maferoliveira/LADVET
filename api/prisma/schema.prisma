@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
 }
 
 model Usuario {
@@ -43,7 +43,7 @@ model Animal {
   porte        String @default("Não informado")
   temperamento String?
   descricao    String?
-  foto String @db.LongText
+  foto         String
   status       statusAnimal @default(DISPONIVEL)
 
   usuarioID Int

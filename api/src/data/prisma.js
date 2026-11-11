@@ -1,18 +1,14 @@
-
-require("dotenv").config();
-
 const { PrismaClient } = require("@prisma/client");
-const { PrismaMariaDb } = require("@prisma/adapter-mariadb");
+const { PrismaPg } = require("@prisma/adapter-pg");
 
-const adapter = new PrismaMariaDb({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "",
-    database: "ladvet",
-    connectionLimit: 5
+const url = new URL(process.env.DATABASE_URL);
+url.searchParams.delete("sslmode");
+url.searchParams.delete("pgbouncer");
+
+const adapter = new PrismaPg({
+  connectionString: url.toString(),
+  ssl: { rejectUnauthorized: false },
+  max: 3,
 });
 
-const prisma = new PrismaClient({ adapter });
-
-module.exports = prisma;
+module.exports = new PrismaClient({ adapter });
