@@ -25,7 +25,11 @@ app.get("/", (req, res) => {
     res.json({ msg: "API LADVET online" });
 });
 
-app.listen(process.env.PORT_APP || 3000, () => {
-    console.log("Online na porta " + (process.env.PORT_APP || 3000));
-});
+if (process.env.NODE_ENV !== "production") {
+    app.listen(process.env.PORT_APP || 3000, () => {
+        console.log("Online na porta " + (process.env.PORT_APP || 3000));
+    });
+}
+
+module.exports = app;
 
