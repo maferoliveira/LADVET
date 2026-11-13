@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'ui/favoritos.dart';
 import 'ui/home.dart';
 
-void main() {
-  runApp(LadVetApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (!kIsWeb) {
+    await FavoritosController.inicializar();
+  }
+  runApp(const LadVetApp());
 }
 
 class LadVetApp extends StatelessWidget {

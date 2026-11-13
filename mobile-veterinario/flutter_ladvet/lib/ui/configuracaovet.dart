@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ladvet/ui/contaconfiguracao.dart';
+import 'package:flutter_ladvet/ui/contatos.dart';
 import 'cadastroanimal.dart';
+import 'historia.dart';
 
 const Color rosaFundo = Color(0xFFF3DEDE);
 const Color rosa = Color(0xFFD18F92);
@@ -284,7 +287,6 @@ child: Form(
       LayoutBuilder(
         builder: (context, constraints) {
           final botoes = [
-            botao('Meus favoritos', () {}),
             botao('Solicitações de adoção', () {}),
             botao('Cadastrar animal', () {
               Navigator.push(
@@ -295,9 +297,30 @@ child: Form(
                 ),
               );
             }),
-            botao('Contatos', () {}),
-            botao('Nossa história', () {}),
-            botao('Configurações', () {}),
+            botao('Contatos', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ContatosPage(),
+                ),
+              );
+            }),
+            botao('Nossa história', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NossaHistoriaPage(),
+                ),
+              );
+            }),
+            botao('Configurações', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ConfiguracoesContaPage(),
+                ),
+              );
+            }),
           ];
 
           return Column(
@@ -308,8 +331,10 @@ child: Form(
                   child: Row(
                     children: [
                       Expanded(child: botoes[i]),
-                      const SizedBox(width: 10),
-                      Expanded(child: botoes[i + 1]),
+                      if (i + 1 < botoes.length) ...[
+                        const SizedBox(width: 10),
+                        Expanded(child: botoes[i + 1]),
+                      ],
                     ],
                   ),
                 ),

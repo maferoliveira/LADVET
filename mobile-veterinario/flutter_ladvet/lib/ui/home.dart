@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             children: [
               const Spacer(flex: 3),
 
-              Image.asset('/logo.png', width: 260, fit: BoxFit.contain),
+              Image.asset('assets/logo.png', width: 260, fit: BoxFit.contain),
 
               const Spacer(flex: 2),
 

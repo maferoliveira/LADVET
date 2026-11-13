@@ -13,7 +13,6 @@ class MockupPets {
       temperamento: 'Calma e carinhosa',
       descricao: 'Tulipa é uma cachorrinha dócil e muito carinhosa.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/tulipa.png',
     ),
     Pet(
@@ -26,7 +25,6 @@ class MockupPets {
       temperamento: 'Brincalhão e protetor',
       descricao: 'Thor é um cachorro brincalhão e muito companheiro.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/thor.png',
     ),
     Pet(
@@ -39,7 +37,6 @@ class MockupPets {
       temperamento: 'Dócil e amigável',
       descricao: 'Pretinho é tranquilo, carinhoso e gosta de companhia.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/pretinho.png',
     ),
     Pet(
@@ -52,7 +49,6 @@ class MockupPets {
       temperamento: 'Brincalhona e dócil',
       descricao: 'Nina é uma cachorrinha alegre que adora brincar.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/nina.png',
     ),
     Pet(
@@ -65,7 +61,6 @@ class MockupPets {
       temperamento: 'Calma e carinhosa',
       descricao: 'Meggie é tranquila, carinhosa e gosta de receber atenção.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/meggie.png',
     ),
     Pet(
@@ -78,7 +73,6 @@ class MockupPets {
       temperamento: 'Energético e brincalhão',
       descricao: 'Salsicha é muito divertido, ativo e adora brincar.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/salsicha.jpg',
     ),
     Pet(
@@ -91,7 +85,6 @@ class MockupPets {
       temperamento: 'Curioso e brincalhão',
       descricao: 'Duck é um gato curioso que gosta de explorar novos lugares.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/duck.png',
     ),
     Pet(
@@ -104,7 +97,6 @@ class MockupPets {
       temperamento: 'Amigável e carinhoso',
       descricao: 'Fred é um cachorro amigável e muito companheiro.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/fred.png',
     ),
     Pet(
@@ -117,7 +109,6 @@ class MockupPets {
       temperamento: 'Dócil e brincalhona',
       descricao: 'Jady é carinhosa, alegre e gosta de brincar.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/jady.png',
     ),
     Pet(
@@ -130,7 +121,6 @@ class MockupPets {
       temperamento: 'Calmo e curioso',
       descricao: 'Theo é um gatinho tranquilo e muito curioso.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/theo.png',
     ),
     Pet(
@@ -143,7 +133,6 @@ class MockupPets {
       temperamento: 'Carinhosa e brincalhona',
       descricao: 'Aurora é uma gatinha jovem, carinhosa e cheia de energia.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/aurora.jpg',
     ),
     Pet(
@@ -156,7 +145,6 @@ class MockupPets {
       temperamento: 'Dócil e carinhoso',
       descricao: 'Romeu é um gatinho dócil que adora receber carinho.',
       status: 'Disponível',
-      icon: Icons.pets,
       imagePath: 'assets/romeu.jpg',
     ),
   ];

@@ -27,7 +27,7 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
   static const Color _bgColor = Color(0xFFFBE4E4);
   static const Color _cardHeaderColor = Color.fromARGB(255, 189, 146, 149);
   static const Color _cardBodyColor = Color.fromARGB(255, 184, 130, 133);
-  static const Color _buttonColor = Color(0xFF7B84B8);
+  static const Color _buttonColor = Color.fromARGB(255, 160, 164, 198);
 
   static const List<Pet> pets = MockupPets.pets;
 
@@ -116,15 +116,6 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
                                           ],
                                         ),
                                       ),
-                                      IconButton(
-                                        onPressed: _toggleFavorito,
-                                        icon: Icon(
-                                          _favorito
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
-                                          color: Colors.white,
-                                        ),
-                                      ),
                                     ],
                                   ),
 
@@ -169,16 +160,26 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
                     SizedBox(
                       height: 52,
                       child: ElevatedButton(
-                        onPressed: widget.onAdoptRequest,
+                        onPressed: () {
+                          widget.onAdoptRequest?.call();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Solicitação feita!'),
+                              backgroundColor: Color(0xFFD18F92),
+                              duration: Duration(seconds: 3),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: _buttonColor,
+                          disabledBackgroundColor: _buttonColor,
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
                           elevation: 0,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Solicitar adoção',
                           style: TextStyle(
                             fontSize: 16,

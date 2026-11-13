@@ -11,7 +11,6 @@ class Pet {
     required this.temperamento,
     required this.descricao,
     required this.status,
-    required this.icon,
     this.imagePath,
   });
 
@@ -24,6 +23,5 @@ class Pet {
   final String temperamento;
   final String descricao;
   final String status;
-  final IconData icon;
   final String? imagePath;
 }

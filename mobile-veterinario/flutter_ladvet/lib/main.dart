@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/home.dart';
+import 'ui/adocao.dart';
 
 void main() {
   runApp(LadVetApp());
@@ -14,7 +14,7 @@ class LadVetApp extends StatelessWidget {
       title: 'LADVET',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, fontFamily: 'Georgia'),
-      home: HomePage(),
+      home: const AdocaoPage(),
       routes: {},
     );
   }

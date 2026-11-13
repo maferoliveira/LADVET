@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: const Color(0xFF6E71A6),
                       padding: const EdgeInsets.symmetric(vertical: 22),
                       child: const Text(
-                        'Login',
+                        'Login Veterinário',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,

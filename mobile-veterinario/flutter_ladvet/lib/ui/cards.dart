@@ -3,26 +3,17 @@ import 'package:flutter_ladvet/models/pet.dart';
 import 'package:flutter_ladvet/models/pets.dart';
 import 'package:flutter_ladvet/ui/adocao.dart';
 
-class PetAdoptionCardScreen extends StatefulWidget {
+class PetAdoptionCardScreen extends StatelessWidget {
   const PetAdoptionCardScreen({
     super.key,
     required this.idPet,
     this.onBackPressed,
-    this.onFavoriteToggle,
     this.onAdoptRequest,
   });
 
   final int idPet;
   final VoidCallback? onBackPressed;
-  final ValueChanged<bool>? onFavoriteToggle;
   final VoidCallback? onAdoptRequest;
-
-  @override
-  State<PetAdoptionCardScreen> createState() => _PetAdoptionCardScreenState();
-}
-
-class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
-  bool _favorito = false;
 
   static const Color _bgColor = Color(0xFFFBE4E4);
   static const Color _cardHeaderColor = Color.fromARGB(255, 189, 146, 149);
@@ -31,21 +22,16 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
 
   static const List<Pet> pets = MockupPets.pets;
 
-  void _toggleFavorito() {
-    setState(() => _favorito = !_favorito);
-    widget.onFavoriteToggle?.call(_favorito);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final pet = pets.firstWhere((e) => e.id == widget.idPet);
+    final pet = pets.firstWhere((e) => e.id == idPet);
 
     return Scaffold(
       backgroundColor: _bgColor,
       body: SafeArea(
         child: Column(
           children: [
-            _TopBar(onBackPressed: widget.onBackPressed),
+            _TopBar(onBackPressed: onBackPressed),
             Expanded(
               child: SingleChildScrollView(
                 padding: EdgeInsets.fromLTRB(20, 8, 20, 20),
@@ -67,7 +53,7 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
                                 child: AspectRatio(
                                   aspectRatio: 1,
                                   child: pet.imagePath != null
-                                      ? Image.network(
+                                  ? Image.asset(
                                           pet.imagePath!,
                                           fit: BoxFit.cover,
                                         )
@@ -116,15 +102,6 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
                                           ],
                                         ),
                                       ),
-                                      IconButton(
-                                        onPressed: _toggleFavorito,
-                                        icon: Icon(
-                                          _favorito
-                                              ? Icons.favorite
-                                              : Icons.favorite_border,
-                                          color: Colors.white,
-                                        ),
-                                      ),
                                     ],
                                   ),
 
@@ -169,7 +146,7 @@ class _PetAdoptionCardScreenState extends State<PetAdoptionCardScreen> {
                     SizedBox(
                       height: 52,
                       child: ElevatedButton(
-                        onPressed: widget.onAdoptRequest,
+                        onPressed: onAdoptRequest,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: _buttonColor,
                           foregroundColor: Colors.white,

@@ -1,13 +1,25 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ladvet/models/pet.dart';
 import 'package:flutter_ladvet/models/pets.dart';
+import 'package:flutter_ladvet/root/file.dart';
 
+// CONTROLE DE FAVORITOS
 class FavoritosController {
-  static final ValueNotifier<Set<int>> ids =
-      ValueNotifier<Set<int>>({});
+  static final ValueNotifier<Set<int>> ids = ValueNotifier<Set<int>>({});
+  static Future<void> _gravacoesPendentes = Future<void>.value();
 
-  static void alternar(int id) {
+  static Future<void> inicializar() async {
+    final conteudo = await GerenciarArquivo.abrir();
+    final favoritos = conteudo
+        .split(RegExp(r'[,;\s]+'))
+        .map(int.tryParse)
+        .whereType<int>()
+        .where((id) => id > 0)
+        .toSet();
+    ids.value = favoritos;
+  }
+
+  static Future<void> alternar(int id) {
     final novosFavoritos = Set<int>.from(ids.value);
 
     if (novosFavoritos.contains(id)) {
@@ -17,6 +29,16 @@ class FavoritosController {
     }
 
     ids.value = novosFavoritos;
+
+    final conteudo = (novosFavoritos.toList()..sort()).join(',');
+    final gravacao = _gravacoesPendentes
+        .then((_) => GerenciarArquivo.salvar(conteudo))
+        .then<void>((_) {});
+    _gravacoesPendentes = gravacao.then<void>(
+      (_) {},
+      onError: (Object error, StackTrace stackTrace) {},
+    );
+    return gravacao;
   }
 
   static bool verificar(int id) {
@@ -25,382 +47,237 @@ class FavoritosController {
 }
 
 // PÁGINA DE FAVORITOS
-class FavoritosPage extends StatelessWidget {
+class FavoritosPage extends StatefulWidget {
   const FavoritosPage({super.key});
 
-  static const Color rosa = Color(0xFFD18F92);
-  static const Color azul = Color(0xFF7B84B8);
-  static const Color texto = Color(0xFF57465D);
+  @override
+  State<FavoritosPage> createState() => _FavoritosPageState();
+}
 
-  static const List<Pet> pets = MockupPets.pets;
+class _FavoritosPageState extends State<FavoritosPage> {
+  bool _somenteFavoritas = true;
+
+  Future<void> _removerFavorito(int id) async {
+    try {
+      await FavoritosController.alternar(id);
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Não foi possível salvar seus favoritos no aparelho.'),
+        ),
+      );
+    }
+  }
+
+  void filtroFavoritas(bool somenteFavoritas) {
+    setState(() {
+      _somenteFavoritas = somenteFavoritas;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
+      backgroundColor: const Color(0xFFFBE4E4),
 
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFC9B2C0),
-              Color(0xFFB8B2CD),
-            ],
-          ),
-        ),
-
-        child: SafeArea(
-          child: Column(
-            children: [
-              // TOPO
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 12,
-                ),
-
-                child: SizedBox(
-                  height: 76,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // BOTÃO VOLTAR
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(14),
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            width: 54,
-                            height: 54,
-                            decoration: BoxDecoration(
-                              color: rosa,
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            child: const Icon(
-                              Icons.reply_rounded,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      // LOGO
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.pets,
-                            color: Color(0xFF8194CE),
-                            size: 37,
-                          ),
-                          const SizedBox(width: 5),
-                          const Text(
-                            'LAD\nVET',
-                            textAlign: TextAlign.center,
-                            height: 0.85,
-                            style: TextStyle(
-                              color: Color(0xFFD47F87),
-                              fontSize: 24,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 217, 176, 178),
+        elevation: 0,
+        centerTitle: true,
+        title: Image.asset(
+          'assets/logo.png',
+          width: 155,
+          height: 76,
+          fit: BoxFit.contain,
+          errorBuilder: (context, error, stackTrace) {
+            return const Text(
+              'LAD VET',
+              style: TextStyle(
+                color: Color(0xFF4B1528),
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
               ),
-
-              // CONTEÚDO
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 25),
-
-                      const Text(
-                        'Meus favoritos',
-                        style: TextStyle(
-                          color: texto,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-
-                      const SizedBox(height: 12),
-
-                      const Text(
-                        'Animais que você marcou como favoritos.',
-                        style: TextStyle(
-                          color: Color(0xFF775E7B),
-                          fontSize: 16,
-                        ),
-                      ),
-
-                      const SizedBox(height: 34),
-
-                      // LISTA DE FAVORITOS
-                      Expanded(
-                        child: ValueListenableBuilder<Set<int>>(
-                          valueListenable: FavoritosController.ids,
-
-                          builder: (context, favoritos, child) {
-                            final animaisFavoritos = pets
-                                .where(
-                                  (pet) => favoritos.contains(pet.id),
-                                )
-                                .toList();
-
-                            // QUANDO NÃO EXISTIREM FAVORITOS
-                            if (animaisFavoritos.isEmpty) {
-                              return Center(
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 128,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(22),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withValues(
-                                          alpha: 0.07,
-                                        ),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 5),
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Text(
-                                    'Você ainda não possui favoritos.',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF765B79),
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-
-                            // QUANDO EXISTIREM FAVORITOS
-                            return ListView.builder(
-                              padding: const EdgeInsets.only(bottom: 20),
-                              itemCount: animaisFavoritos.length,
-
-                              itemBuilder: (context, index) {
-                                final pet = animaisFavoritos[index];
-
-                                return _CardFavorito(
-                                  pet: pet,
-                                  onRemove: () {
-                                    FavoritosController.alternar(pet.id);
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF4B1528)),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+
+      body: Column(
+        children: [
+          const SizedBox(height: 20),
+
+          const Text(
+            'MEUS FAVORITOS',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF814D4D),
+            ),
+          ),
+
+          const SizedBox(height: 15),
+
+          // BOTÃO DE FILTRO
+          ElevatedButton(
+            onPressed: () => filtroFavoritas(!_somenteFavoritas),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFD18F92),
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            child: Text(
+              _somenteFavoritas ? 'TODOS OS ANIMAIS' : 'FAVORITAS',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          const SizedBox(height: 15),
+
+          // LISTA DE ANIMAIS
+          Expanded(
+            child: ValueListenableBuilder<Set<int>>(
+              valueListenable: FavoritosController.ids,
+              builder: (context, favoritos, child) {
+                final animaisFiltrados = MockupPets.pets.where((pet) {
+                  return !_somenteFavoritas || favoritos.contains(pet.id);
+                }).toList();
+
+                if (animaisFiltrados.isEmpty) {
+                  return Center(
+                    child: Text(
+                      _somenteFavoritas
+                          ? 'Você ainda não possui animais favoritos!'
+                          : 'Nenhum animal cadastrado.',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF814D4D),
+                      ),
+                    ),
+                  );
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: animaisFiltrados.length,
+                  itemBuilder: (context, index) {
+                    final pet = animaisFiltrados[index];
+
+                    return PetFavoriteCard(
+                      pet: pet,
+                      onRemove: () => _removerFavorito(pet.id),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 // CARD DOS ANIMAIS FAVORITADOS
-class _CardFavorito extends StatelessWidget {
-  const _CardFavorito({
-    required this.pet,
-    required this.onRemove,
-  });
-
+class PetFavoriteCard extends StatelessWidget {
   final Pet pet;
   final VoidCallback onRemove;
+
+  const PetFavoriteCard({super.key, required this.pet, required this.onRemove});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 22),
-
+      margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 189, 146, 149),
-        borderRadius: BorderRadius.circular(22),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-
-      child: Column(
-        children: [
-          // FOTO DO ANIMAL
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: AspectRatio(
-                aspectRatio: 1.5,
-                child: pet.imagePath != null
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                child: pet.imagePath != null && pet.imagePath!.isNotEmpty
                     ? Image.network(
                         pet.imagePath!,
-                        width: double.infinity,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
-                          return const ColoredBox(
-                            color: Colors.white,
-                            child: Icon(
-                              Icons.pets,
-                              size: 60,
-                              color: Colors.grey,
-                            ),
+                          return const Icon(
+                            Icons.pets,
+                            size: 45,
+                            color: Color(0xFFD18F92),
                           );
                         },
                       )
-                    : const ColoredBox(
-                        color: Colors.white,
-                        child: Icon(
-                          Icons.pets,
-                          size: 60,
-                          color: Colors.grey,
-                        ),
+                    : const Icon(
+                        Icons.pets,
+                        size: 45,
+                        color: Color(0xFFD18F92),
                       ),
               ),
             ),
-          ),
 
-          // INFORMAÇÕES
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 184, 130, 133),
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(22),
-              ),
-            ),
+            const SizedBox(width: 14),
 
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _InfoFavorito('Nome', pet.nome),
-                          _InfoFavorito('Idade', pet.idade),
-                          _InfoFavorito('Espécie', pet.especie),
-                        ],
-                      ),
-                    ),
-
-                    IconButton(
-                      onPressed: onRemove,
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.white,
-                        size: 27,
-                      ),
-                      tooltip: 'Remover dos favoritos',
-                    ),
-                  ],
-                ),
-
-                const Divider(color: Colors.white54),
-
-                Text(
-                  'Sexo: ${pet.sexo}',
-                  style: const TextStyle(color: Colors.white),
-                ),
-
-                const SizedBox(height: 8),
-
-                Text(
-                  'Vacinas: ${pet.vacinas}',
-                  style: const TextStyle(color: Colors.white),
-                ),
-
-                const SizedBox(height: 8),
-
-                Text(
-                  'Temperamento: ${pet.temperamento}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    height: 1.4,
-                  ),
-                ),
-
-                const SizedBox(height: 8),
-
-                Text(
-                  pet.descricao,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    height: 1.4,
-                  ),
-                ),
-
-                const SizedBox(height: 10),
-
-                Center(
-                  child: Text(
-                    pet.status,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    pet.nome,
                     style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 13,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF814D4D),
                     ),
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 5),
+
+                  Text(
+                    pet.especie,
+                    style: const TextStyle(fontSize: 14, color: Colors.black54),
+                  ),
+
+                  const SizedBox(height: 5),
+
+                  Text(
+                    pet.idade,
+                    style: const TextStyle(fontSize: 14, color: Colors.black54),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
-// INFORMAÇÕES DO CARD
-class _InfoFavorito extends StatelessWidget {
-  const _InfoFavorito(this.label, this.value);
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 4),
-      child: Text(
-        '$label: $value',
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
+            IconButton(
+              onPressed: onRemove,
+              icon: const Icon(
+                Icons.favorite,
+                color: Color(0xFFFF5B91),
+                size: 28,
+              ),
+            ),
+          ],
         ),
       ),
     );
