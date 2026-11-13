@@ -1,5 +1,5 @@
 
-const API_CONFIG = "http://localhost:3000";
+const API_CONFIG = window.LADVET_API_URL || "http://localhost:3000";
 
 function usuarioAtual() {
     try {

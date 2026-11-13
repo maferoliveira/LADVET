@@ -1,6 +1,6 @@
 
 const GOOGLE_CLIENT_ID = "665644644326-871i1u1jqv52tjbpt8k46b52eb3h6g7f.apps.googleusercontent.com";
-const GOOGLE_API_URL = "http://localhost:3000";
+const GOOGLE_API_URL = window.LADVET_API_URL || "http://localhost:3000";
 
 let cadastroTokenGoogle = null;
 
