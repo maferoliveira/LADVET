@@ -311,65 +311,49 @@ async function criarConta(event) {
 }
  
 
-async function criarContaVeterinario(event) {
 
+async function criarContaVeterinario(event) {
     if (event) event.preventDefault();
 
- 
-
     const dados = {
-
         nome: document.getElementById("nomeVeterinarioCadastro")?.value.trim(),
-
         email: document.getElementById("emailVeterinarioCadastro")?.value.trim().toLowerCase(),
-
         telefone: document.getElementById("telefoneVeterinarioCadastro")?.value.trim(),
-
         cidade: document.getElementById("cidadeVeterinarioCadastro")?.value.trim(),
-
         senha: document.getElementById("senhaVeterinarioCadastro")?.value,
-
         crmv: document.getElementById("crmvVeterinarioCadastro")?.value.trim(),
-
+        codigoValidacao: document.getElementById("codigoValidacaoVeterinarioCadastro")?.value.trim(),
         tipo_usuario: "CLINICA"
-
     };
 
- 
-
-    if (!dados.nome || !dados.email || !dados.senha || !dados.crmv) {
-
+    if (
+        !dados.nome ||
+        !dados.email ||
+        !dados.telefone ||
+        !dados.cidade ||
+        !dados.senha ||
+        !dados.crmv ||
+        !dados.codigoValidacao
+    ) {
         alert("Preencha todos os campos obrigatórios.");
-
         return;
-
     }
 
- 
-
     try {
-
         await apiFetch("/usuario/cadastrar", {
-
             method: "POST",
-
             body: JSON.stringify(dados)
-
         });
 
- 
-
-        alert("Conta da clínica criada com sucesso!");
+        alert("Conta da clínica criada e código validado com sucesso!");
 
         window.location.href = "login-veterinario.html";
 
     } catch (erro) {
-
         alert(erro.message);
-
     }
-
 }
+
 
  
 

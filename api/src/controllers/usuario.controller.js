@@ -87,6 +87,7 @@ const login = async (req, res) => {
 };
 
 // CADASTRAR
+
 const cadastrar = async (req, res) => {
     const dados = { ...req.body };
 
@@ -104,10 +105,24 @@ const cadastrar = async (req, res) => {
         }
     }
 
-    if (dados.tipo_usuario === "CLINICA" && !dados.crmv) {
-        return res.status(400).json({
-            msg: "Informe o CRMV."
-        });
+    if (dados.tipo_usuario === "CLINICA") {
+        if (!dados.crmv?.trim()) {
+            return res.status(400).json({
+                msg: "Informe o CRMV."
+            });
+        }
+
+        const codigoCorreto = process.env.CRMV_DEMO_CODE?.trim();
+
+        if (
+            !codigoCorreto ||
+            !dados.codigoValidacao?.trim() ||
+            dados.codigoValidacao.trim() !== codigoCorreto
+        ) {
+            return res.status(403).json({
+                msg: "Código de validação do CRMV incorreto."
+            });
+        }
     }
 
     try {
@@ -140,20 +155,25 @@ const cadastrar = async (req, res) => {
                     : null,
 
                 crmv: dados.tipo_usuario === "CLINICA"
-                    ? dados.crmv
+                    ? dados.crmv.trim()
                     : null,
 
-                validado: false,
+                validado: dados.tipo_usuario === "CLINICA" ||
+                    dados.tipo_usuario === "ADOTANTE",
+
                 tipo_usuario: dados.tipo_usuario
             }
         });
 
         const { senha: _, ...usuarioSemSenha } = novoUsuario;
 
-        return res.status(201).json(usuarioSemSenha);
+        return res.status(201).json({
+            msg: "Cadastro realizado com sucesso!",
+            usuario: usuarioSemSenha
+        });
 
     } catch (error) {
-        console.error(error);
+        console.error("Erro ao cadastrar usuário:", error);
 
         if (error.code === "P2002") {
             return res.status(409).json({
@@ -162,10 +182,11 @@ const cadastrar = async (req, res) => {
         }
 
         return res.status(500).json({
-            msg: "Internal server error."
+            msg: "Erro ao cadastrar usuário."
         });
     }
 };
+
 
 // LISTAR
 const listar = async (req, res) => {
