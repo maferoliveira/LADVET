@@ -4,7 +4,7 @@ const GOOGLE_API_URL = window.LADVET_API_URL || "http://localhost:3000";
 
 let cadastroTokenGoogle = null;
 
-// Identifica o tipo de usuário peconferila página
+// Identifica o tipo de usuário pela página
 function obterTipoUsuario() {
     return document.getElementById("emailVeterinario")
         ? "CLINICA"
@@ -162,6 +162,10 @@ function mostrarFormularioGoogle(dadosGoogle, tipoUsuario) {
             <label>CRMV</label>
             <input type="text" name="crmv" required
                 placeholder="Informe seu CRMV">
+
+            <label>Código de validação</label>
+            <input type="text" name="codigoValidacao" required
+                placeholder="Informe o código de validação">
         `;
 
     formulario.innerHTML = `
@@ -251,7 +255,7 @@ function mostrarFormularioGoogle(dadosGoogle, tipoUsuario) {
         cursor: pointer;
     `;
 
-    // Agora o formulário realmente recebe o evento de envio
+    // Evento de envio do formulário
     formularioInterno.addEventListener("submit", finalizarCadastroGoogle);
 
     formulario.scrollIntoView({ behavior: "smooth" });

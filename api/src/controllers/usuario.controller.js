@@ -1,5 +1,7 @@
+
 const prisma = require("../data/prisma");
 const jsonwebtoken = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
 
 function validarUsuario(dados) {
     const {
@@ -395,8 +397,6 @@ const alterarSenha = async (req, res) => {
 };
 
 // LOGIN COM GOOGLE
-const { OAuth2Client } = require("google-auth-library");
-
 const loginGoogle = async (req, res) => {
     try {
         const { credential, tipo_usuario } = req.body;
@@ -562,7 +562,8 @@ const completarCadastroGoogle = async (req, res) => {
             espaco,
             experiencia,
             rotina,
-            crmv
+            crmv,
+            codigoValidacao
         } = req.body;
 
         const tipoUsuario = dadosGoogle.tipo_usuario;
@@ -582,10 +583,24 @@ const completarCadastroGoogle = async (req, res) => {
             });
         }
 
-        if (tipoUsuario === "CLINICA" && !crmv?.trim()) {
-            return res.status(400).json({
-                msg: "Informe o CRMV."
-            });
+        if (tipoUsuario === "CLINICA") {
+            if (!crmv?.trim()) {
+                return res.status(400).json({
+                    msg: "Informe o CRMV."
+                });
+            }
+
+            const codigoCorreto = process.env.CRMV_DEMO_CODE?.trim();
+
+            if (
+                !codigoCorreto ||
+                !codigoValidacao?.trim() ||
+                codigoValidacao.trim() !== codigoCorreto
+            ) {
+                return res.status(403).json({
+                    msg: "Código de validação do CRMV incorreto."
+                });
+            }
         }
 
         const existente = await prisma.usuario.findUnique({
@@ -630,8 +645,9 @@ const completarCadastroGoogle = async (req, res) => {
 
                 tipo_usuario: tipoUsuario,
 
-                // Clínica nunca é aprovada automaticamente.
-                validado: tipoUsuario === "ADOTANTE"
+                validado: tipoUsuario === "ADOTANTE" ||
+                    (tipoUsuario === "CLINICA" &&
+                    codigoValidacao.trim() === process.env.CRMV_DEMO_CODE?.trim())
             }
         });
 
@@ -649,7 +665,7 @@ const completarCadastroGoogle = async (req, res) => {
 
         return res.status(201).json({
             msg: tipoUsuario === "CLINICA"
-                ? "Cadastro concluído. Sua conta está aguardando validação do CRMV."
+                ? "Cadastro concluído e código de demonstração validado."
                 : "Cadastro concluído com sucesso.",
             token: tokenAcesso,
             usuario: usuarioSemSenha
