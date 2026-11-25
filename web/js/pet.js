@@ -325,16 +325,14 @@ if (btnEditarAnimal) {
 
         /* MOSTRA EDITAR ANIMAL */
 
-if (btnEditarAnimal) {
-
+if (usuario && usuario.tipo_usuario === "CLINICA" && btnEditarAnimal) {
     btnEditarAnimal.style.display = "block";
 
     btnEditarAnimal.onclick = function () {
         abrirFormularioAnimal();
     };
-
 }
-        else if (
+     if (
             usuario &&
             usuario.tipo_usuario === "CLINICA"
         ) {
