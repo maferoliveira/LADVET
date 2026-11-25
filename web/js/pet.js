@@ -5,6 +5,7 @@ const animalID =
     Number(params.get("id"));
 
 let vacinasAtuais = [];
+let petAtual = null;
 
 
 /* =========================
@@ -35,6 +36,7 @@ async function carregarPet() {
             await apiFetch(
                 `/animal/buscar/${animalID}`
             );
+            petAtual = pet;
 
 
         /* =========================
@@ -262,6 +264,12 @@ async function carregarPet() {
             document.getElementById(
                 "btnExcluir"
             );
+            const btnEditarAnimal =
+    document.getElementById("btnEditarAnimal");
+
+if (btnEditarAnimal) {
+    btnEditarAnimal.style.display = "none";
+}
 
 
         /* =========================
@@ -315,6 +323,17 @@ async function carregarPet() {
            CLÍNICA
         ========================= */
 
+        /* MOSTRA EDITAR ANIMAL */
+
+if (btnEditarAnimal) {
+
+    btnEditarAnimal.style.display = "block";
+
+    btnEditarAnimal.onclick = function () {
+        abrirFormularioAnimal();
+    };
+
+}
         else if (
             usuario &&
             usuario.tipo_usuario === "CLINICA"
@@ -1468,6 +1487,262 @@ function formatarDataInput(
 
 
     return "";
+
+}
+/* =========================
+   EDITAR ANIMAL
+========================= */
+
+function abrirFormularioAnimal() {
+
+    const usuario = getUsuario();
+
+    if (!usuario || usuario.tipo_usuario !== "CLINICA") {
+        alert("Você não tem permissão para editar este animal.");
+        return;
+    }
+
+    if (!petAtual) {
+        alert("Não foi possível encontrar os dados do animal.");
+        return;
+    }
+
+    const modalExistente = document.getElementById("modalEditarAnimal");
+
+    if (modalExistente) {
+        modalExistente.remove();
+    }
+
+    const modal = document.createElement("div");
+
+    modal.id = "modalEditarAnimal";
+    modal.className = "modal-editar-animal";
+
+    modal.innerHTML = `
+        <div class="form-editar-animal">
+
+            <h2>Editar informações do animal</h2>
+
+            <label for="editarNome">Nome</label>
+            <input id="editarNome" type="text" maxlength="100">
+
+            <label for="editarIdade">Idade (anos)</label>
+            <input id="editarIdade" type="number" min="0" step="1">
+
+            <label for="editarEspecie">Espécie</label>
+            <input id="editarEspecie" type="text" maxlength="60">
+
+            <label for="editarSexo">Sexo</label>
+            <input id="editarSexo" type="text" maxlength="30">
+
+            <label for="editarTemperamento">Temperamento</label>
+            <input id="editarTemperamento" type="text" maxlength="150">
+
+            <label for="editarStatus">Status</label>
+            <input id="editarStatus" type="text" maxlength="40">
+
+            <label for="editarDescricao">Descrição</label>
+            <textarea id="editarDescricao" rows="4" maxlength="1000"></textarea>
+
+            <div class="botoes-editar-animal">
+
+                <button
+                    type="button"
+                    id="cancelarEdicao"
+                    class="btn-cancelar-edicao">
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    id="salvarEdicao"
+                    class="btn-salvar-edicao">
+                    Salvar alterações
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    /* PREENCHE OS CAMPOS */
+
+    document.getElementById("editarNome").value =
+        petAtual.nome || "";
+
+    document.getElementById("editarIdade").value =
+        petAtual.idade ?? "";
+
+    document.getElementById("editarEspecie").value =
+        petAtual.especie || "";
+
+    document.getElementById("editarSexo").value =
+        petAtual.sexo || "";
+
+    document.getElementById("editarTemperamento").value =
+        petAtual.temperamento || "";
+
+    document.getElementById("editarStatus").value =
+        petAtual.status || "";
+
+    document.getElementById("editarDescricao").value =
+        petAtual.descricao || "";
+
+
+    /* CANCELAR */
+
+    document.getElementById("cancelarEdicao").onclick = function () {
+        modal.remove();
+    };
+
+
+    /* FECHAR AO CLICAR FORA */
+
+    modal.addEventListener("click", function (evento) {
+
+        if (evento.target === modal) {
+            modal.remove();
+        }
+
+    });
+
+
+    /* SALVAR */
+
+    document.getElementById("salvarEdicao").onclick = async function () {
+        await salvarEdicaoAnimal();
+    };
+
+}
+
+
+/* =========================
+   SALVAR ALTERAÇÕES DO ANIMAL
+========================= */
+
+async function salvarEdicaoAnimal() {
+
+    const usuario = getUsuario();
+
+    if (!usuario || usuario.tipo_usuario !== "CLINICA") {
+        alert("Você não tem permissão para realizar esta ação.");
+        return;
+    }
+
+    const nome =
+        document.getElementById("editarNome").value.trim();
+
+    const idadeTexto =
+        document.getElementById("editarIdade").value.trim();
+
+    const especie =
+        document.getElementById("editarEspecie").value.trim();
+
+    const sexo =
+        document.getElementById("editarSexo").value.trim();
+
+    const temperamento =
+        document.getElementById("editarTemperamento").value.trim();
+
+    const status =
+        document.getElementById("editarStatus").value.trim();
+
+    const descricao =
+        document.getElementById("editarDescricao").value.trim();
+
+
+    /* VALIDAÇÃO */
+
+    if (
+        !nome ||
+        idadeTexto === "" ||
+        !especie ||
+        !sexo ||
+        !temperamento ||
+        !status
+    ) {
+
+        alert("Preencha todos os campos obrigatórios.");
+        return;
+
+    }
+
+
+    const idade = Number(idadeTexto);
+
+    if (!Number.isInteger(idade) || idade < 0) {
+
+        alert("Informe uma idade válida.");
+        return;
+
+    }
+
+
+    /* DADOS PARA ATUALIZAÇÃO */
+
+    const dados = {
+
+        nome: nome,
+        idade: idade,
+        especie: especie,
+        sexo: sexo,
+        temperamento: temperamento,
+        status: status,
+        descricao: descricao
+
+    };
+
+
+    const btnSalvar =
+        document.getElementById("salvarEdicao");
+
+
+    try {
+
+        btnSalvar.disabled = true;
+        btnSalvar.textContent = "Salvando...";
+
+
+        await apiFetch(`/animal/atualizar/${animalID}`, {
+
+            method: "PUT",
+
+            body: JSON.stringify(dados)
+
+        });
+
+
+        alert("Informações do animal atualizadas com sucesso!");
+
+
+        const modal =
+            document.getElementById("modalEditarAnimal");
+
+        if (modal) {
+            modal.remove();
+        }
+
+
+        /* ATUALIZA AS INFORMAÇÕES NA TELA */
+
+        await carregarPet();
+
+
+    } catch (erro) {
+
+        console.error("Erro ao atualizar animal:", erro);
+
+        alert(
+            "Não foi possível atualizar o animal: " +
+            (erro.message || "Erro desconhecido.")
+        );
+
+        btnSalvar.disabled = false;
+        btnSalvar.textContent = "Salvar alterações";
+
+    }
 
 }
 
